@@ -70,13 +70,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="dashboard.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="empleados.html"><i class="fa fa-fw fa-users"></i> Empleados</a>
+                            <a href="empleados.php"><i class="fa fa-fw fa-users"></i> Empleados</a>
                         </li>
                         <li>
-                            <a href="nomina.html"><i class="fa fa-fw fa-table"></i> Nomina</a>
+                            <a href="nomina.php"><i class="fa fa-fw fa-table"></i> Nomina</a>
                         </li>
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-edit"></i> Ordenes <i class="fa fa-fw fa-caret-down"></i></a>
@@ -90,13 +90,13 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="facturas.html"><i class="fa fa-fw fa-file"></i> Facturas</a>
+                            <a href="facturas.php"><i class="fa fa-fw fa-file"></i> Facturas</a>
                         </li>
                         <li>
-                            <a href="mantenimiento.html"><i class="fa fa-fw fa-wrench"></i> Mantenimiento</a>
+                            <a href="mantenimiento.php"><i class="fa fa-fw fa-wrench"></i> Mantenimiento</a>
                         </li>
                         <li>
-                            <a href="soporte.html"><i class="fa fa-fw fa-info-circle"></i> Soporte</a>
+                            <a href="soporte.php"><i class="fa fa-fw fa-info-circle"></i> Soporte</a>
                         </li>
                     </ul>
                 </div>

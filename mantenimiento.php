@@ -12,16 +12,16 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -68,13 +68,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="dashboard.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="empleados.html"><i class="fa fa-fw fa-users"></i> Empleados</a>
+                            <a href="empleados.php"><i class="fa fa-fw fa-users"></i> Empleados</a>
                         </li>
                         <li>
-                            <a href="nomina.html"><i class="fa fa-fw fa-table"></i> Nomina</a>
+                            <a href="nomina.php"><i class="fa fa-fw fa-table"></i> Nomina</a>
                         </li>
                         <li>
                             <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-edit"></i> Ordenes <i class="fa fa-fw fa-caret-down"></i></a>
@@ -88,13 +88,13 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="facturas.html"><i class="fa fa-fw fa-file"></i> Facturas</a>
+                            <a href="facturas.php"><i class="fa fa-fw fa-file"></i> Facturas</a>
                         </li>
                         <li>
-                            <a href="mantenimiento.html"><i class="fa fa-fw fa-wrench"></i> Mantenimiento</a>
+                            <a href="mantenimiento.php"><i class="fa fa-fw fa-wrench"></i> Mantenimiento</a>
                         </li>
                         <li>
-                            <a href="soporte.html"><i class="fa fa-fw fa-info-circle"></i> Soporte</a>
+                            <a href="soporte.php"><i class="fa fa-fw fa-info-circle"></i> Soporte</a>
                         </li>
                     </ul>
                 </div>
@@ -122,16 +122,16 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="dist/js/sb-admin-2.js"></script>
 
 </body>
 

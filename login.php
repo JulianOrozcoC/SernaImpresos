@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +23,7 @@
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,9 +48,11 @@
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Username" id="Username" name="Username" type="text" autofocus>
+                                    <span id="errorLabelUserName"> </span>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" id="Password"  name="Password" type="password">
+                                    <span id="errorLabelUserPass"> </span>
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -56,7 +60,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" class="btn btn-lg btn-success btn-block"> Log In</button>
+                                <button id="LoginBtn" type="submit" class="btn btn-lg btn-success btn-block"> Log In</button>
                             </fieldset>
                         </form>
                     </div>
@@ -66,6 +70,7 @@
     </div>
 
     <!-- jQuery -->
+    <script type = "text/javascript" src="js/login.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
     <script src="js/notify.js"></script>
