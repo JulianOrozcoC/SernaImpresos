@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2017 at 05:43 PM
+-- Generation Time: Apr 10, 2017 at 10:06 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -59,9 +59,9 @@ CREATE TABLE `Empleados` (
   `IMSS` double DEFAULT NULL,
   `Subsidio` double DEFAULT NULL,
   `Infonavit` double DEFAULT NULL,
-  `Activo` varchar(20) NOT NULL,
-  `Usuario` varchar(20) NOT NULL,
-  `Contrasena` varchar(20) NOT NULL
+  `Activo` varchar(20) DEFAULT NULL,
+  `Usuario` varchar(20) DEFAULT NULL,
+  `Contrasena` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

@@ -51,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="dashboard.html">Serna Impresos</a>
+                <a class="navbar-brand" href="dashboard.php">Serna Impresos</a>
             </div>
             <!-- /.navbar-header -->
 
