@@ -75,3 +75,41 @@ function decryptPassword($password){
 
     return $password;
 }
+
+function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $telefono, $cel, $email, $noimms, $rfc, $curp, $puesto, $fnacim, $fini, $salHora,$salNof,$isr, $imss, $subsidio, $infonavit, $activo,$usuario, $pass){
+
+    $conn = connectionToDataBase();
+    if($conn != null){
+        $sqlVerif = "SELECT * FROM Empleados WHERE Usuario='$usuario' ";
+        $sqlInsert = "INSERT INTO Empleados(Nomina, Nombre, Domicilio, Colonia, Ciudad, Telefono, Celular, Email, No_IMSS, RFC, CURP, Puesto, Fecha_Nacimiento, Fecha_Inicio, Salario_Hora, Salario_NOF, ISR, IMSS, Subsidio, Infonavit, Activo, Usuario, Contrasena)
+					VALUES  ('$nomina, $nombre, $domicilio, $colonia, $ciudad, $telefono, $cel, $email, $noimms, $rfc, $curp, $puesto, $fnacim, $fini, $salHora,$salNof,$isr, $imss, $subsidio, $infonavit, $activo,$usuario, $pass')";
+
+        $res = $conn->query($sqlVerif);
+
+        if ($res->num_rows > 0) {
+            $conn->close();
+            return array("status"=>"Username already taken.");
+        }
+        else{
+            var_dump($sqlInsert);
+            if (mysqli_query($conn, $sqlInsert)){
+                $conn->close();
+                session_start();
+                $_SESSION["Nomina"] = $nomina;
+                $_SESSION["Nombre"] = $nombre;
+                $_SESSION["Puesto"]  = $puesto;
+                $_SESSION["Activity"] = time();
+
+                return array("status"=>"SUCCESS");
+            }
+            else {
+                $conn->close();
+                return array("status"=>"Something went wrong on the server.");
+            }
+        }
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}

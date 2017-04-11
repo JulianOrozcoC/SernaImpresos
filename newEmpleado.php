@@ -124,7 +124,7 @@
             </div>
             <style>
                 input[type=text], select {
-                    width: 100%;
+                    width: 370px;
                     padding: 12px 20px;
                     margin: 8px 0;
                     display: inline-block;
@@ -132,124 +132,142 @@
                     border-radius: 4px;
                     box-sizing: border-box;
                 }
+                input[type=password], select {
+                    width: 370px;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                }
+                input[type=date], select {
+                    width: 370px;
+                    padding: 12px 20px;
+                    margin: 8px 0;
+                    display: inline-block;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                }
+                label {
+                    padding-right: 30px;
+                    padding-left: 60px;
+                }
+
+                p {
+                    padding-left: 340px;
+                }
+
             </style
             <div>
                 <form>
-                    <label for="nombre">Nombre
-                    <input type="text" id="nombre" placeholder="Nombre" size="35">
-                        <span id="errorLabelName"></span>
+                    <label for="nombre">Nombre <br>
+                    <input type="text" id="nombre" placeholder="Nombre" ><br>
+                        <span style="color:red"> <span id="errorName"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="nomina">Nomina
-                    <input type="text" id="nomina" name="nomina" placeholder="Nomina" size="35">
-                        <span id="errorLabelNomina"></span>
+
+                    <label for="nomina">Nomina <br>
+                    <input type="text" id="nomina" name="nomina" placeholder="Nomina" ><br>
+                        <span style="color:red"> <span id="errorLabelNomina"></span> </span>
                     </label><br>
 
-                    <label for="domicilio">Domicilio
-                        <input type="text" id="domicilio" name="domicilio" placeholder="Domicilio" size="34">
-                        <span id="errorLabelDomicilio"></span>
+                    <label for="domicilio">Domicilio <br>
+                        <input type="text" id="domicilio" name="domicilio" placeholder="Domicilio" ><br>
+                        <span style="color:red"> <span id="errorLabelDomicilio"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="colonia">Colonia
-                        <input type="text" id="colonia" name="colonia" placeholder="Colonia" size="35">
-                        <span id="errorLabelColonia"></span>
+                    <label for="colonia">Colonia <br>
+                        <input type="text" id="colonia" name="colonia" placeholder="Colonia"><br>
+                        <span style="color:red"> <span id="errorLabelColonia"></span> </span>
                     </label><br>
 
-                    <label for="ciudad">Ciudad
-                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" size="36">
-                        <span id="errorLabelCiudad"></span>
+                    <label for="ciudad">Ciudad <br>
+                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" ><br>
+                        <span style="color:red"> <span id="errorLabelCiudad"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="telefono">Telefono
-                        <input type="text" id="telefono" name="telefono" placeholder="Telefono" size="35">
-                        <span id="errorLabelTelefono"></span>
+                    <label for="telefono">Telefono <br>
+                        <input type="text" id="telefono" name="telefono" placeholder="Telefono"><br>
+                        <span style="color:red"> <span id="errorLabelTelefono"></span> </span>
                     </label><br>
 
-                    <label for="celular">Celular
-                        <input type="text" id="celular" name="celular" placeholder="Celular" size="36">
-                        <span id="errorLabelCelular"></span>
+                    <label for="celular">Celular <br>
+                        <input type="text" id="celular" name="celular" placeholder="Celular" ><br>
+                        <span style="color:red"> <span id="errorLabelCelular"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="email">Email
-                        <input type="text" id="email" name="email" placeholder="Email" size="37">
-                        <span id="errorLabelEmail"></span>
+                    <label for="email">Email <br>
+                        <input type="text" id="email" name="email" placeholder="Email" ><br>
+                        <span style="color:red"> <span id="errorLabelEmail"></span> </span>
                     </label><br>
 
-                    <label for="imss">No. IMSS
-                        <input type="text" id="imss" name="imss" placeholder="No. IMSS" size="35">
-                        <span id="errorLabelNoImss"></span>
+                    <label for="imss">No. IMSS <br>
+                        <input type="text" id="imss" name="imss" placeholder="No. IMSS" ><br>
+                        <span style="color:red"> <span id="errorLabelNoImss"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="rfc">RFC
-                        <input type="text" id="rfc" name="rfc" placeholder="RFC" size="38">
-                        <span id="errorLabelRfc"></span>
+                    <label for="rfc">RFC <br>
+                        <input type="text" id="rfc" name="rfc" placeholder="RFC" ><br>
+                        <span style="color:red"> <span id="errorLabelRfc"></span> </span>
                     </label><br>
 
-                    <label for="curp">CURP
-                        <input type="text" id="curp" name="curp" placeholder="CURP" size="38">
-                        <span id="errorLabelCurp"></span>
+                    <label for="curp">CURP <br>
+                        <input type="text" id="curp" name="curp" placeholder="CURP" ><br>
+                        <span style="color:red"> <span id="errorLabelCurp"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="puesto">Puesto
-                        <input type="text" id="puesto" name="puesto" placeholder="Puesto" size="36">
-                        <span id="errorLabelPuesto"></span>
+                    <label for="puesto">Puesto <br>
+                        <input type="text" id="puesto" name="puesto" placeholder="Puesto"><br>
+                        <span style="color:red"> <span id="errorLabelPuesto"></span> </span>
                     </label><br>
-                    <label for="fnacim">Fecha de Nacimiento
-                        <input type="text" id="fnacim" name="fnacim" placeholder="Fecha de Nacimiento" size="25">
-                        <span id="errorLabelFechaNacim"></span>
+                    <label for="fnacim">Fecha de Nacimiento <br>
+                        <input type="date" id="fnacim" name="fnacim" ><br>
+                        <span style="color:red"> <span id="errorLabelFechaNacim"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="fini">Fecha de Inicio
-                        <input type="text" id="fini" name="fini" placeholder="Fecha de Inicio" size="29">
-                        <span id="errorLabelFechaIni"></span>
+                    <label for="fini">Fecha de Inicio <br>
+                        <input type="date" id="fini" name="fini" ><br>
+                        <span style="color:red"> <span id="errorLabelFechaIni"></span> </span>
                     </label><br>
 
-                    <label for="salhora">Salario por Hora
-                        <input type="text" id="salhora" name="salhora" placeholder="Salario por Hora" size="29">
-                        <span id="errorLabelSalarioHora"></span>
+                    <label for="salhora">Salario por Hora<br>
+                        <input type="text" id="salhora" name="salhora" placeholder="Salario por Hora"><br>
+                        <span style="color:red"> <span id="errorLabelSalarioHora"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="salnof">Salario NOF
-                        <input type="text" id="salnof" name="salnof" placeholder="Salario NOF" size="32">
-                        <span id="errorLabelSalarioNof"></span>
+                    <label for="salnof">Salario NOF<br>
+                        <input type="text" id="salnof" name="salnof" placeholder="Salario NOF" ><br>
+                        <span style="color:red"> <span id="errorLabelSalarioNof"></span> </span>
                     </label><br>
 
-                    <label for="isr">ISR
-                        <input type="text" id="isr" name="isr" placeholder="ISR" size="40">
-                        <span id="errorLabelIsr"></span>
+                    <label for="isr">ISR<br>
+                        <input type="text" id="isr" name="isr" placeholder="ISR" ><br>
+                        <span style="color:red"> <span id="errorLabelIsr"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="impimss">IMSS
-                        <input type="text" id="impimss" name="impimss" placeholder="IMSS" size="38">
-                        <span id="errorLabelImss"></span>
+                    <label for="impimss">IMSS<br>
+                        <input type="text" id="impimss" name="impimss" placeholder="IMSS" ><br>
+                        <span style="color:red"> <span id="errorLabelImss"></span> </span>
                     </label><br>
 
-                    <label for="subsidio">Subsidio al Empleado
-                        <input type="text" id="subsidio" name="subsidio" placeholder="Subsidio al Empleado" size="25">
-                        <span id="errorLabelSubsidio"></span>
+                    <label for="subsidio">Subsidio al Empleado<br>
+                        <input type="text" id="subsidio" name="subsidio" placeholder="Subsidio al Empleado" ><br>
+                        <span style="color:red"> <span id="errorLabelSubsidio"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="infonavit">Infonavit
-                        <input type="text" id="infonavit" name="infonavit" placeholder="Infonavit" size="35">
-                        <span id="errorLabelInfonavit"></span>
+                    <label for="infonavit">Infonavit<br>
+                        <input type="text" id="infonavit" name="infonavit" placeholder="Infonavit"><br>
+                        <span style="color:red"> <span id="errorLabelInfonavit"></span> </span>
                     </label><br>
-                    <label for="activo">Activo
-                        <input type="text" id="activo" name="activo" placeholder="Activo" size="38">
-                        <span id="errorLabelActivo"></span>
+                    <label for="activo">Activo<br>
+                        <input type="text" id="activo" name="activo" placeholder="Activo" ><br>
+                        <span style="color:red"> <span id="errorLabelActivo"></span> </span>
                     </label>
-                    <span style="display:inline-block; width: 200px;"></span>
-                    <label for="usuario">Usuario
-                        <input type="text" id="usuario" name="usuario" placeholder="Usuario" size="36">
-                        <span id="errorLabelUsuario"></span>
+                    <label for="usuario">Usuario<br>
+                        <input type="text" id="usuario" name="usuario" placeholder="Usuario"><br>
+                        <span style="color:red"> <span id="errorLabelUsuario"></span> </span>
                     </label><br>
-                    <label for="contrasena">Contraseña
-                        <input type="text" id="contrasena" name="contrasena" placeholder="Contraseña" size="34">
-                        <span id="errorLabelContrasena"></span>
+                    <label for="contrasena">Contraseña<br>
+                        <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" ><br>
+                        <span style="color:red"> <span id="errorLabelContrasena"></span> </span>
                     </label><br><br><br>
 
-                    <button style="width:300px" id="AgregaEmp" type="submit" class="btn btn-lg btn-success btn-block"> Aceptar</button>
+                    <p>
+                    <button style="width:300px" id="AgregaEmp" type="button" class="btn btn-lg btn-success btn-block"> Aceptar</button>
                     <br><br><br><br><br><br><br><br>
-
+                    </p>
 
                 </form>
             </div>
