@@ -13,11 +13,11 @@ switch($action) {
 }
 
 function login(){
-    $userName = $_POST["Usuario"];
-    $userPassword = $_POST["Contrasena"];
+    $usuario = $_POST['Usuario'];
+    $contrasena = $_POST["Contrasena"];
     $remember = $_POST["remember"];
 
-    $result = attemptLogin($userName, $remember, $userPassword);
+    $result = attemptLogin($usuario, $remember, $contrasena);
 
     if ($result["status"] == "SUCCESS")
         echo json_encode(array("message" => "Login Successful"));

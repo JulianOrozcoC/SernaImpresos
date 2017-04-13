@@ -17,17 +17,18 @@ function connectionToDataBase(){
 }
 # Funcion login que recibe como parametro el usuario y contraseña ingresados por el usuario,
 # desencripta la contraseña extraida de la base de datos y la compara com la que ingresó el usuario
-function attemptLogin($userName, $remember, $userPassword){
+function attemptLogin($usuario, $remember, $userPassword){
 
     $conn = connectionToDataBase();
 
     if ($conn != null){
-        $sql = "SELECT Usuario, Contrasena, Nombre, Puesto FROM Empleados WHERE Usuario='$userName' ";
+        $sql = "SELECT Usuario, Contrasena, Nombre, Puesto FROM Empleados WHERE Usuario='$usuario' ";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
+
             if(decryptPassword($row['Contrasena']) == $userPassword);{
                 session_start();
                 $_SESSION["Usuario"] = $row["Usuario"];
@@ -35,7 +36,7 @@ function attemptLogin($userName, $remember, $userPassword){
                 $_SESSION["Puesto"]  = $row["Puesto"];
 
                 if($remember)
-                    setcookie("user", $userName, time()+3600*24*30, "/", "",0);
+                    setcookie("user", $usuario, time()+3600*24*30, "/", "",0);
 
                 $_SESSION["Activity"] = time();
                 return array("status" => "SUCCESS", "Usuario" => $row['Usuario'], "Nombre" => $row['Nombre'], "Contrasena" => $row['Contrasena']);
@@ -63,7 +64,6 @@ function decryptPassword($password){
     $ciphertext_dec = substr($ciphertext_dec, $iv_size);
 
     $password = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $ciphertext_dec, MCRYPT_MODE_CBC, $iv_dec);
-
     $count = 0;
     $length = strlen($password);
 

@@ -27,11 +27,11 @@ $(document).ready(function(){
 
         var jsonToSend ={
             "action" : "LOGIN",
-            "username" : $("#Username").val(),
-            "userPassword" : $("#Password").val(),
-            "rememberMe" : $("#remember").is(":checked")
+            "Usuario" : $userName.val(),
+            "Contrasena" : $userPass.val(),
+            "remember" : $("#remember").is(":checked")
         };
-
+        console.log(jsonToSend);
         $.ajax({
             url : "data/appLayer.php",
             type: "POST",
