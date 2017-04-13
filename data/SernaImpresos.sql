@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 10, 2017 at 10:06 AM
+-- Generation Time: Apr 13, 2017 at 03:09 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -23,18 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Comentarios`
---
-
-CREATE TABLE `Comentarios` (
-  `id_Comentario` int(11) NOT NULL,
-  `Nomina` varchar(20) NOT NULL,
-  `Comentario` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `Empleados`
 --
 
@@ -47,12 +35,12 @@ CREATE TABLE `Empleados` (
   `Telefono` varchar(20) DEFAULT NULL,
   `Celular` varchar(20) DEFAULT NULL,
   `Email` text,
-  `No. IMSS` bigint(20) DEFAULT NULL,
+  `No_IMSS` bigint(20) DEFAULT NULL,
   `RFC` bigint(20) DEFAULT NULL,
   `CURP` text,
   `Puesto` varchar(20) DEFAULT NULL,
-  `Fecha de nacimiento` date DEFAULT NULL,
-  `Fecha de Inicio` date DEFAULT NULL,
+  `Fecha_Nacimiento` date DEFAULT NULL,
+  `Fecha_Inicio` date DEFAULT NULL,
   `Salario_Hora` double DEFAULT NULL,
   `Salario_NOF` double DEFAULT NULL,
   `ISR` double DEFAULT NULL,
@@ -64,83 +52,16 @@ CREATE TABLE `Empleados` (
   `Contrasena` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `Orden_Compra`
+-- Dumping data for table `Empleados`
 --
 
-CREATE TABLE `Orden_Compra` (
-  `id_OCompra` bigint(20) NOT NULL,
-  `id_OTrabajo` double NOT NULL,
-  `Nomina` varchar(20) NOT NULL,
-  `id_Proveedor` bigint(20) NOT NULL,
-  `Fecha` date DEFAULT NULL,
-  `Cantidad` bigint(20) DEFAULT NULL,
-  `Unidad_Medida` text,
-  `Descripcion` longtext,
-  `Precio_Unitario` double DEFAULT NULL,
-  `Total` double DEFAULT NULL,
-  `Aprobada` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Orden_Trabajo`
---
-
-CREATE TABLE `Orden_Trabajo` (
-  `id_OTrabajo` double NOT NULL,
-  `Nomina` varchar(20) DEFAULT NULL,
-  `Responsable` text,
-  `Descripcion` longtext,
-  `Aprovada` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Proveedores`
---
-
-CREATE TABLE `Proveedores` (
-  `id_Proveedor` bigint(20) NOT NULL,
-  `Nombre` text,
-  `RFC` text,
-  `Domicilio` text,
-  `Telefono` bigint(20) DEFAULT NULL,
-  `Vendedor` text,
-  `Fax` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `Trabaja`
---
-
-CREATE TABLE `Trabaja` (
-  `id_Trabaja` int(11) NOT NULL,
-  `Nomina` varchar(20) NOT NULL,
-  `Fecha` date NOT NULL,
-  `Hora_Entrada` time NOT NULL,
-  `Hora_Salida` time NOT NULL,
-  `Asistencia` varchar(10) NOT NULL,
-  `Retraso` varchar(10) NOT NULL,
-  `Horas_Trabajadas` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `Empleados` (`Nomina`, `Nombre`, `Domicilio`, `Colonia`, `Ciudad`, `Telefono`, `Celular`, `Email`, `No_IMSS`, `RFC`, `CURP`, `Puesto`, `Fecha_Nacimiento`, `Fecha_Inicio`, `Salario_Hora`, `Salario_NOF`, `ISR`, `IMSS`, `Subsidio`, `Infonavit`, `Activo`, `Usuario`, `Contrasena`) VALUES
+('S001', 'Edgar Jorge Serna Cavazos', 'James Cook 2937, Cumbres', 'Cumbres', 'Monterrey', '14255092', '8119104923', 'eserna_sisa@prodigy.net.mx', 0, 0, '', 'Admin', '1956-08-01', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'eserna', 'fDoL6goWA+VkUklv/ioJ');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `Comentarios`
---
-ALTER TABLE `Comentarios`
-  ADD PRIMARY KEY (`id_Comentario`),
-  ADD KEY `Nomina` (`Nomina`);
 
 --
 -- Indexes for table `Empleados`
@@ -148,96 +69,6 @@ ALTER TABLE `Comentarios`
 ALTER TABLE `Empleados`
   ADD PRIMARY KEY (`Nomina`),
   ADD UNIQUE KEY `Nomina` (`Nomina`);
-
---
--- Indexes for table `Orden_Compra`
---
-ALTER TABLE `Orden_Compra`
-  ADD PRIMARY KEY (`id_OCompra`),
-  ADD UNIQUE KEY `id_OCompra` (`id_OCompra`),
-  ADD KEY `id_OTrabajo` (`id_OTrabajo`),
-  ADD KEY `id_Proveedor` (`id_Proveedor`),
-  ADD KEY `Nomina` (`Nomina`);
-
---
--- Indexes for table `Orden_Trabajo`
---
-ALTER TABLE `Orden_Trabajo`
-  ADD PRIMARY KEY (`id_OTrabajo`),
-  ADD UNIQUE KEY `id_OTrabajo` (`id_OTrabajo`),
-  ADD KEY `Nomina` (`Nomina`);
-
---
--- Indexes for table `Proveedores`
---
-ALTER TABLE `Proveedores`
-  ADD PRIMARY KEY (`id_Proveedor`);
-
---
--- Indexes for table `Trabaja`
---
-ALTER TABLE `Trabaja`
-  ADD PRIMARY KEY (`id_Trabaja`),
-  ADD KEY `Nomina` (`Nomina`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `Comentarios`
---
-ALTER TABLE `Comentarios`
-  MODIFY `id_Comentario` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `Orden_Compra`
---
-ALTER TABLE `Orden_Compra`
-  MODIFY `id_OCompra` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `Orden_Trabajo`
---
-ALTER TABLE `Orden_Trabajo`
-  MODIFY `id_OTrabajo` double NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `Proveedores`
---
-ALTER TABLE `Proveedores`
-  MODIFY `id_Proveedor` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `Trabaja`
---
-ALTER TABLE `Trabaja`
-  MODIFY `id_Trabaja` int(11) NOT NULL AUTO_INCREMENT;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `Comentarios`
---
-ALTER TABLE `Comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`Nomina`) REFERENCES `Empleados` (`Nomina`);
-
---
--- Constraints for table `Orden_Compra`
---
-ALTER TABLE `Orden_Compra`
-  ADD CONSTRAINT `orden_compra_ibfk_1` FOREIGN KEY (`id_OTrabajo`) REFERENCES `Orden_Trabajo` (`id_OTrabajo`),
-  ADD CONSTRAINT `orden_compra_ibfk_2` FOREIGN KEY (`id_Proveedor`) REFERENCES `Proveedores` (`id_Proveedor`),
-  ADD CONSTRAINT `orden_compra_ibfk_3` FOREIGN KEY (`Nomina`) REFERENCES `Empleados` (`Nomina`);
-
---
--- Constraints for table `Orden_Trabajo`
---
-ALTER TABLE `Orden_Trabajo`
-  ADD CONSTRAINT `orden_trabajo_ibfk_1` FOREIGN KEY (`Nomina`) REFERENCES `Empleados` (`Nomina`);
-
---
--- Constraints for table `Trabaja`
---
-ALTER TABLE `Trabaja`
-  ADD CONSTRAINT `trabaja_ibfk_1` FOREIGN KEY (`Nomina`) REFERENCES `Empleados` (`Nomina`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
