@@ -29,6 +29,8 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -122,46 +124,10 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <style>
-                input[type=text], select {
-                    width: 370px;
-                    padding: 12px 20px;
-                    margin: 8px 0;
-                    display: inline-block;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    box-sizing: border-box;
-                }
-                input[type=password], select {
-                    width: 370px;
-                    padding: 12px 20px;
-                    margin: 8px 0;
-                    display: inline-block;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    box-sizing: border-box;
-                }
-                input[type=date], select {
-                    width: 370px;
-                    padding: 12px 20px;
-                    margin: 8px 0;
-                    display: inline-block;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                    box-sizing: border-box;
-                }
-                label {
-                    padding-right: 30px;
-                    padding-left: 60px;
-                }
-
-                p {
-                    padding-left: 340px;
-                }
-
-            </style
             <div>
                 <form>
+                <div class="row">
+                    <div class="left">
                     <label for="nombre">Nombre <br>
                     <input type="text" id="nombre" placeholder="Nombre" ><br>
                         <span style="color:red"> <span id="errorName"></span> </span>
@@ -170,7 +136,7 @@
                     <label for="nomina">Nomina <br>
                     <input type="text" id="nomina" name="nomina" placeholder="Nomina" ><br>
                         <span style="color:red"> <span id="errorLabelNomina"></span> </span>
-                    </label><br>
+                    </label>
 
                     <label for="domicilio">Domicilio <br>
                         <input type="text" id="domicilio" name="domicilio" placeholder="Domicilio" ><br>
@@ -179,7 +145,7 @@
                     <label for="colonia">Colonia <br>
                         <input type="text" id="colonia" name="colonia" placeholder="Colonia"><br>
                         <span style="color:red"> <span id="errorLabelColonia"></span> </span>
-                    </label><br>
+                    </label>
 
                     <label for="ciudad">Ciudad <br>
                         <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad" ><br>
@@ -188,7 +154,7 @@
                     <label for="telefono">Telefono <br>
                         <input type="text" id="telefono" name="telefono" placeholder="Telefono"><br>
                         <span style="color:red"> <span id="errorLabelTelefono"></span> </span>
-                    </label><br>
+                    </label>
 
                     <label for="celular">Celular <br>
                         <input type="text" id="celular" name="celular" placeholder="Celular" ><br>
@@ -197,7 +163,7 @@
                     <label for="email">Email <br>
                         <input type="text" id="email" name="email" placeholder="Email" ><br>
                         <span style="color:red"> <span id="errorLabelEmail"></span> </span>
-                    </label><br>
+                    </label>
 
                     <label for="imss">No. IMSS <br>
                         <input type="text" id="imss" name="imss" placeholder="No. IMSS" ><br>
@@ -206,7 +172,7 @@
                     <label for="rfc">RFC <br>
                         <input type="text" id="rfc" name="rfc" placeholder="RFC" ><br>
                         <span style="color:red"> <span id="errorLabelRfc"></span> </span>
-                    </label><br>
+                    </label>
 
                     <label for="curp">CURP <br>
                         <input type="text" id="curp" name="curp" placeholder="CURP" ><br>
@@ -215,7 +181,11 @@
                     <label for="puesto">Puesto <br>
                         <input type="text" id="puesto" name="puesto" placeholder="Puesto"><br>
                         <span style="color:red"> <span id="errorLabelPuesto"></span> </span>
-                    </label><br>
+                    </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="right">
                     <label for="fnacim">Fecha de Nacimiento <br>
                         <input type="date" id="fnacim" name="fnacim" ><br>
                         <span style="color:red"> <span id="errorLabelFechaNacim"></span> </span>
@@ -223,7 +193,7 @@
                     <label for="fini">Fecha de Inicio <br>
                         <input type="date" id="fini" name="fini" ><br>
                         <span style="color:red"> <span id="errorLabelFechaIni"></span> </span>
-                    </label><br>
+                    </label>
 
                     <label for="salhora">Salario por Hora<br>
                         <input type="text" id="salhora" name="salhora" placeholder="Salario por Hora"><br>
@@ -232,7 +202,7 @@
                     <label for="salnof">Salario NOF<br>
                         <input type="text" id="salnof" name="salnof" placeholder="Salario NOF" ><br>
                         <span style="color:red"> <span id="errorLabelSalarioNof"></span> </span>
-                    </label><br>
+                    </label>
 
                     <label for="isr">ISR<br>
                         <input type="text" id="isr" name="isr" placeholder="ISR" ><br>
@@ -241,7 +211,7 @@
                     <label for="impimss">IMSS<br>
                         <input type="text" id="impimss" name="impimss" placeholder="IMSS" ><br>
                         <span style="color:red"> <span id="errorLabelImss"></span> </span>
-                    </label><br>
+                    </label>
 
                     <label for="subsidio">Subsidio al Empleado<br>
                         <input type="text" id="subsidio" name="subsidio" placeholder="Subsidio al Empleado" ><br>
@@ -250,23 +220,30 @@
                     <label for="infonavit">Infonavit<br>
                         <input type="text" id="infonavit" name="infonavit" placeholder="Infonavit"><br>
                         <span style="color:red"> <span id="errorLabelInfonavit"></span> </span>
-                    </label><br>
+                    </label>
                     <label for="activo">Activo<br>
-                        <input type="text" id="activo" name="activo" placeholder="Activo" ><br>
+                        <select type="text" id="activo" name="activo" placeholder="Activo" >
+                        <option value="">Seleccione una opcion ...</option>
+                        <option value="Si">Activo</option>
+                        <option value="No">Inactivo</option>
+                        </select>
                         <span style="color:red"> <span id="errorLabelActivo"></span> </span>
                     </label>
                     <label for="usuario">Usuario<br>
                         <input type="text" id="usuario" name="usuario" placeholder="Usuario"><br>
                         <span style="color:red"> <span id="errorLabelUsuario"></span> </span>
-                    </label><br>
+                    </label>
                     <label for="contrasena">Contraseña<br>
                         <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" ><br>
                         <span style="color:red"> <span id="errorLabelContrasena"></span> </span>
-                    </label><br><br><br>
+                    </label>
+                    </div>
+                </div>
+                <br>
 
                     <p>
                     <button style="width:300px" id="AgregaEmp" type="button" class="btn btn-lg btn-success btn-block"> Aceptar</button>
-                    <br><br><br><br><br><br><br><br>
+                    <br>
                     </p>
 
                 </form>

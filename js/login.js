@@ -19,12 +19,7 @@ $(document).ready(function(){
         else{
             $("#errorLabelPass").text("");
         }
-
-        if($userName.val() != "" && $userPass.val() != ""){
-            $("#errorLabelUserName").text("Wrong username");
-            $("#errorLabelPass").text("Wrong password");
-        }
-
+        
         var jsonToSend ={
             "action" : "LOGIN",
             "Usuario" : $userName.val(),

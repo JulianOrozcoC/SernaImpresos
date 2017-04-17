@@ -10,13 +10,15 @@ switch($action) {
         break;
     case "REGISTER" : Registration();
         break;
+    case "LoadTableEmpleados" : LoadTableEmpleado();
+        break;
 }
 
 function login(){
     $usuario = $_POST['Usuario'];
     $contrasena = $_POST["Contrasena"];
     $remember = $_POST["remember"];
-
+    
     $result = attemptLogin($usuario, $remember, $contrasena);
 
     if ($result["status"] == "SUCCESS")
@@ -51,7 +53,7 @@ function Registration(){
     $infonavit = $_POST['Infonavit'];
     $activo = $_POST['Activo'];
     $usuario = $_POST['Usuario'];
-    $pass = encryptPassword();
+    $pass = $_POST['Contrasena'];
 
     $result = attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $telefono, $cel, $email, $noimms, $rfc, $curp, $puesto, $fnacim, $fini, $salHora,$salNof,$isr, $imss, $subsidio, $infonavit, $activo,$usuario, $pass);
 
@@ -63,26 +65,19 @@ function Registration(){
         die($result["status"]);
     }
 }
+function LoadTableEmpleado(){
 
-# Action to encrypt the password of the user
-function encryptPassword() // function taken from class activity
-{
-    $pass = $_POST['Contrasena'];
+    $result = TableEmpleado();
 
-    $key = pack('H*', "bcb04b7e103a05afe34763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
-    $key_size =  strlen($key);
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["Tabla"]);
+        //echo json_encode(array($comentario));
+    }   
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
 
-    echo "Tamaño de la clave: " . $key_size . "\n";
-
-    $plaintext = $pass;
-
-    $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
-    $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-
-    $ciphertext = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $plaintext, MCRYPT_MODE_CBC, $iv);
-    $ciphertext = $iv . $ciphertext;
-
-    $pass = base64_encode($ciphertext);
-
-    return $pass;
 }
+
+?>

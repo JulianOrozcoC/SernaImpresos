@@ -29,7 +29,7 @@ function attemptLogin($usuario, $remember, $userPassword){
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
-            if(decryptPassword($row['Contrasena']) == $userPassword);{
+            if(password_verify($userPassword, $row['Contrasena'])){
                 session_start();
                 $_SESSION["Usuario"] = $row["Usuario"];
                 $_SESSION["Nombre"] = $row["Nombre"];
@@ -41,48 +41,33 @@ function attemptLogin($usuario, $remember, $userPassword){
                 $_SESSION["Activity"] = time();
                 return array("status" => "SUCCESS", "Usuario" => $row['Usuario'], "Nombre" => $row['Nombre'], "Contrasena" => $row['Contrasena']);
             }
+            else {
+                $conn -> close();
+            return array("status" => $row['Contrasena']);
+            }
         }
-        else{
+        else {
             $conn -> close();
             return array("status" => "USERNAME NOT FOUND");
         }
-    }else{
+    }else {
         $conn -> close();
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
 }
 
-#Action to decrypt the password of the user
-// function taken from class activity
-function decryptPassword($password){
-    $key = pack('H*', "bcb04b7e103a05afe34763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
-
-    $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
-
-    $ciphertext_dec = base64_decode($password);
-    $iv_dec = substr($ciphertext_dec, 0, $iv_size);
-    $ciphertext_dec = substr($ciphertext_dec, $iv_size);
-
-    $password = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $ciphertext_dec, MCRYPT_MODE_CBC, $iv_dec);
-    $count = 0;
-    $length = strlen($password);
-
-    for ($i = $length - 1; $i >= 0; $i --)
-        if (ord($password{$i}) === 0)
-            $count ++;
-
-    $password = substr($password, 0,  $length - $count);
-
-    return $password;
-}
 
 function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $telefono, $cel, $email, $noimms, $rfc, $curp, $puesto, $fnacim, $fini, $salHora,$salNof,$isr, $imss, $subsidio, $infonavit, $activo,$usuario, $pass){
 
+
     $conn = connectionToDataBase();
     if($conn != null){
+        $options = ['cost' => 12];
+        $hash = password_hash($pass, PASSWORD_BCRYPT, $options);
+
         $sqlVerif = "SELECT * FROM Empleados WHERE Usuario='$usuario' ";
         $sqlInsert = "INSERT INTO Empleados(Nomina, Nombre, Domicilio, Colonia, Ciudad, Telefono, Celular, Email, No_IMSS, RFC, CURP, Puesto, Fecha_Nacimiento, Fecha_Inicio, Salario_Hora, Salario_NOF, ISR, IMSS, Subsidio, Infonavit, Activo, Usuario, Contrasena)
-					VALUES  ('$nomina', '$nombre', '$domicilio', '$colonia', '$ciudad', '$telefono', '$cel', '$email', '$noimms', '$rfc', '$curp', '$puesto', '$fnacim', '$fini', '$salHora','$salNof','$isr', '$imss', '$subsidio', '$infonavit', '$activo','$usuario', '$pass')";
+					VALUES  ('$nomina', '$nombre', '$domicilio', '$colonia', '$ciudad', '$telefono', '$cel', '$email', '$noimms', '$rfc', '$curp', '$puesto', '$fnacim', '$fini', '$salHora','$salNof','$isr', '$imss', '$subsidio', '$infonavit', '$activo','$usuario', '$hash')";
 
         $res = $conn->query($sqlVerif);
 
@@ -113,3 +98,33 @@ function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $t
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
 }
+function TableEmpleado (){
+        $conn = connectionToDataBase();
+
+        if ($conn != null){
+
+            $sql = "SELECT * FROM empleados";
+            $result = $conn->query($sql); 
+
+            //echo $result->num_rows;
+            if ($result->num_rows > 0)//Double check
+            {
+                $empleados = array();
+                // output data of each row
+                while($row = $result->fetch_assoc()) 
+                {
+                    $salario = strval($row['Salario_Hora']);
+                    $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario;   
+                    array_push($empleados, $response);
+                    echo ($response);
+                }
+                $conn->close();
+                return array("status" =>  "SUCCESS", "Tabla" => $empleados);
+            }
+
+            }else{
+                $conn -> close();
+                return array("status" => "CONNECTION WITH DB WENT WRONG");
+            }   
+    }
+?>
