@@ -4,6 +4,4 @@ $(document).ready(function(){
         window.location.replace("newEmpleado.php");
     })
 
-
-
 });

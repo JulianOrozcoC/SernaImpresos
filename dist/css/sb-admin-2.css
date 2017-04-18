@@ -14,6 +14,14 @@ body {
   float: right;
   display: inline;
 }
+.leftModal {
+  float: left;
+  display: inline;
+}
+.rightModal {
+  float: right;
+  display: inline;
+}
 #wrapper {
   width: 100%;
 }

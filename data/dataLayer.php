@@ -76,7 +76,6 @@ function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $t
             return array("status"=>"Username already taken.");
         }
         else{
-            var_dump($sqlInsert);
             if (mysqli_query($conn, $sqlInsert)){
                 $conn->close();
                 session_start();
@@ -108,7 +107,7 @@ function TableEmpleado (){
             $tableEmp = array();
             while($row = $result->fetch_assoc()) {
                 $salario = strval($row['Salario_Hora']);
-                $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario);
+                $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario,'salarioNof' => $row['Salario_NOF'],'Puesto' => $row['Puesto'], 'Acciones' => "<button class='btn btn-xs btn-primary btn-block' data-toggle='modal' data-target='#editEmpleado' id='editEmp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "/" . $row['Domicilio'] . "/" . $row['Colonia'] . "/" . $row['Ciudad'] . "/" . $row['Telefono'] . "/" . $row['Celular'] . "/" . $row['Email'] . "/" . $row['No_IMSS'] . "/" . $row['RFC'] . "/" . $row['CURP'] . "/" . $row['Puesto'] . "/" . $row['Salario_Hora'] . "/" . $row['Salario_NOF'] . "/" . $row['ISR'] . "/" . $row['IMSS'] . "/" . $row['Subsidio'] . "/" . $row['Infonavit'] . "/" . $row['Activo'] . "/" . $row['Usuario'] . "' style = 'margin-bottom: 5px;' >Editar</button><button class='btn btn-xs btn-danger btn-block' type='submit' onClick=\"javascript: return confirm('Please confirm to delete the prospect.');\">Borrar</button>");
                 array_push($tableEmp, $response);
             }
             $conn -> close();

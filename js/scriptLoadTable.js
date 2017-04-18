@@ -13,17 +13,17 @@ $(document).ready(function(){
             dataType : "json",
             contentType : "application/x-www-form-urlencoded",
             success: function(data){
-                var newhtml = "";
-
-                for (var i = 0; i < data.length; i++){
-                    newhtml +=    "<tr>"
-                                + "<td>" + data[i].Nombre + "</td>"
-                                + "<td>" + data[i].Nomina + "</td>"
-                                + "<td>" + data[i].salario + "</td>"
-                                + "</tr>" ;
-                }
-
-                $("#dataTables-example").append(newhtml);
+                $('#Empleados').dataTable( {
+                "data": data,
+                "columns": [
+                    { "data": "Nombre" },
+                    { "data": "Nomina" },
+                    { "data": "salario" },
+                    { "data": "salarioNof" },
+                    { "data": "Puesto" },
+                    { "data": "Acciones" }
+                ]
+            });
             },
             error: function(errorMsg){
                 alert("ERROR IN TABLE EMPLEADOS");

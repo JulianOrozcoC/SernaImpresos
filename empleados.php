@@ -11,6 +11,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type = "text/javascript" src="js/empleados.js"></script>
+    <script type = "text/javascript" src="js/modalData.js"></script>
     <title>Serna Impresos</title>
 
     <!-- Bootstrap Core CSS -->
@@ -126,19 +127,18 @@
                             Empleados
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <div class="panel-body table-responsive">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="Empleados">
                                 <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Nomina</th>
                                     <th>Salario Diario</th>
-                                    <th>Asistencia</th>
-                                    <th>Retraso</th>
+                                    <th>Salario NOF</th>
+                                    <th>Puesto</th>
                                     <th>Acciones</th>
                                 </tr>
-                                </thead>
-                                <tbody id="TableEmpleados"> </tbody>
+                               
                             </table>
                         </div>
                         <!-- /.panel-body -->
@@ -147,19 +147,135 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /termina tabla -->
-        </div>
+            <!-- Modal -->
+                <div class="modal fade" id="editEmpleado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Editar Empleado</h4>
+                    </div>
+                    <div class="modal-body">
+                    <div class="row form-group">
+                    <div class="col-xs-4">
+                    <label for="nombre">Nombre <br>
+                    <input class="form-control type="text" id="nombreEdit" name="nombreEdit" ><br>
+                        <span style="color:red"> <span id="errorName"></span> </span>
+                    </label>
 
+                    <label for="nomina">Nomina <br>
+                    <input class="form-control type="text" id="nominaEdit" name="nominaEdit"  ><br>
+                        <span style="color:red"> <span id="errorLabelNomina"></span> </span>
+                    </label>
+
+                    <label for="domicilio">Domicilio <br>
+                        <input class="form-control type="text" id="domicilioEdit" name="domicilioEdit"  ><br>
+                        <span style="color:red"> <span id="errorLabelDomicilio"></span> </span>
+                    </label>
+                    <label for="colonia">Colonia <br>
+                        <input class="form-control type="text" id="coloniaEdit" name="coloniaEdit" ><br>
+                        <span style="color:red"> <span id="errorLabelColonia"></span> </span>
+                    </label>
+
+                    <label for="ciudad">Ciudad <br>
+                        <input class="form-control type="text" id="ciudadEdit" name="ciudadEdit"  ><br>
+                        <span style="color:red"> <span id="errorLabelCiudad"></span> </span>
+                    </label>
+                    <label for="telefono">Telefono <br>
+                        <input class="form-control type="text" id="telefonoEdit" name="telefonoEdit" ><br>
+                        <span style="color:red"> <span id="errorLabelTelefono"></span> </span>
+                    </label>
+
+                    <label for="celular">Celular <br>
+                        <input class="form-control type="text" id="celularEdit" name="celularEdit" ><br>
+                        <span style="color:red"> <span id="errorLabelCelular"></span> </span>
+                    </label>
+                    </div>
+                    <div class="col-xs-4">
+                    <label for="email">Email <br>
+                        <input class="form-control type="text" id="emailEdit" name="emailEdit"  ><br>
+                        <span style="color:red"> <span id="errorLabelEmail"></span> </span>
+                    </label>
+                    <label for="imss">No. IMSS <br>
+                        <input class="form-control type="text" id="imssEdit" name="imssEdit" ><br>
+                        <span style="color:red"> <span id="errorLabelNoImss"></span> </span>
+                    </label>
+                    <label for="rfc">RFC <br>
+                        <input class="form-control type="text" id="rfcEdit" name="rfcEdit" ><br>
+                        <span style="color:red"> <span id="errorLabelRfc"></span> </span>
+                    </label>
+
+                    <label for="curp">CURP <br>
+                        <input class="form-control type="text" id="curpEdit" name="curpEdit" ><br>
+                        <span style="color:red"> <span id="errorLabelCurp"></span> </span>
+                    </label>
+                    <label for="puesto">Puesto <br>
+                        <input class="form-control type="text" id="puestoEdit" name="puestoEdit"><br>
+                        <span style="color:red"> <span id="errorLabelPuesto"></span> </span>
+                    </label>
+                    <label for="salhora">Salario por Hora<br>
+                        <input class="form-control type="text" id="salhoraEdit" name="salhoraEdit" ><br>
+                        <span style="color:red"> <span id="errorLabelSalarioHora"></span> </span>
+                    </label>
+                    </div>
+                    <div class="col-xs-4">
+                    <label for="salnof">Salario NOF<br>
+                        <input class="form-control type="text" id="salnofEdit" name="salnofEdit"  ><br>
+                        <span style="color:red"> <span id="errorLabelSalarioNof"></span> </span>
+                    </label>
+
+                    <label for="isr">ISR<br>
+                        <input class="form-control type="text" id="isrEdit" name="isrEdit"  ><br>
+                        <span style="color:red"> <span id="errorLabelIsr"></span> </span>
+                    </label>
+                    <label for="impimss">IMSS<br>
+                        <input class="form-control type="text" id="impimssEdit" name="impimssEdit"  ><br>
+                        <span style="color:red"> <span id="errorLabelImss"></span> </span>
+                    </label>
+
+                    <label for="subsidio">Subsidio al Empleado<br>
+                        <input class="form-control type="text" id="subsidioEdit" name="subsidioEdit"  ><br>
+                        <span style="color:red"> <span id="errorLabelSubsidio"></span> </span>
+                    </label>
+                    <label for="infonavit">Infonavit<br>
+                        <input class="form-control type="text" id="infonavitEdit" name="infonavitEdit" ><br>
+                        <span style="color:red"> <span id="errorLabelInfonavit"></span> </span>
+                    </label>
+                    <label for="activo">Activo<br>
+                        <select class="form-control type="text" id="activoEdit" name="activoEdit">
+                        <option value="Si">Activo</option>
+                        <option value="No">Inactivo</option>
+                        </select>
+                        <span style="color:red"> <span id="errorLabelActivo"></span> </span>
+                    </label>
+                    <label style="margin-top: 20px;" for="usuario">Usuario<br>
+                        <input class="form-control type="text" id="usuarioEdit" name="usuarioEdit" placeholder="Usuario"><br>
+                        <span style="color:red"> <span id="errorLabelUsuario"></span> </span>
+                    </label>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                     <button type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i><span style="margin-left: 5px;">Guardar</span></button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            <!-- /termina tabla -->
+
+        </div>
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
+</body>
+<!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script type = "text/javascript" src="js/scriptLoadTable.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
@@ -173,14 +289,5 @@
     <script src="dist/js/sb-admin-2.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-        $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
-        });
-    </script>
-
-</body>
 
 </html>
