@@ -26,8 +26,8 @@ $(document).ready(function(){
    $('#subsidioEdit').val(arr2[16]);
    $('#infonavitEdit').val(arr2[17]);
    $('#activoEdit').val(arr2[18]);
-   $('#').val(arr2[19]);
-   $('#editEmpleado').modal();
+   $('#usuarioEditEmp').val(arr2[19]);
+   $('#editEmpleadoInfo').modal();
 
 });
 

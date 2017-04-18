@@ -244,12 +244,10 @@
                     </div>
                 </div>
                 <br>
-
-                    <p>
-                    <button style="width:300px" id="AgregaEmp" type="button" class="btn btn-lg btn-success btn-block"> Aceptar</button>
-                    <br>
-                    </p>
-
+                <div class="row" style="padding-bottom: 20px;">
+                    <button style="width:300px" id="AgregaEmp" type="button" class="btn btn-lg btn-success btn-block pull-left"> Aceptar</button>
+                    <a href="empleados.php"><button style="width:300px" type="button" class="btn btn-lg btn-danger btn-block pull-right"> Cancelar</button></a>
+                </div>
                 </form>
             </div>
 
