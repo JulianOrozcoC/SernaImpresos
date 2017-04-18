@@ -16,14 +16,14 @@ $(document).ready(function(){
                 var newhtml = "";
 
                 for (var i = 0; i < data.length; i++){
-                    newhtml +=    "<tr>" 
+                    newhtml +=    "<tr>"
                                 + "<td>" + data[i].Nombre + "</td>"
                                 + "<td>" + data[i].Nomina + "</td>"
                                 + "<td>" + data[i].salario + "</td>"
                                 + "</tr>" ;
                 }
 
-                $("#TableEmpleados").append(newhtml);
+                $("#dataTables-example").append(newhtml);
             },
             error: function(errorMsg){
                 alert("ERROR IN TABLE EMPLEADOS");

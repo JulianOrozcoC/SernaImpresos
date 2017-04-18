@@ -200,6 +200,14 @@
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Pendientes </h3>
                         </div>
+                        <div id="commentBox">
+                            <table id="comments">
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Comment</th>
+                                </tr>
+                            </table>
+                        </div>
                         <div class="panel-body">
                             <div id="CommentList" class="list-group">
                                 <a href="#" class="list-group-item">

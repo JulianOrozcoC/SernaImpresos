@@ -138,9 +138,7 @@
                                     <th>Acciones</th>
                                 </tr>
                                 </thead>
-                                <tbody id="TableEmpleados">
-
-                                </tbody>
+                                <tbody id="TableEmpleados"> </tbody>
                             </table>
                         </div>
                         <!-- /.panel-body -->

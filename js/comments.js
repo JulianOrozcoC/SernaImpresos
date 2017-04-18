@@ -9,20 +9,21 @@ $(document).ready(function() {
 
         if ($comments.val() != "") {
             var jsonToSend = {
-                "usuario": "Admin",
-                "comment": $comments.val()
+                "action" : "COMMENTING",
+                "Nomina": "Admin",
+                "Comentario": $comments.val()
             };
             console.log(jsonToSend);
             $.ajax({
-                url: "data/comments.php",
+                url: "data/appLayer.php",
                 type: "POST",
                 data: jsonToSend,
                 dataType: "json",
                 contentType: "application/x-www-form-urlencoded",
-                success: function (jsonResponse) {
+                success: function (data) {
                     window.location.replace("dashboard.php");
                     console.log("que epedoooo");
-                    $comments.val("");
+                    //$("#CommentList").append(data.Comentario);
                 },
                 error: function (errorMessage) {
                     alert(errorMessage.responseText);

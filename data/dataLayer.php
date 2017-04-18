@@ -119,4 +119,95 @@ function TableEmpleado (){
                 return array("status" => "CONNECTION WITH DB WENT WRONG");
             }
     }
+
+function attemptPostComment($nomina, $comentario){
+
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "INSERT INTO Comentarios (Nomina, Comentario)
+		              VALUES  ('$nomina', '$comentario')";
+
+        if (mysqli_query($conn,$sqlInsert)){
+           /*
+            $comm = "<li>
+							<b> Nomina: </b> $nomina <br/>
+							Comentario: $comentario <br/>
+							  </li> ";
+            */
+            $conn->close();
+            //return array("status"=>"SUCCESS", "comment" => $comm);
+            return array("status"=>"SUCCESS");
+        }
+        else {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+        }
+
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
+
+function attemptGetComments(){
+    $conn = connectionToDataBase();
+
+    if ($conn != null){
+
+        $sql = "SELECT Nomina, Comentario FROM Comentarios";
+        $result = $conn->query($sql);
+        $commentsBox = array();
+
+        while($row = $result->fetch_assoc()) {
+            $response = array('Nomina' => $row['Nomina'], 'Comentario' => $row['Comentario']);
+            array_push($commentsBox, $response);
+        }
+        $conn -> close();
+        return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
+function attemptHomeService (){
+    $conn = connectionToDataBase();
+
+    if ($conn != null){
+
+        //$userPassword = $_POST['userPassword'];
+
+        $conn ->set_charset('utf8mb4');
+
+        $sql = " SELECT * FROM Comentarios ";
+        $result = $conn->query($sql);
+
+        //echo $result->num_rows;
+        if ($result->num_rows > 0)//Double check
+        {
+            $comments = array();
+            // output data of each row
+            while($row = $result->fetch_assoc())
+            {
+                $response = array('Nomina' => $row['Nomina'], 'Comentario' => $row['Comentario']);
+                array_push($comments, $response);
+                //echo ($response);
+            }
+
+            //echo json_encode($response);
+            //echo json_encode($comments);
+            $conn->close();
+            return array("status" =>  "SUCCESS", "comments" => $comments);
+        }
+
+    }else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
 ?>

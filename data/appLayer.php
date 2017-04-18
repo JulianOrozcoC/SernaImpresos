@@ -14,6 +14,8 @@ switch($action) {
         break;
     case "COMMENTING" : PostComment();
         break;
+    case "SHOWCOMMENTS" : ShowComments();
+        break;
 }
 
 function login(){
@@ -95,8 +97,8 @@ function PostComment(){
         echo json_encode(array("message" => "Session timeout"));
     }
     */
-    $nomina = $_POST["Nomina"];
-    $comment = $_POST["Comentario"];
+    $nomina = $_POST['Nomina'];
+    $comment = $_POST['Comentario'];
     $result = attemptPostComment($nomina,$comment);
 
     if( $result["status"] == "SUCCESS"){
@@ -107,6 +109,29 @@ function PostComment(){
         header('HTTP/1.1 500' . $result["status"]);
         die($result["status"]);
     }
+}
+
+function ShowComments(){
+
+    session_start();
+
+    //if(isset($_SESSION['Usuario']) && time() - $_SESSION['loginTime'] < 1800){
+
+        $result = attemptGetComments();
+
+        if ($result["status"] == "SUCCESS"){
+            echo json_encode($result["arrayCommentsBox"]);
+        }
+        else {
+            header('HTTP/1.1 500' . $result["status"]);
+            die($result["status"]);
+        }
+    //}
+    //else {
+       // header('HTTP/1.1 410 Session has expired');
+        //die("Session has expired");
+    //}
+
 }
 
 ?>
