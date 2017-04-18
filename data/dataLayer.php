@@ -76,7 +76,6 @@ function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $t
             return array("status"=>"Username already taken.");
         }
         else{
-            var_dump($sqlInsert);
             if (mysqli_query($conn, $sqlInsert)){
                 $conn->close();
                 session_start();
@@ -174,37 +173,49 @@ function attemptGetComments(){
     }
 }
 
-function attemptHomeService (){
+function attemptPostMantenimiento($maquina, $fecha){
+
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "INSERT INTO Mantenimiento (Maquina, Fecha)
+		              VALUES  ('$maquina', '$fecha')";
+
+        if (mysqli_query($conn,$sqlInsert)){
+
+            $conn->close();
+            return array("status"=>"SUCCESS");
+        }
+        else {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+        }
+
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
+
+function attemptGetMantenimiento(){
     $conn = connectionToDataBase();
 
     if ($conn != null){
 
-        //$userPassword = $_POST['userPassword'];
-
-        $conn ->set_charset('utf8mb4');
-
-        $sql = " SELECT * FROM Comentarios ";
+        $sql = "SELECT Maquina, Fecha FROM Mantenimiento";
         $result = $conn->query($sql);
+        $commentsBox = array();
 
-        //echo $result->num_rows;
-        if ($result->num_rows > 0)//Double check
-        {
-            $comments = array();
-            // output data of each row
-            while($row = $result->fetch_assoc())
-            {
-                $response = array('Nomina' => $row['Nomina'], 'Comentario' => $row['Comentario']);
-                array_push($comments, $response);
-                //echo ($response);
-            }
-
-            //echo json_encode($response);
-            //echo json_encode($comments);
-            $conn->close();
-            return array("status" =>  "SUCCESS", "comments" => $comments);
+        while($row = $result->fetch_assoc()) {
+            $response = array('Maquina' => $row['Maquina'], 'Fecha' => $row['Fecha']);
+            array_push($commentsBox, $response);
         }
-
-    }else{
+        $conn -> close();
+        return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+    }
+    else{
         $conn -> close();
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
