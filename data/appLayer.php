@@ -12,6 +12,8 @@ switch($action) {
         break;
     case "LoadTableEmpleados" : LoadTableEmpleado();
         break;
+    case "COMMENTING" : PostComment();
+        break;
 }
 
 function login(){
@@ -78,6 +80,33 @@ function LoadTableEmpleado(){
         die($result["status"]);
     }
 
+}
+
+function PostComment(){
+
+   /*
+    session_start();
+    if (isset($_SESSION["Activity"]) && (time() - $_SESSION["Activity"] < 1800)){
+        $Usuario = $_SESSION["fName"] ;
+        $Nombre = $_SESSION["lName"] ;
+        $Puesto = $_SESSION["user"] ;
+    }
+    else{
+        echo json_encode(array("message" => "Session timeout"));
+    }
+    */
+    $nomina = $_POST["Nomina"];
+    $comment = $_POST["Comentario"];
+    $result = attemptPostComment($nomina,$comment);
+
+    if( $result["status"] == "SUCCESS"){
+        //echo $result;
+        echo json_encode($result);
+    }
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
 }
 
 ?>

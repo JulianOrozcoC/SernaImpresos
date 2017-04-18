@@ -98,6 +98,39 @@ function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $t
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
 }
+
+function attemptPostComment($nomina,$comment){
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "INSERT INTO Commentarios(Nomina, Comentario)
+		VALUES  ('$nomina', '$comment')";
+
+        //mysqli_query($conn,$sql) //True if register inserted succesfully
+        //$conn ->set_charset('utf8mb4');
+        if (mysqli_query($conn,$sqlInsert)){
+            $comm = "<li> 
+							<b>Nomina: </b> $nomina <br/>
+							Comment: $comment
+							  </li> ";
+            $conn->close();
+            return array("status"=>"SUCCESS", "comment" => $comm);
+        }
+        else
+        {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+            //header('HTTP/1.1 500 Bad connection, something went wrong while saving your data, please try again later');
+            //die("Error: " . $sql . "\n" . mysqli_error($conn));
+        }
+
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
 function TableEmpleado (){
         $conn = connectionToDataBase();
 
@@ -114,7 +147,7 @@ function TableEmpleado (){
                 while($row = $result->fetch_assoc()) 
                 {
                     $salario = strval($row['Salario_Hora']);
-                    $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario;   
+                    $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario);
                     array_push($empleados, $response);
                     echo ($response);
                 }

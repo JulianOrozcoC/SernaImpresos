@@ -7,7 +7,7 @@
                     border-radius: 4px;
                     box-sizing: border-box;
                 }
-                input[type=password], select {
+ input[type=password], select {
                     width: 370px;
                     padding: 12px 20px;
                     margin: 8px 0;
@@ -16,7 +16,7 @@
                     border-radius: 4px;
                     box-sizing: border-box;
                 }
-                input[type=date], select {
+ input[type=date], select {
                     width: 370px;
                     padding: 12px 20px;
                     margin: 8px 0;
@@ -25,11 +25,11 @@
                     border-radius: 4px;
                     box-sizing: border-box;
                 }
-                label {
+ label {
                     padding-right: 30px;
                     padding-left: 60px;
                 }
 
-                p {
+ p {
                     padding-left: 340px;
-                }
+ }

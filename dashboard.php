@@ -9,7 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type = "text/javascript" src="js/comments.js"></script>
+    <script type = "text/javascript" src="js/showComments.js"></script>
+
+
+    <title>Serna Impresos</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,6 +24,8 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="vendor/morrisjs/morris.css" rel="stylesheet">
@@ -58,7 +65,7 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a> </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a> </li>
+                        <li><a href="login.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a> </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -187,13 +194,14 @@
                     </div>
                 </div>
                 <!-- /.row -->
+
                 <div class="col-lg-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Pendientes </h3>
                         </div>
                         <div class="panel-body">
-                            <div class="list-group">
+                            <div id="CommentList" class="list-group">
                                 <a href="#" class="list-group-item">
                                     <span class="badge">Usuario X</span>
                                     <i class="fa fa-fw fa-calendar"></i> Calendar updated
@@ -230,6 +238,10 @@
                             <div class="text-right">
                                 <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
+                            <div>
+                                <input type="text" id="newComment" name="comment" placeholder="Nuevo aviso">
+                                <input type="submit" id="submitComment" name="Aceptar" class="btn btn-md btn-success" style="margin-bottom: 10px;"><br>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -249,10 +261,7 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="vendor/raphael/raphael.min.js"></script>
-    <script src="vendor/morrisjs/morris.min.js"></script>
-    <script src="data/morris-data.js"></script>
+
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
