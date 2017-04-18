@@ -179,7 +179,11 @@
                         <span style="color:red"> <span id="errorLabelCurp"></span> </span>
                     </label>
                     <label for="puesto">Puesto <br>
-                        <input type="text" id="puesto" name="puesto" placeholder="Puesto"><br>
+                        <select type="text" id="puesto" name="puesto" placeholder="Puesto">
+                            <option value="">Seleccionar Una Opcion *</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Empleado">Empleado</option>
+                        </select>
                         <span style="color:red"> <span id="errorLabelPuesto"></span> </span>
                     </label>
                     </div>

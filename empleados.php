@@ -210,7 +210,11 @@
                         <span style="color:red"> <span id="errorLabelCurp"></span> </span>
                     </label>
                     <label for="puesto">Puesto <br>
-                        <input class="form-control type="text" id="puestoEdit" name="puestoEdit"><br>
+                        <Select class="form-control type="text" id="puestoEdit" name="puestoEdit">
+                            <option value="">Seleccionar Una Opcion *</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Empleado">Empleado</option>
+                        </Select>
                         <span style="color:red"> <span id="errorLabelPuesto"></span> </span>
                     </label>
                     <label for="salhora">Salario por Hora<br>
@@ -243,6 +247,7 @@
                     </label>
                     <label for="activo">Activo<br>
                         <select class="form-control type="text" id="activoEdit" name="activoEdit">
+                        <option value="">Seleccionar Una Opcion *</option>
                         <option value="Si">Activo</option>
                         <option value="No">Inactivo</option>
                         </select>
