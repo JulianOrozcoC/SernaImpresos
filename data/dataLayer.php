@@ -43,7 +43,7 @@ function attemptLogin($usuario, $remember, $userPassword){
             }
             else {
                 $conn -> close();
-            return array("status" => $row['Contrasena']);
+            return array("status" => "Password Verify Invalid");
             }
         }
         else {
@@ -98,66 +98,25 @@ function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $t
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
 }
-
-function attemptPostComment($nomina,$comment){
-    $conn = connectionToDataBase();
-
-    if($conn != null){
-        $sqlInsert = "INSERT INTO Commentarios(Nomina, Comentario)
-		VALUES  ('$nomina', '$comment')";
-
-        //mysqli_query($conn,$sql) //True if register inserted succesfully
-        //$conn ->set_charset('utf8mb4');
-        if (mysqli_query($conn,$sqlInsert)){
-            $comm = "<li> 
-							<b>Nomina: </b> $nomina <br/>
-							Comment: $comment
-							  </li> ";
-            $conn->close();
-            return array("status"=>"SUCCESS", "comment" => $comm);
-        }
-        else
-        {
-            $conn->close();
-            return array("status"=>"Something went wrong on the server.");
-            //header('HTTP/1.1 500 Bad connection, something went wrong while saving your data, please try again later');
-            //die("Error: " . $sql . "\n" . mysqli_error($conn));
-        }
-
-    }
-    else{
-        $conn -> close();
-        return array("status" => "CONNECTION WITH DB WENT WRONG");
-    }
-}
-
 function TableEmpleado (){
         $conn = connectionToDataBase();
 
         if ($conn != null){
 
             $sql = "SELECT * FROM empleados";
-            $result = $conn->query($sql); 
-
-            //echo $result->num_rows;
-            if ($result->num_rows > 0)//Double check
-            {
-                $empleados = array();
-                // output data of each row
-                while($row = $result->fetch_assoc()) 
-                {
-                    $salario = strval($row['Salario_Hora']);
-                    $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario);
-                    array_push($empleados, $response);
-                    echo ($response);
-                }
-                $conn->close();
-                return array("status" =>  "SUCCESS", "Tabla" => $empleados);
+            $result = $conn->query($sql);
+            $tableEmp = array();
+            while($row = $result->fetch_assoc()) {
+                $salario = strval($row['Salario_Hora']);
+                $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario);
+                array_push($tableEmp, $response);
             }
-
-            }else{
+            $conn -> close();
+            return array("status" => "SUCCESS", "empleadosTable" => $tableEmp);
+            }
+        else{
                 $conn -> close();
                 return array("status" => "CONNECTION WITH DB WENT WRONG");
-            }   
+            }
     }
 ?>
