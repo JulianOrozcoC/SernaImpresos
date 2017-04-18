@@ -17,7 +17,7 @@ $(document).ready(function() {
             var newHtml = "";
             for (var i = 0; i < jsonResponse.length; i++){
                 newHtml += "<tr>";
-                var usuario = jsonResponse[i].Usuario;
+                var usuario = jsonResponse[i].Nomina;
                 var comment = jsonResponse[i].Comentario;
                 newHtml += '<td>' + usuario + '</td><td>' + comment;
                 newHtml += "</tr>";

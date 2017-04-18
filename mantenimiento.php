@@ -9,7 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type = "text/javascript" src="js/mantenimiento.js"></script>
+    <title>Serna Impresos</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,6 +21,8 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="dist/css/style.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -56,7 +60,7 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a> </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a> </li>
+                        <li><a href="login.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a> </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -108,8 +112,48 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Blank</h1>
+                        <h1 class="page-header">Mantenimiento</h1>
                     </div>
+
+                    <div class="col-lg-10">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Mantenimiento Programado </h3>
+                            </div>
+                            <div id="mantBox">
+                                <table id="mantenimiento">
+                                    <tr>
+                                        <th>Maquina</th>
+                                        <th>Fecha Programada</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form>
+                        <div class="row">
+                            <div class="left"> <br> <br>
+                                <label for="maquina">Nombre de la Maquina <br>
+                                    <input type="text" id="maquina" placeholder="Maquina" ><br>
+                                    <span style="color:red"> <span id="errorMaquina"></span> </span>
+                                </label>
+
+                                <label for="fecha">Fecha <br>
+                                    <input type="date" id="fecha" name="fecha" ><br>
+                                    <span style="color:red"> <span id="errorFecha"></span> </span>
+                                </label>
+
+                            </div>
+                        </div>
+                        <br>
+
+                        <p>
+                            <button style="width:300px" id="AgregaMan" type="button" class="btn btn-lg btn-success btn-block"> Aceptar</button>
+                            <br>
+                        </p>
+
+                    </form>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->

@@ -16,6 +16,10 @@ switch($action) {
         break;
     case "SHOWCOMMENTS" : ShowComments();
         break;
+    case "MANTENIMIENTO" : PostMantenimiento();
+        break;
+    case "SHOWMANTENIMIENTO" : ShowMantenimiento();
+        break;
 }
 
 function login(){
@@ -132,6 +136,34 @@ function ShowComments(){
         //die("Session has expired");
     //}
 
+}
+
+function PostMantenimiento(){
+
+    $fecha = $_POST['Fecha'];
+    $maquina = $_POST['Maquina'];
+    $result = attemptPostMantenimiento($maquina,$fecha);
+
+    if( $result["status"] == "SUCCESS"){
+        echo json_encode($result);
+    }
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function ShowMantenimiento(){
+
+    $result = attemptGetMantenimiento();
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
 }
 
 ?>
