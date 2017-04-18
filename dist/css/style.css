@@ -7,6 +7,17 @@
                     border-radius: 4px;
                     box-sizing: border-box;
                 }
+ select[type=text], select {
+     width: 370px;
+     height: 45px;
+     padding: 12px 20px;
+     background: transparent;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+ }
  input[type=password], select {
                     width: 370px;
                     padding: 12px 20px;
@@ -25,6 +36,15 @@
                     border-radius: 4px;
                     box-sizing: border-box;
                 }
+ input[type=time], select {
+     width: 110px;
+     padding: 12px 20px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+ }
  label {
                     padding-right: 30px;
                     padding-left: 60px;
