@@ -43,7 +43,7 @@ function attemptLogin($usuario, $remember, $userPassword){
             }
             else {
                 $conn -> close();
-            return array("status" => $row['Contrasena']);
+            return array("status" => "Password Verify Invalid");
             }
         }
         else {
@@ -104,27 +104,19 @@ function TableEmpleado (){
         if ($conn != null){
 
             $sql = "SELECT * FROM empleados";
-            $result = $conn->query($sql); 
-
-            //echo $result->num_rows;
-            if ($result->num_rows > 0)//Double check
-            {
-                $empleados = array();
-                // output data of each row
-                while($row = $result->fetch_assoc()) 
-                {
-                    $salario = strval($row['Salario_Hora']);
-                    $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario;   
-                    array_push($empleados, $response);
-                    echo ($response);
-                }
-                $conn->close();
-                return array("status" =>  "SUCCESS", "Tabla" => $empleados);
+            $result = $conn->query($sql);
+            $tableEmp = array();
+            while($row = $result->fetch_assoc()) {
+                $salario = strval($row['Salario_Hora']);
+                $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario);  
+                array_push($tableEmp, $response);
             }
-
-            }else{
+            $conn -> close();
+            return array("status" => "SUCCESS", "empleadosTable" => $tableEmp);
+            }
+        else{
                 $conn -> close();
                 return array("status" => "CONNECTION WITH DB WENT WRONG");
-            }   
+            } 
     }
 ?>

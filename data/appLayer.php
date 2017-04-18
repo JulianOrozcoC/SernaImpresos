@@ -10,7 +10,7 @@ switch($action) {
         break;
     case "REGISTER" : Registration();
         break;
-    case "LoadTableEmpleados" : LoadTableEmpleado();
+    case "LOADEMPLEADOS" : LoadTableEmpleado();
         break;
 }
 
@@ -70,7 +70,7 @@ function LoadTableEmpleado(){
     $result = TableEmpleado();
 
     if ($result["status"] == "SUCCESS"){
-        echo json_encode($result["Tabla"]);
+        echo json_encode($result["empleadosTable"]);
         //echo json_encode(array($comentario));
     }   
     else{

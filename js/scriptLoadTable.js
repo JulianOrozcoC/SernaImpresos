@@ -2,24 +2,24 @@ $(document).ready(function(){
 
 
     var jsonToSend = {
-                "action" : "LoadTableEmpleados"
+                "action" : "LOADEMPLEADOS"
         };
     $.ajax({
 
         
             url:"data/appLayer.php",
-            type: "POST", <!--GET|POST|PUT-->
-            data: jsonToSend,
-            dataType: "json",
+            type : "POST",
+            data : jsonToSend, 
+            dataType : "json",
             contentType : "application/x-www-form-urlencoded",
             success: function(data){
                 var newhtml = "";
 
-                for (var x in data){
+                for (var i = 0; i < data.length; i++){
                     newhtml +=    "<tr>" 
-                                + "<td>" + data[x].Nombre + "</td>"
-                                + "<td>" + data[x].Nomina + "</td>"
-                                + "<td>" + data[x].salario + "</td>"
+                                + "<td>" + data[i].Nombre + "</td>"
+                                + "<td>" + data[i].Nomina + "</td>"
+                                + "<td>" + data[i].salario + "</td>"
                                 + "</tr>" ;
                 }
 
@@ -27,8 +27,6 @@ $(document).ready(function(){
             },
             error: function(errorMsg){
                 alert("ERROR IN TABLE EMPLEADOS");
-                    //alert(errorMessage.responseText);
-                alert(errorMsg.statusText);
                 console.log(errorMsg);
             }
     });
