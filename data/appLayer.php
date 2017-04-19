@@ -10,9 +10,13 @@ switch($action) {
         break;
     case "REGISTER" : Registration();
         break;
+    case "REGISTERPROVEEDOR" : RegistrationProveedor();
+        break;
     case "LOADEMPLEADOS" : LoadTableEmpleado();
         break;
     case "LOADORDENESCOMPRA" : LoadTableOrdenesCompras();
+        break;
+    case "LOADPROVEEDORES" : LoadTableProveedores();
         break;
     case "COMMENTING" : PostComment();
         break;
@@ -28,7 +32,11 @@ switch($action) {
         break;
     case "EDIT_EMPLEADO" : UpdateEmpleado();
         break;
+    case "UPDATEPROVEEDOR" : UpdateProveedor();
+        break;
     case "ELIMINAR_EMPLEADO" : EliminarEmpleado();
+        break;
+    case "DELETEPROVEEDOR" : EliminarProveedor();
         break;
     case "SOPORTE" : Soporte();
         break;
@@ -43,6 +51,40 @@ function login(){
 
     if ($result["status"] == "SUCCESS")
         echo json_encode(array("message" => "Login Successful"));
+
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function RegistrationProveedor(){
+    $nombre = $_POST['Nombre'];
+    $RFC = $_POST['RFC'];
+    $domicilio = $_POST['Domicilio'];
+    $Telefono = $_POST['Telefono'];
+    $Vendedor = $_POST['Vendedor'];
+    $Fax = $_POST['Fax'];
+
+    $result = attemptRegistrationProveedor($nombre, $RFC, $domicilio, $Telefono, $Vendedor, $Fax);
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode(array("message" => "Registration de proveedor Successful"));
+    }
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function EliminarProveedor(){
+    $Id = $_POST['Id'];
+    $Nombre = $_POST['Nombre'];
+    
+    $result = attemptDeleteProv($Id, $Nombre);
+
+    if ($result["status"] == "SUCCESS")
+        echo json_encode(array("message" => "Delete Successful"));
 
     else{
         header('HTTP/1.1 500' . $result["status"]);
@@ -99,6 +141,21 @@ function Registration(){
         header('HTTP/1.1 500' . $result["status"]);
         die($result["status"]);
     }
+}
+
+function LoadTableProveedores(){
+
+    $result = TableProveedores();
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["proveedoresTable"]);
+        //echo json_encode(array($comentario));
+    }   
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+
 }
 
 function LoadTableOrdenesCompras(){
@@ -237,6 +294,27 @@ function ShowFacturas(){
     }
 }
 
+function UpdateProveedor(){
+
+    $Id = $_POST['Id'];
+    $nombre = $_POST['Nombre'];
+    $RFC = $_POST['RFC'];
+    $Domicilio = $_POST['Domicilio'];
+    $Telefono = $_POST['Telefono'];
+    $Vendedor = $_POST['Vendedor'];
+    $Fax = $_POST['Fax'];
+
+    $result = attemptUpdateProveedor($Id, $nombre, $RFC, $Domicilio, $Telefono, $Vendedor, $Fax);
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode(array("message" => " Proveedor update Successful"));
+    }
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
 function UpdateEmpleado(){
 
     $nomina = $_POST['Nomina'];
@@ -270,6 +348,7 @@ function UpdateEmpleado(){
         die($result["status"]);
     }
 }
+
 function Soporte(){
 
     $to      = 'edgar_serna717@hotmail.com';

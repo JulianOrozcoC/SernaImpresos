@@ -55,7 +55,27 @@ function attemptLogin($usuario, $remember, $userPassword){
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
 }
+function attemptRegistrationProveedor($nombre, $RFC, $domicilio, $Telefono, $Vendedor, $Fax){
 
+
+    $conn = connectionToDataBase();
+    if($conn != null){
+        $sqlInsert = "INSERT INTO `proveedores`(`Nombre`, `RFC`, `Domicilio`, `Telefono`, `Vendedor`, `Fax`) VALUES ('$nombre','$RFC','$domicilio','$Telefono','$Vendedor','$Fax')";
+
+            if (mysqli_query($conn, $sqlInsert)){
+                $conn->close();
+                return array("status"=>"SUCCESS PROVEEDOR REG");
+            }
+            else {
+                $conn->close();
+                return array("status"=>"Something went wrong on the server.");
+            }
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
 
 function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $telefono, $cel, $email, $noimms, $rfc, $curp, $puesto, $fnacim, $fini, $salHora,$salNof,$isr, $imss, $subsidio, $infonavit, $activo,$usuario, $pass){
 
@@ -117,7 +137,28 @@ function TableEmpleado (){
                 $conn -> close();
                 return array("status" => "CONNECTION WITH DB WENT WRONG");
             }
-    }
+}
+
+function TableProveedores (){
+        $conn = connectionToDataBase();
+
+        if ($conn != null){
+
+            $sql = "SELECT * FROM proveedores";
+            $result = $conn->query($sql);
+            $tableProv = array();
+            while($row = $result->fetch_assoc()) {
+                $response = array('ID' => $row['id_Proveedor'], 'Nombre' => $row['Nombre'], 'RFC' => $row['RFC'], 'Domicilio' => $row['Domicilio'],'Telefono' => $row['Telefono'],'Vendedor' => $row['Vendedor'], 'Fax' => $row['Fax'], 'Acciones' => "<button class='btn btn-xs btn-primary btn-block' data-toggle='modal'  id='editProv' data-id='" . $row['id_Proveedor'] . "/" . $row['Nombre'] . "/" . $row['RFC'] . "/" . $row['Domicilio'] . "/" . $row['Telefono'] . "/" . $row['Vendedor'] . "/" . $row['Fax'] . "' style = 'margin-bottom: 5px;' >Editar</button><button class='btn btn-xs btn-danger btn-block' data-toggle='modal'  id='delete_prov' data-id='" . $row['id_Proveedor'] . "/" . $row['Nombre'] . "'>Borrar</button>");
+                array_push($tableProv, $response);
+            }
+            $conn -> close();
+            return array("status" => "SUCCESS", "proveedoresTable" => $tableProv);
+            }
+        else{
+                $conn -> close();
+                return array("status" => "CONNECTION WITH DB WENT WRONG");
+            }
+}
 
 function TableOrdenesCompraData (){
         $conn = connectionToDataBase();
@@ -221,6 +262,31 @@ function attemptPostMantenimiento($maquina, $fecha){
 
 }
 
+function attemptDeleteProv($Id, $Nombre){
+
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "DELETE FROM `proveedores` WHERE `id_Proveedor` = '$Id'";
+
+        if (mysqli_query($conn,$sqlInsert)){
+
+            $conn->close();
+            return array("status"=>"SUCCESS DELETE");
+        }
+        else {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+        }
+
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
+
 function attemptDelete($nomina, $nombre){
 
     $conn = connectionToDataBase();
@@ -307,6 +373,29 @@ function attemptGetFacturas(){
         }
         $conn -> close();
         return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
+function attemptUpdateProveedor($Id, $nombre, $RFC, $Domicilio, $Telefono, $Vendedor, $Fax){
+
+
+    $conn = connectionToDataBase();
+    if($conn != null){
+
+        $sqlUpdate = "UPDATE `proveedores` SET `Nombre`= '$nombre',`RFC`= '$RFC',`Domicilio`= '$Domicilio',`Telefono`= '$Telefono',`Vendedor`= '$Vendedor',`Fax`= '$Fax' WHERE `id_Proveedor` = '$Id'";
+
+            if (mysqli_query($conn, $sqlUpdate)){
+                $conn->close();
+                return array("status"=>"SUCCESS UPDATE");
+            }
+            else {
+                $conn->close();
+                return array("status"=>"Something went wrong on the server.");
+            }
     }
     else{
         $conn -> close();
