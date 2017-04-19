@@ -7,19 +7,7 @@ $(document).ready(function(){
     $("#LoginBtn").on("click",function(){
         var $userName = $("#Username");
         var $userPass = $("#Password");
-        if ($userName.val() == ""){
-            $("#errorLabelUserName").text("Please provide your username");
-        }
-        else{
-            $("#errorLabelUserName").text("");
-        }
-        if ($userPass.val() == ""){
-            $("#errorLabelPass").text("Please provide your password");
-        }
-        else{
-            $("#errorLabelPass").text("");
-        }
-        
+        console.log("Antesde json to Send");
         var jsonToSend ={
             "action" : "LOGIN",
             "Usuario" : $userName.val(),
@@ -40,6 +28,11 @@ $(document).ready(function(){
             },
             error : function(errorMessage){
                 alert(errorMessage.responseText);
+                alert("No entro en success");
+                window.location.replace("login.php");
+                console.log($userName.val());
+                console.log($userPass.val());
+                console.log(jsonToSend);
             }
         });
     });

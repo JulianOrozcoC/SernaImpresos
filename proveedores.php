@@ -18,9 +18,7 @@
     <meta name="author" content="">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type = "text/javascript" src="js/EditEmpleado.js"></script>
-    <script type = "text/javascript" src="js/deleteEmpleado.js"></script>
-    <script type = "text/javascript" src="js/empleados.js"></script>
+    <script type = "text/javascript" src="js/newProveedor.js"></script>
     <script type = "text/javascript" src="js/modalData.js"></script>
     <title>Serna Impresos</title>
 
@@ -124,7 +122,7 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
-        <button id="AgregaBtn" type="submit" class="btn btn-md btn-success pull-right" style="margin-bottom: 10px;"><i class="fa fa-plus" aria-hidden="true"></i> Agregar Empleado</button>
+        <button data-target ="#agregarProvedor" data-toggle='modal' type="button" class="btn btn-md btn-success pull-right" style="margin-bottom: 10px;"><i class="fa fa-plus" aria-hidden="true"></i> Agregar Proovedor</button>
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -133,14 +131,16 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body table-responsive">
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="Empleados">
+                        <table width="100%" class="table table-striped table-bordered table-hover" id="Proveedores">
                             <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Nomina</th>
-                                <th>Salario Diario</th>
-                                <th>Salario NOF</th>
-                                <th>Puesto</th>
+                                <th>RFC</th>
+                                <th>Domicilio</th>
+                                <th>Telefono</th>
+                                <th>Vendedor</th>
+                                <th>Fax</th>
                                 <th>Acciones</th>
                             </tr>
 
@@ -153,148 +153,108 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="editEmpleadoInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+        <div class="modal fade" id="agregarProvedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Editar Empleado</h4>
+                        <h4 class="modal-title">Agregar Proveedor</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row form-group">
-                            <div class="col-xs-4">
-                                <label for="nombre">Nombre <br>
-                                    <input class="form-control type="text" id="nombreEdit" name="nombreEdit" ><br>
-                                    <span style="color:red"> <span id="errorNameEdit"></span> </span>
+                            <div class="col-xs-12">
+                                <label for="nombreProv">Nombre <br>
+                                    <input class="form-control type="text" id="NombreProv" name="NombreProv" ><br>
                                 </label>
 
-                                <label for="nomina">Nomina <br>
-                                    <input class="form-control type="text" id="nominaEdit" name="nominaEdit" disabled><br>
-                                    <span style="color:red"> <span id="errorLabelNominaEdit"></span> </span>
+                                <label for="RFCProv">RFC <br>
+                                    <input class="form-control type="text" id="RFCProv" name="RRFCProv"><br>
                                 </label>
 
-                                <label for="domicilio">Domicilio <br>
-                                    <input class="form-control type="text" id="domicilioEdit" name="domicilioEdit"  ><br>
-                                    <span style="color:red"> <span id="errorLabelDomicilio"></span> </span>
-                                </label>
-                                <label for="colonia">Colonia <br>
-                                    <input class="form-control type="text" id="coloniaEdit" name="coloniaEdit" ><br>
-                                    <span style="color:red"> <span id="errorLabelColonia"></span> </span>
+                                <label for="DomicilioProv">Domicilio <br>
+                                    <input class="form-control type="text" id="DomicilioProv" name="DomicilioProv"  ><br>                                </label>
+                                <label for="TelefonoProv">Telefono <br>
+                                    <input class="form-control type="text" id="TelefonoProv" name="TelefonoProv" ><br>
                                 </label>
 
-                                <label for="ciudad">Ciudad <br>
-                                    <input class="form-control type="text" id="ciudadEdit" name="ciudadEdit"><br>
-                                    <span style="color:red"> <span id="errorLabelCiudad"></span> </span>
+                                <label for="VendedorProv">Vendedor <br>
+                                    <input class="form-control type="text" id="VendedorProv" name="VendedorProv"><br>
                                 </label>
-                                <label for="telefono">Telefono <br>
-                                    <input class="form-control type="text" id="telefonoEdit" name="telefonoEdit" ><br>
-                                    <span style="color:red"> <span id="errorLabelTelefono"></span> </span>
-                                </label>
-
-                                <label for="celular">Celular <br>
-                                    <input class="form-control type="text" id="celularEdit" name="celularEdit" ><br>
-                                    <span style="color:red"> <span id="errorLabelCelular"></span> </span>
-                                </label>
-                            </div>
-                            <div class="col-xs-4">
-                                <label for="email">Email <br>
-                                    <input class="form-control type="text" id="emailEdit" name="emailEdit"  ><br>
-                                    <span style="color:red"> <span id="errorLabelEmail"></span> </span>
-                                </label>
-                                <label for="imss">No. IMSS <br>
-                                    <input class="form-control type="text" id="imssEdit" name="imssEdit" ><br>
-                                    <span style="color:red"> <span id="errorLabelNoImss"></span> </span>
-                                </label>
-                                <label for="rfc">RFC <br>
-                                    <input class="form-control type="text" id="rfcEdit" name="rfcEdit" ><br>
-                                    <span style="color:red"> <span id="errorLabelRfc"></span> </span>
-                                </label>
-
-                                <label for="curp">CURP <br>
-                                    <input class="form-control type="text" id="curpEdit" name="curpEdit" ><br>
-                                    <span style="color:red"> <span id="errorLabelCurp"></span> </span>
-                                </label>
-                                <label style="margin-bottom: 25px;" for="puesto">Puesto<br>
-                                    <select class="form-control type="text" id="puestoEdit" name="puestoEdit">
-                                    <option value="">Seleccionar Una Opcion *</option>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Empleado">Empleado</option>
-                                    </select>
-                                    <span style="color:red"> <span id="errorLabelPuestoEdit"></span> </span>
-                                </label>
-                                <label for="salhora">Salario por Hora<br>
-                                    <input class="form-control type="text" id="salhoraEdit" name="salhoraEdit" ><br>
-                                    <span style="color:red"> <span id="errorLabelSalarioHora"></span> </span>
-                                </label>
-                                <label for="salnof">Salario NOF<br>
-                                    <input class="form-control type="text" id="salnofEdit" name="salnofEdit"  ><br>
-                                    <span style="color:red"> <span id="errorLabelSalarioNof"></span> </span>
-                                </label>
-
-                            </div>
-                            <div class="col-xs-4">
-                                <label for="isr">ISR<br>
-                                    <input class="form-control type="text" id="isrEdit" name="isrEdit"  ><br>
-                                    <span style="color:red"> <span id="errorLabelIsr"></span> </span>
-                                </label>
-                                <label for="impimss">IMSS<br>
-                                    <input class="form-control type="text" id="impimssEdit" name="impimssEdit"  ><br>
-                                    <span style="color:red"> <span id="errorLabelImss"></span> </span>
-                                </label>
-
-                                <label for="subsidio">Subsidio al Empleado<br>
-                                    <input class="form-control type="text" id="subsidioEdit" name="subsidioEdit"  ><br>
-                                    <span style="color:red"> <span id="errorLabelSubsidio"></span> </span>
-                                </label>
-                                <label for="infonavit">Infonavit<br>
-                                    <input class="form-control type="text" id="infonavitEdit" name="infonavitEdit" ><br>
-                                    <span style="color:red"> <span id="errorLabelInfonavit"></span> </span>
-                                </label>
-                                <label for="activo">Activo<br>
-                                    <select class="form-control type="text" id="activoEdit" name="activoEdit">
-                                    <option value="">Seleccionar Una Opcion *</option>
-                                    <option value="Si">Activo</option>
-                                    <option value="No">Inactivo</option>
-                                    </select>
-                                    <span style="color:red"> <span id="errorLabelActivoEdit"></span> </span>
-                                </label>
-                                <label style="margin-top: 20px;" for="usuarioEdit">Usuario<br>
-                                    <input class="form-control type="text" id="usuarioEditEmp" name="usuarioEditEmp" placeholder="Usuario"><br>
-                                    <span style="color:red"> <span id="errorLabelUsuarioEdit"></span> </span>
+                                <label for="FaxProv">Fax <br>
+                                    <input class="form-control type="text" id="FaxProv" name="FaxProv" ><br>
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="EditEmpleadoBtn" type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i><span style="margin-left: 5px;">Guardar</span></button>
+                        <button id="agregarProvedorbtn" type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i><span style="margin-left: 5px;">Guardar</span></button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
         <!-- Modal -->
-        <div class="modal fade" id="DeleteEmpleadoInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="EditarProvedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Eliminar Empleado</h4>
+                        <h4 class="modal-title">Editar Proveedor</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row form-group">
                             <div class="col-xs-12">
-                                <label for="nombre">Nombre <br>
-                                    <input class="form-control type="text" id="nombreDelete" name="nombreDelete" disabled><br>
+                                <label for="nombreProvEdit">Nombre <br>
+                                    <input class="form-control" type="hidden" id="idProvEdit" name="idProvEdit" >
+                                    <input class="form-control type="text" id="NombreProvEdit" name="NombreProvEdit" ><br>
                                 </label>
 
-                                <label for="nomina">Nomina <br>
-                                    <input class="form-control type="text" id="nominaDelete" name="nominaDelete" disabled><br>
+                                <label for="RFCProvEdit">RFC <br>
+                                    <input class="form-control type="text" id="RFCProvEdit" name="RRFCProvEdit"><br>
+                                </label>
+
+                                <label for="DomicilioProvEdit">Domicilio <br>
+                                    <input class="form-control type="text" id="DomicilioProvEdit" name="DomicilioProvEdit"><br>                                </label>
+                                <label for="TelefonoProvEdit">Telefono <br>
+                                    <input class="form-control type="text" id="TelefonoProvEdit" name="TelefonoProvEdit"><br>
+                                </label>
+
+                                <label for="VendedorProvEdit">Vendedor <br>
+                                    <input class="form-control type="text" id="VendedorProvEdit" name="VendedorProvEdit"><br>
+                                </label>
+                                <label for="FaxProvEdit">Fax <br>
+                                    <input class="form-control type="text" id="FaxProvEdit" name="FaxProvEdit" ><br>
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="DeleteEmpleado" type="button" class="btn btn-danger">Eliminar</button>
+                        <button id="EditarProvedorbtn" type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i><span style="margin-left: 5px;">Guardar</span></button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="DeleteProveedorInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Eliminar Proveedor</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row form-group">
+                            <div class="col-xs-12">
+                                <label for="nombreProvDelete">Nombre <br>
+                                    <input class="form-control" type="hidden" id="idProvDelete" name="idProvDelete" disabled>
+                                    <input class="form-control type="text" id="NombreProvDelete" name="NombreProvDelete" disabled><br>
+                                </label>                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="DeleteProvedor" type="button" class="btn btn-danger">Eliminar</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div><!-- /.modal-content -->
@@ -310,7 +270,7 @@
 </body>
 <!-- jQuery -->
 <script src="vendor/jquery/jquery.min.js"></script>
-<script type = "text/javascript" src="js/scriptLoadTable.js"></script>
+<script type = "text/javascript" src="js/scriptLoadTableProveedores.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="vendor/bootstrap/js/bootstrap.js"></script>
