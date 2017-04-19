@@ -22,7 +22,7 @@ function attemptLogin($usuario, $remember, $userPassword){
     $conn = connectionToDataBase();
 
     if ($conn != null){
-        $sql = "SELECT Usuario, Contrasena, Nombre, Puesto FROM Empleados WHERE Usuario='$usuario' ";
+        $sql = "SELECT * FROM Empleados WHERE Usuario='$usuario' ";
 
         $result = $conn->query($sql);
 
@@ -112,6 +112,28 @@ function TableEmpleado (){
             }
             $conn -> close();
             return array("status" => "SUCCESS", "empleadosTable" => $tableEmp);
+            }
+        else{
+                $conn -> close();
+                return array("status" => "CONNECTION WITH DB WENT WRONG");
+            }
+    }
+
+function TableOrdenesCompraData (){
+        $conn = connectionToDataBase();
+
+        if ($conn != null){
+
+            $sql = "SELECT * FROM orden_compra";
+            $result = $conn->query($sql);
+            $tableOC = array();
+            while($row = $result->fetch_assoc()) {
+                $salario = strval($row['Salario_Hora']);
+                $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario,'salarioNof' => $row['Salario_NOF'],'Puesto' => $row['Puesto'], 'Acciones' => "<button class='btn btn-xs btn-primary btn-block' data-toggle='modal'  id='editEmp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "/" . $row['Domicilio'] . "/" . $row['Colonia'] . "/" . $row['Ciudad'] . "/" . $row['Telefono'] . "/" . $row['Celular'] . "/" . $row['Email'] . "/" . $row['No_IMSS'] . "/" . $row['RFC'] . "/" . $row['CURP'] . "/" . $row['Puesto'] . "/" . $row['Salario_Hora'] . "/" . $row['Salario_NOF'] . "/" . $row['ISR'] . "/" . $row['IMSS'] . "/" . $row['Subsidio'] . "/" . $row['Infonavit'] . "/" . $row['Activo'] . "/" . $row['Usuario'] . "' style = 'margin-bottom: 5px;' >Editar</button><button class='btn btn-xs btn-danger btn-block' data-toggle='modal'  id='delete_emp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "'>Borrar</button>");
+                array_push($tableOC, $response);
+            }
+            $conn -> close();
+            return array("status" => "SUCCESS", "OrdenesCompraTable" => $tableOC);
             }
         else{
                 $conn -> close();

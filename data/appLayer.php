@@ -12,6 +12,8 @@ switch($action) {
         break;
     case "LOADEMPLEADOS" : LoadTableEmpleado();
         break;
+    case "LOADORDENESCOMPRA" : LoadTableOrdenesCompras();
+        break;
     case "COMMENTING" : PostComment();
         break;
     case "SHOWCOMMENTS" : ShowComments();
@@ -98,6 +100,22 @@ function Registration(){
         die($result["status"]);
     }
 }
+
+function LoadTableOrdenesCompras(){
+
+    $result = TableOrdenesCompraData();
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["OrdenesCompraTable"]);
+        //echo json_encode(array($comentario));
+    }   
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+
+}
+
 function LoadTableEmpleado(){
 
     $result = TableEmpleado();

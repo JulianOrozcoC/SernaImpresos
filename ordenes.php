@@ -111,7 +111,7 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="container" style="width: 100%;"><h2>Ordenes</h2></div>
+                <div class="container" style="width: 100%;">
 
                     <div id="exTab2" class="container"> 
                     <ul class="nav nav-tabs">
@@ -124,15 +124,39 @@
 
                     <div class="tab-content ">
                         <div class="tab-pane active" id="Compra">
-                            <h3>Standard tab panel created on bootstrap using nav-tabs</h3>
+                            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Empleados
                         </div>
-                    <div class="tab-pane" id="Trabajo">
-                        <h3>Notice the gap between the content and tab after applying a background color</h3>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body table-responsive">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="OrdenesCompra">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Nomina</th>
+                                    <th>Salario Diario</th>
+                                    <th>Salario NOF</th>
+                                    <th>Puesto</th>
+                                    <th>Acciones</th>
+                                </tr>
+                               
+                            </table>
+                        </div>
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+                        </div>
+                        <div class="tab-pane" id="Trabajo">
+                            <h3>Notice the gap between the content and tab after applying a background color</h3>
+                        </div>
                     </div>
                 </div>
-
-
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
@@ -145,6 +169,7 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
+<script type = "text/javascript" src="js/scriptLoadTableOrdenes.js"></script>
 <script src="vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
