@@ -33,8 +33,7 @@
 
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="dist/css/style.css" rel="stylesheet">
-
+    <link href="dist/css/style2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -130,9 +129,70 @@
         <div class="row">
             <div class="col-lg-12">
                 <div>
+                    <form>
+                        <fieldset style="...">
+                            <span> <img src="img/logo.png" alt="logo" height="102" width="162"></span>
+                            <label for="nombre"><br>
+                                <select type="text" id="nombre" name="nombre" >
+                                    <option value="">Seleccione un empleado ...</option>
+                                    <option value=""> </option>
+                                    <option value=""> </option>
+                                </select>
+                                <span style="color:red"> <span id="errorNombre"></span> </span>
+                            </label>
+                            <label for="rfc"> <br>
+                                <input type="text" id="rfc" name="rfc" placeholder="RFC" ><br>
+                                <span style="color:red"> <span id="errorLabelRfc"></span> </span>
+                            </label> <br>
+                        </fieldset>
+                    </form><br>
+                    <label for="fecha">Fecha<br>
+                        <input type="date" id="fecha" name="fecha" ><br>
+                        <span style="color:red"> <span id="errorFecha"></span> </span>
+                    </label>
+                    <label for="fini">Fecha de Inicio<br>
+                        <input type="date" id="fini" name="fini" ><br>
+                        <span style="color:red"> <span id="errorFechaIni"></span> </span>
+                    </label>
+                    <label for="fechafin">Fecha final<br>
+                        <input type="date" id="fechafin" name="fechafin" ><br>
+                        <span style="color:red"> <span id="errorFechaFin"></span> </span>
+                    </label>
 
                 </div>
-
+                <div class="col-lg-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" align="center"> Ingresos </h3>
+                        </div>
+                        <div id="ingBox">
+                            <table id="ingresos">
+                                <tr>
+                                    <th>Sueldo del Periodo</th>
+                                    <th>Premio de Puntualidad</th>
+                                    <th>Premio de Asistencia</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" align="center"> Deducciones </h3>
+                        </div>
+                        <div id="dedBox">
+                            <table id="deducciones">
+                                <tr>
+                                    <th>ISR</th>
+                                    <th>IMSS</th>
+                                    <th>Infonavit</th>
+                                    <th>Subsidio al empleo</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <!-- /.panel -->
             </div>
             <!-- /.col-lg-12 -->

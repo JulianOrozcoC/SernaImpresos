@@ -6,4 +6,13 @@ $(document).ready(function() {
     $("#ImpNomina").on("click", function () {
         window.location.replace("ImpNomina.php");
     });
+
+    $("#AgregaHora").on("click", function () {
+
+
+
+        window.location.replace("nomina.php");
+    });
+
+
 });

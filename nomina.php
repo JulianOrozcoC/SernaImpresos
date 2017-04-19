@@ -131,8 +131,8 @@
                                     <label for="nombre">Nombre<br>
                                         <select type="text" id="nombre" name="nombre" >
                                             <option value="">Seleccione una opcion ...</option>
-                                            <option value="Si">Activo</option>
-                                            <option value="No">Inactivo</option>
+                                            <option value=""> </option>
+                                            <option value=""> </option>
                                         </select>
                                         <span style="color:red"> <span id="errorNombre"></span> </span>
                                     </label><br>
