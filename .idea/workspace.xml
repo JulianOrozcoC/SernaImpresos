@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f1f1e75-6da3-48b2-a154-ba6cd2891337" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/julygay.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ordenes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ImpNomina.php" afterPath="$PROJECT_DIR$/ImpNomina.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard.php" afterPath="$PROJECT_DIR$/dashboard.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/empleados.php" afterPath="$PROJECT_DIR$/empleados.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/facturas.php" afterPath="$PROJECT_DIR$/facturas.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mantenimiento.php" afterPath="$PROJECT_DIR$/mantenimiento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newEmpleado.php" afterPath="$PROJECT_DIR$/newEmpleado.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nomina.php" afterPath="$PROJECT_DIR$/nomina.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/soporte.php" afterPath="$PROJECT_DIR$/soporte.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/SernaImpresos.sql" afterPath="$PROJECT_DIR$/data/SernaImpresos.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,7 +53,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ordenes.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ordenes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ordenes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
@@ -70,6 +61,16 @@
               <folding>
                 <element signature="e#6#91#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SernaImpresos.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/SernaImpresos.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="265" column="2" lean-forward="true" selection-start-line="265" selection-start-column="2" selection-end-line="265" selection-end-column="2" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -117,7 +118,6 @@
         <option value="$PROJECT_DIR$/js/empleados.js" />
         <option value="$PROJECT_DIR$/js/newEmpleado.js" />
         <option value="$PROJECT_DIR$/js/test.js" />
-        <option value="$PROJECT_DIR$/data/SernaImpresos.sql" />
         <option value="$PROJECT_DIR$/js/login.js" />
         <option value="$PROJECT_DIR$/js/scriptLoadTable.js" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/b7162458-7055-4c84-aa02-aeb1216da1d9/console.sql" />
@@ -138,6 +138,7 @@
         <option value="$PROJECT_DIR$/nomina.php" />
         <option value="$PROJECT_DIR$/soporte.php" />
         <option value="$PROJECT_DIR$/ordenes.php" />
+        <option value="$PROJECT_DIR$/data/SernaImpresos.sql" />
       </list>
     </option>
   </component>
@@ -183,6 +184,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="SernaImpresos" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SernaImpresos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SernaImpresos" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -288,7 +303,7 @@
       <workItem from="1491574627377" duration="15899000" />
       <workItem from="1491856330023" duration="10447000" />
       <workItem from="1491949083883" duration="22988000" />
-      <workItem from="1492550624464" duration="7907000" />
+      <workItem from="1492550624464" duration="8469000" />
     </task>
     <task id="LOCAL-00001" summary="add files">
       <created>1490974774393</created>
@@ -388,11 +403,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492561378188</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Agregue ORDEN.php y cambie el template de todas las vistas como lo pediste papu">
+      <created>1492565103643</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1492565103643</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59961000" />
+    <option name="totallyTimeSpent" value="60523000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -443,7 +465,8 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/Orozco1993/SernaImpresos&#10;&#10;# Conflicts:&#10;#&#9;data/dataLayer.php&#10;" />
     <MESSAGE value="Vas" />
     <MESSAGE value="Cambios a la pestaña NOMINA y ya agregue el logo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambios a la pestaña NOMINA y ya agregue el logo" />
+    <MESSAGE value="Agregue ORDEN.php y cambie el template de todas las vistas como lo pediste papu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregue ORDEN.php y cambie el template de todas las vistas como lo pediste papu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -595,13 +618,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/test.js" />
-    <entry file="file://$PROJECT_DIR$/data/SernaImpresos.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="220" column="2" lean-forward="true" selection-start-line="220" selection-start-column="2" selection-end-line="220" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -845,6 +861,14 @@
           <folding>
             <element signature="e#6#91#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/SernaImpresos.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="265" column="2" lean-forward="true" selection-start-line="265" selection-start-column="2" selection-end-line="265" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
