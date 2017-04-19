@@ -40,10 +40,6 @@ function connectionToDataBase(){
                   $_SESSION["Usuario"] = $row["Usuario"];
                   $_SESSION["Nombre"] = $row["Nombre"];
                  $_SESSION["Puesto"]  = $row["Puesto"];
- 
-                 if($remember){
-                     setcookie("user", $usuario, time()+3600*24*30, "/", "",0);
-                 }
   
                   $_SESSION["Activity"] = time();
                   return array("status" => "SUCCESS", "Usuario" => $row['Usuario'], "Nombre" => $row['Nombre'], "Contrasena" => $row['Contrasena']);
@@ -226,7 +222,6 @@ function TableOrdenesCompraData (){
             $result = $conn->query($sql);
             $tableOC = array();
             while($row = $result->fetch_assoc()) {
-                $salario = strval($row['Salario_Hora']);
                 $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario,'salarioNof' => $row['Salario_NOF'],'Puesto' => $row['Puesto'], 'Acciones' => "<button class='btn btn-xs btn-primary btn-block' data-toggle='modal'  id='editEmp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "/" . $row['Domicilio'] . "/" . $row['Colonia'] . "/" . $row['Ciudad'] . "/" . $row['Telefono'] . "/" . $row['Celular'] . "/" . $row['Email'] . "/" . $row['No_IMSS'] . "/" . $row['RFC'] . "/" . $row['CURP'] . "/" . $row['Puesto'] . "/" . $row['Salario_Hora'] . "/" . $row['Salario_NOF'] . "/" . $row['ISR'] . "/" . $row['IMSS'] . "/" . $row['Subsidio'] . "/" . $row['Infonavit'] . "/" . $row['Activo'] . "/" . $row['Usuario'] . "' style = 'margin-bottom: 5px;' >Editar</button><button class='btn btn-xs btn-danger btn-block' data-toggle='modal'  id='delete_emp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "'>Borrar</button>");
                 array_push($tableOC, $response);
             }
