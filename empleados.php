@@ -148,7 +148,7 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- Modal -->
-                <div class="modal fade" id="editEmpleado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="editEmpleadoInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -209,25 +209,25 @@
                         <input class="form-control type="text" id="curpEdit" name="curpEdit" ><br>
                         <span style="color:red"> <span id="errorLabelCurp"></span> </span>
                     </label>
-                    <label for="puesto">Puesto <br>
-                        <Select class="form-control type="text" id="puestoEdit" name="puestoEdit">
-                            <option value="">Seleccionar Una Opcion *</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Empleado">Empleado</option>
-                        </Select>
-                        <span style="color:red"> <span id="errorLabelPuesto"></span> </span>
+                    <label for="puesto">Puesto<br>
+                        <select class="form-control type="text" id="puestoEdit" name="puestoEdit">
+                        <option value="">Seleccionar Una Opcion *</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Empleado">Empleado</option>
+                        </select>
+                        <span style="color:red"> <span id="errorLabelActivo"></span> </span>
                     </label>
                     <label for="salhora">Salario por Hora<br>
                         <input class="form-control type="text" id="salhoraEdit" name="salhoraEdit" ><br>
                         <span style="color:red"> <span id="errorLabelSalarioHora"></span> </span>
                     </label>
-                    </div>
-                    <div class="col-xs-4">
                     <label for="salnof">Salario NOF<br>
                         <input class="form-control type="text" id="salnofEdit" name="salnofEdit"  ><br>
                         <span style="color:red"> <span id="errorLabelSalarioNof"></span> </span>
                     </label>
 
+                    </div>
+                    <div class="col-xs-4">
                     <label for="isr">ISR<br>
                         <input class="form-control type="text" id="isrEdit" name="isrEdit"  ><br>
                         <span style="color:red"> <span id="errorLabelIsr"></span> </span>
@@ -253,8 +253,8 @@
                         </select>
                         <span style="color:red"> <span id="errorLabelActivo"></span> </span>
                     </label>
-                    <label style="margin-top: 20px;" for="usuario">Usuario<br>
-                        <input class="form-control type="text" id="usuarioEdit" name="usuarioEdit" placeholder="Usuario"><br>
+                    <label style="margin-top: 20px;" for="usuarioEdit">Usuario<br>
+                        <input class="form-control type="text" id="usuarioEditEmp" name="usuarioEditEmp" placeholder="Usuario"><br>
                         <span style="color:red"> <span id="errorLabelUsuario"></span> </span>
                     </label>
                     </div>
