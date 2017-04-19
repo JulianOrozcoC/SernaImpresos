@@ -29,8 +29,10 @@ $(document).ready(function(){
             error : function(errorMessage){
                 alert(errorMessage.responseText);
                 alert("No entro en success");
+                window.location.replace("login.php");
                 console.log($userName.val());
                 console.log($userPass.val());
+                console.log(jsonToSend);
             }
         });
     });
