@@ -245,6 +245,52 @@ function attemptGetMantenimiento(){
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
 }
+function attemptPostFactura($factura, $fecha){
+
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "INSERT INTO Facturas (Factura, Fecha)
+		              VALUES  ('$factura', '$fecha')";
+
+        if (mysqli_query($conn,$sqlInsert)){
+
+            $conn->close();
+            return array("status"=>"SUCCESS");
+        }
+        else {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+        }
+
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
+function attemptGetFacturas(){
+    $conn = connectionToDataBase();
+
+    if ($conn != null){
+
+        $sql = "SELECT Factura, Fecha FROM Facturas";
+        $result = $conn->query($sql);
+        $commentsBox = array();
+
+        while($row = $result->fetch_assoc()) {
+            $response = array('Factura' => $row['Factura'], 'Fecha' => $row['Fecha']);
+            array_push($commentsBox, $response);
+        }
+        $conn -> close();
+        return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
 
 function attemptUpdateEmpleado($nomina, $nombre, $domicilio, $colonia, $ciudad, $telefono, $cel, $email, $noimms, $rfc, $curp, $puesto, $salHora,$salNof,$isr, $imss, $subsidio, $infonavit, $activo,$usuario){
 
