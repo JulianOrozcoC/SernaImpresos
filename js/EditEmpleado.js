@@ -67,7 +67,7 @@ $(document).ready(function(){
         console.log(logged);
         if(logged){
             var jsonToSend ={
-                "action" : "EDIT",
+                "action" : "EDIT_EMPLEADO",
                 "Nomina" : $nomina.val(),
                 "Nombre" : $nombre.val(),
                 "Domicilio" : $domicilio.val(),
@@ -80,8 +80,6 @@ $(document).ready(function(){
                 "RFC" : $rfc.val(),
                 "CURP" : $curp.val(),
                 "Puesto": $puesto.val(),
-                "Fecha_Nacimiento" : $fNacim.val(),
-                "Fecha_Inicio": $fIni.val(),
                 "Salario_Hora" : $salHora.val(),
                 "Salario_NOF" : $salNof.val(),
                 "ISR" : $isr.val(),
@@ -89,8 +87,7 @@ $(document).ready(function(){
                 "Subsidio": $subsidio.val(),
                 "Infonavit" : $infonavit.val(),
                 "Activo" : $activo.val(),
-                "Usuario": $usuario.val(),
-                "Contrasena" : $pass.val()
+                "Usuario": $usuario.val()
             };
             console.log(jsonToSend);
             $.ajax({

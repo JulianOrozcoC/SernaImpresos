@@ -11,6 +11,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type = "text/javascript" src="js/EditEmpleado.js"></script>
+    <script type = "text/javascript" src="js/empleados.js"></script>
     <script type = "text/javascript" src="js/modalData.js"></script>
     <title>Serna Impresos</title>
 
@@ -156,7 +157,7 @@
                     </label>
 
                     <label for="nomina">Nomina <br>
-                    <input class="form-control type="text" id="nominaEdit" name="nominaEdit"  ><br>
+                    <input class="form-control type="text" id="nominaEdit" name="nominaEdit" disabled><br>
                         <span style="color:red"> <span id="errorLabelNominaEdit"></span> </span>
                     </label>
 
