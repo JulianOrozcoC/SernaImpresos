@@ -87,15 +87,7 @@
                             <a href="nomina.php"><i class="fa fa-fw fa-table"></i> Nomina</a>
                         </li>
                         <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-edit"></i> Ordenes <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Orden de Compra</a>
-                                </li>
-                                <li>
-                                    <a href="#">Orden de Trabajo</a>
-                                </li>
-                            </ul>
+                            <a href="ordenes.php"><i class="fa fa-fw fa-edit"></i> Ordenes</a>
                         </li>
                         <li>
                             <a href="facturas.php"><i class="fa fa-fw fa-file"></i> Facturas</a>
@@ -131,8 +123,8 @@
                                     <label for="nombre">Nombre<br>
                                         <select type="text" id="nombre" name="nombre" >
                                             <option value="">Seleccione una opcion ...</option>
-                                            <option value="Si">Activo</option>
-                                            <option value="No">Inactivo</option>
+                                            <option value=""> </option>
+                                            <option value=""> </option>
                                         </select>
                                         <span style="color:red"> <span id="errorNombre"></span> </span>
                                     </label><br>
