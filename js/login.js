@@ -19,7 +19,7 @@ $(document).ready(function(){
             url : "data/appLayer.php",
             type: "POST",
             data: jsonToSend,
-            datatype : "json",
+            dataType : "json",
             contentType : "application/x-www-form-urlencoded",
 
             success : function(jsonResponse){

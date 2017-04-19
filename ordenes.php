@@ -86,6 +86,9 @@
                         <a href="empleados.php"><i class="fa fa-fw fa-users"></i> Empleados</a>
                     </li>
                     <li>
+                        <a href="proveedores.php"><i class="fa fa-fw fa-users"></i> Proveedores</a>
+                    </li>
+                    <li>
                         <a href="nomina.php"><i class="fa fa-fw fa-table"></i> Nomina</a>
                     </li>
                     <li>
