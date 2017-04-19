@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2017 at 05:43 AM
+-- Generation Time: Apr 19, 2017 at 03:50 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -31,6 +31,14 @@ CREATE TABLE `Comentarios` (
   `Nomina` varchar(20) NOT NULL,
   `Comentario` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Comentarios`
+--
+
+INSERT INTO `Comentarios` (`id_Comentario`, `Nomina`, `Comentario`) VALUES
+(7, 'Admin', 'test'),
+(8, 'Admin', 'Test test');
 
 -- --------------------------------------------------------
 
@@ -61,7 +69,7 @@ CREATE TABLE `Empleados` (
   `Infonavit` double DEFAULT NULL,
   `Activo` varchar(20) DEFAULT NULL,
   `Usuario` varchar(20) DEFAULT NULL,
-  `Contrasena` varchar(20) DEFAULT NULL
+  `Contrasena` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -69,7 +77,31 @@ CREATE TABLE `Empleados` (
 --
 
 INSERT INTO `Empleados` (`Nomina`, `Nombre`, `Domicilio`, `Colonia`, `Ciudad`, `Telefono`, `Celular`, `Email`, `No_IMSS`, `RFC`, `CURP`, `Puesto`, `Fecha_Nacimiento`, `Fecha_Inicio`, `Salario_Hora`, `Salario_NOF`, `ISR`, `IMSS`, `Subsidio`, `Infonavit`, `Activo`, `Usuario`, `Contrasena`) VALUES
-('S001', 'Edgar Jorge Serna Cavazos', 'James Cook 2937, Cumbres', 'Cumbres', 'Monterrey', '14255092', '8119104923', 'eserna_sisa@prodigy.net.mx', 0, 0, '', 'Admin', '1956-08-01', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'eserna', 'fDoL6goWA+VkUklv/ioJ');
+('A111', 'Julian', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'july', '$2y$12$G6hOissZV7r8Fvh8krB5MO3/Z1RXN62cxmRlgkcWOZak1pBZXuNme'),
+('S001', 'Edgar Jorge Serna Cavazos', 'James Cook 2937, Cumbres', 'Cumbres', 'Monterrey', '14255092', '8119104923', 'eserna_sisa@prodigy.net.mx', 0, 0, '', 'Admin', '1956-08-01', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'eserna', 'fDoL6goWA+VkUklv/ioJ'),
+('S1029', 'ega', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'ega', '$2y$12$UOF9rLfdrYMepVK/K1eE9.PYHPsQj884yoGTPag0mKHPV38PxyPnO'),
+('S4567', 'Jorge', '', '', '', '', '', '', 0, 0, '', 'admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'jorge', '$2y$12$Qxllpfcz.cDaaBX9bzNQHul2Dj7KSPa/RPN9merdF0oBASYSMcmBq');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Mantenimiento`
+--
+
+CREATE TABLE `Mantenimiento` (
+  `id_Mantenimiento` int(11) NOT NULL,
+  `Maquina` text NOT NULL,
+  `Fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Mantenimiento`
+--
+
+INSERT INTO `Mantenimiento` (`id_Mantenimiento`, `Maquina`, `Fecha`) VALUES
+(1, 'Maquina test 123', '2017-04-18'),
+(2, 'July es gay', '2017-05-20'),
+(3, 'gkhjgjkgh', '2017-04-13');
 
 -- --------------------------------------------------------
 
@@ -147,7 +179,7 @@ CREATE TABLE `Trabaja` (
 --
 ALTER TABLE `Comentarios`
   ADD PRIMARY KEY (`id_Comentario`),
-  ADD KEY `Nomina` (`Nomina`);
+  ADD KEY `comentarios_ibfk_1` (`Nomina`);
 
 --
 -- Indexes for table `Empleados`
@@ -155,6 +187,12 @@ ALTER TABLE `Comentarios`
 ALTER TABLE `Empleados`
   ADD PRIMARY KEY (`Nomina`),
   ADD UNIQUE KEY `Nomina` (`Nomina`);
+
+--
+-- Indexes for table `Mantenimiento`
+--
+ALTER TABLE `Mantenimiento`
+  ADD PRIMARY KEY (`id_Mantenimiento`);
 
 --
 -- Indexes for table `Orden_Compra`
@@ -195,7 +233,12 @@ ALTER TABLE `Trabaja`
 -- AUTO_INCREMENT for table `Comentarios`
 --
 ALTER TABLE `Comentarios`
-  MODIFY `id_Comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_Comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `Mantenimiento`
+--
+ALTER TABLE `Mantenimiento`
+  MODIFY `id_Mantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `Orden_Compra`
 --
@@ -219,12 +262,6 @@ ALTER TABLE `Trabaja`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `Comentarios`
---
-ALTER TABLE `Comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`Nomina`) REFERENCES `Empleados` (`Nomina`);
 
 --
 -- Constraints for table `Orden_Compra`
