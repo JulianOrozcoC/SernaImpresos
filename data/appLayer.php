@@ -42,6 +42,8 @@ switch($action) {
         break;
     case "NOMBRE" : GetNombre();
         break;
+    case "ENDSESSION" : endSessionFunction();
+        break;
 }
 
 function login(){
@@ -57,9 +59,24 @@ function login(){
      else{
          header('HTTP/1.1 500' . $result["status"]);
          die($result["status"]);
-         printf("Funcion error login App");
      }
  }
+
+function endSessionFunction(){
+
+    session_start();
+
+    if(isset($_SESSION['PHPSESSID']) && time() - $_SESSION['loginTime'] < 1800){
+        session_unset();
+        session_destroy();
+        echo json_encode(array("message" => "End Session"));
+    }
+    else {
+        header('HTTP/1.1 410 Something went wrong');
+        die("Something went wrong");
+    }
+
+}
 
 function RegistrationProveedor(){
     $nombre = $_POST['Nombre'];
