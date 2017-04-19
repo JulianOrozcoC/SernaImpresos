@@ -20,6 +20,8 @@ switch($action) {
         break;
     case "SHOWMANTENIMIENTO" : ShowMantenimiento();
         break;
+    case "EDIT_EMPLEADO" : UpdateEmpleado();
+        break;
 }
 
 function login(){
@@ -161,6 +163,40 @@ function ShowMantenimiento(){
         echo json_encode($result["arrayCommentsBox"]);
     }
     else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function UpdateEmpleado(){
+
+    $nomina = $_POST['Nomina'];
+    $nombre = $_POST['Nombre'];
+    $domicilio = $_POST['Domicilio'];
+    $colonia = $_POST['Colonia'];
+    $ciudad = $_POST['Ciudad'];
+    $telefono = $_POST['Telefono'];
+    $cel = $_POST['Celular'];
+    $email = $_POST['Email'];
+    $noimms = $_POST['No_IMSS'];
+    $rfc = $_POST['RFC'];
+    $curp = $_POST['CURP'];
+    $puesto = $_POST['Puesto'];
+    $salHora = $_POST['Salario_Hora'];
+    $salNof = $_POST['Salario_NOF'];
+    $isr = $_POST['ISR'];
+    $imss = $_POST['IMSS'];
+    $subsidio = $_POST['Subsidio'];
+    $infonavit = $_POST['Infonavit'];
+    $activo = $_POST['Activo'];
+    $usuario = $_POST['Usuario'];
+
+    $result = attemptUpdateEmpleado($nomina, $nombre, $domicilio, $colonia, $ciudad, $telefono, $cel, $email, $noimms, $rfc, $curp, $puesto, $salHora,$salNof,$isr, $imss, $subsidio, $infonavit, $activo,$usuario);
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode(array("message" => "Update Successful"));
+    }
+    else{
         header('HTTP/1.1 500' . $result["status"]);
         die($result["status"]);
     }

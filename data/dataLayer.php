@@ -221,4 +221,34 @@ function attemptGetMantenimiento(){
     }
 }
 
+function attemptUpdateEmpleado($nomina, $nombre, $domicilio, $colonia, $ciudad, $telefono, $cel, $email, $noimms, $rfc, $curp, $puesto, $salHora,$salNof,$isr, $imss, $subsidio, $infonavit, $activo,$usuario){
+
+
+    $conn = connectionToDataBase();
+    if($conn != null){
+
+        $salHora = (double)$salHora;
+        $salNof = (double)$salNof;
+        $isr = (double)$isr;
+        $imss = (double)$imss;
+        $subsidio = (double)$subsidio;
+        $infonavit = (double)$infonavit;
+
+        $sqlUpdate = "UPDATE `empleados` SET `Nombre`='$nombre',`Domicilio`='$domicilio',`Colonia`='$colonia',`Ciudad`='$ciudad',`Telefono`='$telefono',`Celular`='$cel',`Email`='$email',`No_IMSS`='$noimms',`RFC`='$rfc',`CURP`='$curp',`Puesto`='$puesto',`Salario_Hora`='$salHora',`Salario_NOF`='$salNof',`ISR`='$isr',`IMSS`='$imss',`Subsidio`='$subsidio',`Infonavit`='$infonavit',`Activo`='$activo',`Usuario`='$usuario' WHERE `Nomina`='$nomina'";
+
+            if (mysqli_query($conn, $sqlUpdate)){
+                $conn->close();
+                return array("status"=>"SUCCESS UPDATE");
+            }
+            else {
+                $conn->close();
+                return array("status"=>"Something went wrong on the server.");
+            }
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
 ?>
