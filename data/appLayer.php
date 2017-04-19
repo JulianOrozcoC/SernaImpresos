@@ -26,7 +26,7 @@ switch($action) {
         break;
     case "EDIT_EMPLEADO" : UpdateEmpleado();
         break;
-    case "SOPORTE" : Soporte();
+    case "ELIMINAR_EMPLEADO" : EliminarEmpleado();
         break;
 }
 
@@ -39,6 +39,21 @@ function login(){
 
     if ($result["status"] == "SUCCESS")
         echo json_encode(array("message" => "Login Successful"));
+
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function EliminarEmpleado(){
+    $nomina = $_POST['Nomina'];
+    $nombre = $_POST['Nombre'];
+    
+    $result = attemptDelete($nomina, $nombre);
+
+    if ($result["status"] == "SUCCESS")
+        echo json_encode(array("message" => "Delete Successful"));
 
     else{
         header('HTTP/1.1 500' . $result["status"]);
@@ -234,18 +249,6 @@ function UpdateEmpleado(){
         header('HTTP/1.1 500' . $result["status"]);
         die($result["status"]);
     }
-}
-
-function Soporte(){
-
-    $to      = 'edgar_serna717@hotmail.com';
-    $subject = 'Soporte Serna Impresos';
-    $msg = $_POST['Soporte'];
-
-    mail($to, $subject, $msg);
-
-    echo json_encode(array("message" => "Email Sent"));
-
 }
 
 ?>

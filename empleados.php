@@ -11,6 +11,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type = "text/javascript" src="js/EditEmpleado.js"></script>
+    <script type = "text/javascript" src="js/deleteEmpleado.js"></script>
     <script type = "text/javascript" src="js/empleados.js"></script>
     <script type = "text/javascript" src="js/modalData.js"></script>
     <title>Serna Impresos</title>
@@ -171,7 +172,7 @@
                     </label>
 
                     <label for="ciudad">Ciudad <br>
-                        <input class="form-control type="text" id="ciudadEdit" name="ciudadEdit"  ><br>
+                        <input class="form-control type="text" id="ciudadEdit" name="ciudadEdit"><br>
                         <span style="color:red"> <span id="errorLabelCiudad"></span> </span>
                     </label>
                     <label for="telefono">Telefono <br>
@@ -255,6 +256,34 @@
                     </div>
                     <div class="modal-footer">
                      <button id="EditEmpleadoBtn" type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i><span style="margin-left: 5px;">Guardar</span></button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="DeleteEmpleadoInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Eliminar Empleado</h4>
+                    </div>
+                    <div class="modal-body">
+                    <div class="row form-group">
+                    <div class="col-xs-12">
+                    <label for="nombre">Nombre <br>
+                    <input class="form-control type="text" id="nombreDelete" name="nombreDelete" disabled><br>
+                    </label>
+
+                    <label for="nomina">Nomina <br>
+                    <input class="form-control type="text" id="nominaDelete" name="nominaDelete" disabled><br>
+                    </label>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                     <button id="DeleteEmpleado" type="button" class="btn btn-danger">Eliminar</button>
                      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                     </div><!-- /.modal-content -->

@@ -31,4 +31,14 @@ $(document).ready(function(){
 
 });
 
+$('body').on('click', '#delete_emp', function(e) {
+   
+   name=$(this).attr("data-id");
+   arr2=name.split('/');
+   $('#nombreDelete').val(arr2[0]);
+   $('#nominaDelete').val(arr2[1]);
+   $('#DeleteEmpleadoInfo').modal();
+
+});
+
 });

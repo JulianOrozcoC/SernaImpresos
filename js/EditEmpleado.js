@@ -98,21 +98,13 @@ $(document).ready(function(){
                 contentType : "application/x-www-form-urlencoded", //Forces the content type to json
 
                 success : function(jsonResponse){
-                    alert("Se agrego correctamente un nuevo empleado");
-                    console.log(jsonResponse);
                     window.location.replace("empleados.php");
                 },
                 error : function(errorMessage){
-                    console.log(errorMessage);
-                    alert("ERROR EN EDITAR EMPLEADO");
+                    window.location.replace("empleados.php");
                 }
             });
         }
-
-
-
-
-
 
     })
 
