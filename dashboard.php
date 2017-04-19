@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type = "text/javascript" src="js/comments.js"></script>
     <script type = "text/javascript" src="js/showComments.js"></script>
+    <script type = "text/javascript" src="js/endSession.js"></script>
 
 
     <title>Serna Impresos</title>

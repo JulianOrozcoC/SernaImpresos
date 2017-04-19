@@ -17,6 +17,7 @@ function connectionToDataBase(){
 }
 # Funcion login que recibe como parametro el usuario y contraseña ingresados por el usuario,
 # desencripta la contraseña extraida de la base de datos y la compara com la que ingresó el usuario
+<<<<<<< HEAD
  function attemptLogin($usuario, $remember, $userPassword){
  
      $conn = connectionToDataBase();
@@ -59,6 +60,50 @@ function connectionToDataBase(){
      }else {
          $conn -> close();
           return array("status" => "CONNECTION WITH DB WENT WRONG");
+=======
+function attemptLogin($usuario, $remember, $userPassword){
+
+    $conn = connectionToDataBase();
+
+    if ($conn != null){
+        $sql = "SELECT Usuario, Contrasena, Nombre, Puesto FROM Empleados WHERE Usuario='$usuario' ";
+
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            //echo strlen($row['Contrasena']);
+
+            $savedPassword = decryptPassword($row['Contrasena']);
+
+            # Compare the decrypted password with the one provided by the user
+            if($savedPassword == $userPassword){
+                session_start();
+                $_SESSION["Usuario"] = $row["Usuario"];
+                $_SESSION["Nombre"] = $row["Nombre"];
+                $_SESSION["Puesto"]  = $row["Puesto"];
+
+                if($remember)
+                    setcookie("user", $usuario, time()+3600*24*30, "/", "",0);
+
+                $_SESSION["Activity"] = time();
+                return array("status" => "SUCCESS", "Usuario" => $row['Usuario'], "Nombre" => $row['Nombre'], "Contrasena" => $row['Contrasena']);
+
+            }
+            else {
+                $conn -> close();
+                return array("status" => "Password Verify Invalid");
+            }
+        }
+        else {
+            $conn -> close();
+            return array("status" => "USERNAME NOT FOUND");
+        }
+    }else {
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+>>>>>>> 66ae92fa07ee9e379d3fd8eeda65458987660313
     }
 }
   
