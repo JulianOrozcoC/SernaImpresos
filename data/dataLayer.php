@@ -107,7 +107,7 @@ function TableEmpleado (){
             $tableEmp = array();
             while($row = $result->fetch_assoc()) {
                 $salario = strval($row['Salario_Hora']);
-                $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario,'salarioNof' => $row['Salario_NOF'],'Puesto' => $row['Puesto'], 'Acciones' => "<button class='btn btn-xs btn-primary btn-block' data-toggle='modal'  id='editEmp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "/" . $row['Domicilio'] . "/" . $row['Colonia'] . "/" . $row['Ciudad'] . "/" . $row['Telefono'] . "/" . $row['Celular'] . "/" . $row['Email'] . "/" . $row['No_IMSS'] . "/" . $row['RFC'] . "/" . $row['CURP'] . "/" . $row['Puesto'] . "/" . $row['Salario_Hora'] . "/" . $row['Salario_NOF'] . "/" . $row['ISR'] . "/" . $row['IMSS'] . "/" . $row['Subsidio'] . "/" . $row['Infonavit'] . "/" . $row['Activo'] . "/" . $row['Usuario'] . "' style = 'margin-bottom: 5px;' >Editar</button><button class='btn btn-xs btn-danger btn-block' type='submit' onClick=\"javascript: return confirm('Please confirm to delete the prospect.');\">Borrar</button>");
+                $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario,'salarioNof' => $row['Salario_NOF'],'Puesto' => $row['Puesto'], 'Acciones' => "<button class='btn btn-xs btn-primary btn-block' data-toggle='modal'  id='editEmp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "/" . $row['Domicilio'] . "/" . $row['Colonia'] . "/" . $row['Ciudad'] . "/" . $row['Telefono'] . "/" . $row['Celular'] . "/" . $row['Email'] . "/" . $row['No_IMSS'] . "/" . $row['RFC'] . "/" . $row['CURP'] . "/" . $row['Puesto'] . "/" . $row['Salario_Hora'] . "/" . $row['Salario_NOF'] . "/" . $row['ISR'] . "/" . $row['IMSS'] . "/" . $row['Subsidio'] . "/" . $row['Infonavit'] . "/" . $row['Activo'] . "/" . $row['Usuario'] . "' style = 'margin-bottom: 5px;' >Editar</button><button class='btn btn-xs btn-danger btn-block' data-toggle='modal'  id='delete_emp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "'>Borrar</button>");
                 array_push($tableEmp, $response);
             }
             $conn -> close();
@@ -199,6 +199,31 @@ function attemptPostMantenimiento($maquina, $fecha){
 
 }
 
+function attemptDelete($nomina, $nombre){
+
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "DELETE FROM `empleados` WHERE `Nomina` = '$nomina'";
+
+        if (mysqli_query($conn,$sqlInsert)){
+
+            $conn->close();
+            return array("status"=>"SUCCESS DELETE");
+        }
+        else {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+        }
+
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
+
 function attemptGetMantenimiento(){
     $conn = connectionToDataBase();
 
@@ -234,7 +259,7 @@ function attemptUpdateEmpleado($nomina, $nombre, $domicilio, $colonia, $ciudad, 
         $subsidio = (double)$subsidio;
         $infonavit = (double)$infonavit;
 
-        $sqlUpdate = "UPDATE `empleados` SET `Nombre`='$nombre',`Domicilio`='$domicilio',`Colonia`='$colonia',`Ciudad`='$ciudad',`Telefono`='$telefono',`Celular`='$cel',`Email`='$email',`No_IMSS`='$noimms',`RFC`='$rfc',`CURP`='$curp',`Puesto`='$puesto',`Salario_Hora`='$salHora',`Salario_NOF`='$salNof',`ISR`='$isr',`IMSS`='$imss',`Subsidio`='$subsidio',`Infonavit`='$infonavit',`Activo`='$activo',`Usuario`='$usuario' WHERE `Nomina`='$nomina'";
+        $sqlUpdate = "UPDATE `empleados` SET `Nombre`='$nombre',`Domicilio`='$domicilio',`Colonia`='$colonia',`Ciudad`='$ciudad',`Telefono`='$telefono',`Celular`='$cel',`Email`='$email',`No_IMSS`='$noimms',`RFC`='$rfc',`CURP`='$curp',`Puesto`='$puesto',`Salario_Hora`=$salHora,`Salario_NOF`=$salNof,`ISR`=$isr,`IMSS`=$imss,`Subsidio`=$subsidio,`Infonavit`=$infonavit,`Activo`='$activo',`Usuario`='$usuario' WHERE `Nomina`='$nomina'";
 
             if (mysqli_query($conn, $sqlUpdate)){
                 $conn->close();

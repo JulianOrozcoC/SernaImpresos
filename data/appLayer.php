@@ -22,6 +22,8 @@ switch($action) {
         break;
     case "EDIT_EMPLEADO" : UpdateEmpleado();
         break;
+    case "ELIMINAR_EMPLEADO" : EliminarEmpleado();
+        break;
 }
 
 function login(){
@@ -33,6 +35,21 @@ function login(){
 
     if ($result["status"] == "SUCCESS")
         echo json_encode(array("message" => "Login Successful"));
+
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function EliminarEmpleado(){
+    $nomina = $_POST['Nomina'];
+    $nombre = $_POST['Nombre'];
+    
+    $result = attemptDelete($nomina, $nombre);
+
+    if ($result["status"] == "SUCCESS")
+        echo json_encode(array("message" => "Delete Successful"));
 
     else{
         header('HTTP/1.1 500' . $result["status"]);
