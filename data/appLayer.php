@@ -20,6 +20,10 @@ switch($action) {
         break;
     case "SHOWMANTENIMIENTO" : ShowMantenimiento();
         break;
+    case "FACTURAS" : PostFactura();
+        break;
+    case "SHOWFACTURAS" : ShowFacturas();
+        break;
 }
 
 function login(){
@@ -156,6 +160,34 @@ function PostMantenimiento(){
 function ShowMantenimiento(){
 
     $result = attemptGetMantenimiento();
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function PostFactura(){
+
+    $fecha = $_POST['Fecha'];
+    $factura = $_POST['Factura'];
+    $result = attemptPostFactura($factura,$fecha);
+
+    if( $result["status"] == "SUCCESS"){
+        echo json_encode($result);
+    }
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function ShowFacturas(){
+
+    $result = attemptGetFacturas();
 
     if ($result["status"] == "SUCCESS"){
         echo json_encode($result["arrayCommentsBox"]);
