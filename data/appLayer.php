@@ -40,6 +40,8 @@ switch($action) {
         break;
     case "SOPORTE" : Soporte();
         break;
+    case "NOMBRE" : GetNombre();
+        break;
 }
 
 function login(){
@@ -358,6 +360,19 @@ function Soporte(){
     mail($to, $subject, $msg);
 
     echo json_encode(array("message" => "Email Sent"));
+
+}
+function GetNombre(){
+
+    $result = attemptGetNombre();
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
 
 }
 

@@ -124,10 +124,8 @@
                                 <div class="left">
 
                                     <label for="nombre">Nombre<br>
-                                        <select type="text" id="nombre" name="nombre" >
+                                        <select type="text" id="nombre" name="nombre" onchange="jsfunction()">
                                             <option value="">Seleccione una opcion ...</option>
-                                            <option value=""> </option>
-                                            <option value=""> </option>
                                         </select>
                                         <span style="color:red"> <span id="errorNombre"></span> </span>
                                     </label><br>
@@ -189,6 +187,30 @@
     </div>
     <!-- /#wrapper -->
 
+    <!-- jQuery -->
+        <script>
+            function jsfunction(){
+
+
+                console.log(jsonToSend);
+                $.ajax({
+                    url : "data/appLayer.php",
+                    type: "POST",
+                    data: jsonToSend, //Data to send to the service
+                    datatype : "json",
+                    contentType : "application/x-www-form-urlencoded", //Forces the content type to json
+
+                    success : function(jsonResponse){
+                        alert("Se agrego correctamente un nuevo empleado");
+                        console.log(jsonResponse);
+                    },
+                    error : function(errorMessage){
+                        console.log(errorMessage);
+                        window.location.replace("nomina.php");
+                    }
+                });
+            }
+        </script>
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 
