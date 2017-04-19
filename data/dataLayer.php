@@ -26,10 +26,16 @@ function attemptLogin($usuario, $remember, $userPassword){
 
         $result = $conn->query($sql);
 
+
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
-            if(password_verify($userPassword, $row['Contrasena'])){
+            //echo strlen($row['Contrasena']);
+
+            $savedPassword = decryptPassword($row['Contrasena']);
+
+            # Compare the decrypted password with the one provided by the user
+            if($savedPassword == $userPassword){
                 session_start();
                 $_SESSION["Usuario"] = $row["Usuario"];
                 $_SESSION["Nombre"] = $row["Nombre"];
@@ -40,10 +46,11 @@ function attemptLogin($usuario, $remember, $userPassword){
 
                 $_SESSION["Activity"] = time();
                 return array("status" => "SUCCESS", "Usuario" => $row['Usuario'], "Nombre" => $row['Nombre'], "Contrasena" => $row['Contrasena']);
+
             }
             else {
                 $conn -> close();
-            return array("status" => "Password Verify Invalid");
+                return array("status" => "Password Verify Invalid");
             }
         }
         else {
@@ -55,6 +62,35 @@ function attemptLogin($usuario, $remember, $userPassword){
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
 }
+#Action to decrypt the password of the user
+function decryptPassword($password)
+{
+    $key = pack('H*', "bcb04b7e103a05afe34763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
+
+    $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+
+    $ciphertext_dec = base64_decode($password);
+    $iv_dec = substr($ciphertext_dec, 0, $iv_size);
+    $ciphertext_dec = substr($ciphertext_dec, $iv_size);
+
+    $password = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $ciphertext_dec, MCRYPT_MODE_CBC, $iv_dec);
+
+
+    $count = 0;
+    $length = strlen($password);
+
+    for ($i = $length - 1; $i >= 0; $i --)
+    {
+        if (ord($password{$i}) === 0)
+        {
+            $count ++;
+        }
+    }
+
+    $password = substr($password, 0,  $length - $count);
+
+    return $password;
+}
 
 
 function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $telefono, $cel, $email, $noimms, $rfc, $curp, $puesto, $fnacim, $fini, $salHora,$salNof,$isr, $imss, $subsidio, $infonavit, $activo,$usuario, $pass){
@@ -62,8 +98,7 @@ function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $t
 
     $conn = connectionToDataBase();
     if($conn != null){
-        $options = ['cost' => 12];
-        $hash = password_hash($pass, PASSWORD_BCRYPT, $options);
+        $hash = encryptPassword($pass);
 
         $sqlVerif = "SELECT * FROM Empleados WHERE Usuario='$usuario' ";
         $sqlInsert = "INSERT INTO Empleados(Nomina, Nombre, Domicilio, Colonia, Ciudad, Telefono, Celular, Email, No_IMSS, RFC, CURP, Puesto, Fecha_Nacimiento, Fecha_Inicio, Salario_Hora, Salario_NOF, ISR, IMSS, Subsidio, Infonavit, Activo, Usuario, Contrasena)
@@ -97,6 +132,23 @@ function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $t
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
 }
+function encryptPassword($userPassword)
+{
+    $key = pack('H*', "bcb04b7e103a05afe34763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
+    $key_size =  strlen($key);
+
+    $plaintext = $userPassword;
+
+    $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+    $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+
+    $ciphertext = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $plaintext, MCRYPT_MODE_CBC, $iv);
+    $ciphertext = $iv . $ciphertext;
+
+    $userPassword = base64_encode($ciphertext);
+
+    return $userPassword;
+}
 function TableEmpleado (){
         $conn = connectionToDataBase();
 
@@ -128,12 +180,7 @@ function attemptPostComment($nomina, $comentario){
 		              VALUES  ('$nomina', '$comentario')";
 
         if (mysqli_query($conn,$sqlInsert)){
-           /*
-            $comm = "<li>
-							<b> Nomina: </b> $nomina <br/>
-							Comentario: $comentario <br/>
-							  </li> ";
-            */
+
             $conn->close();
             //return array("status"=>"SUCCESS", "comment" => $comm);
             return array("status"=>"SUCCESS");
@@ -315,6 +362,27 @@ function attemptUpdateEmpleado($nomina, $nombre, $domicilio, $colonia, $ciudad, 
                 $conn->close();
                 return array("status"=>"Something went wrong on the server.");
             }
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+function attemptGetNombre(){
+    $conn = connectionToDataBase();
+
+    if ($conn != null){
+
+        $sql = "SELECT Nombre FROM Empleados";
+        $result = $conn->query($sql);
+        $commentsBox = array();
+
+        while($row = $result->fetch_assoc()) {
+            $response = array('Nombre' => $row['Nombre']);
+            array_push($commentsBox, $response);
+        }
+        $conn -> close();
+        return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
     }
     else{
         $conn -> close();
