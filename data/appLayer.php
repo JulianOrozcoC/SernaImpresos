@@ -28,6 +28,8 @@ switch($action) {
         break;
     case "ELIMINAR_EMPLEADO" : EliminarEmpleado();
         break;
+    case "SOPORTE" : Soporte();
+        break;
 }
 
 function login(){
@@ -249,6 +251,17 @@ function UpdateEmpleado(){
         header('HTTP/1.1 500' . $result["status"]);
         die($result["status"]);
     }
+}
+function Soporte(){
+
+    $to      = 'edgar_serna717@hotmail.com';
+    $subject = 'Soporte Serna Impresos';
+    $msg = $_POST['Soporte'];
+
+    mail($to, $subject, $msg);
+
+    echo json_encode(array("message" => "Email Sent"));
+
 }
 
 ?>
