@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type = "text/javascript" src="js/empleados.js"></script>
+    <script type = "text/javascript" src="js/EditEmpleado.js"></script>
     <script type = "text/javascript" src="js/modalData.js"></script>
     <title>Serna Impresos</title>
 
@@ -160,12 +160,12 @@
                     <div class="col-xs-4">
                     <label for="nombre">Nombre <br>
                     <input class="form-control type="text" id="nombreEdit" name="nombreEdit" ><br>
-                        <span style="color:red"> <span id="errorName"></span> </span>
+                        <span style="color:red"> <span id="errorNameEdit"></span> </span>
                     </label>
 
                     <label for="nomina">Nomina <br>
                     <input class="form-control type="text" id="nominaEdit" name="nominaEdit"  ><br>
-                        <span style="color:red"> <span id="errorLabelNomina"></span> </span>
+                        <span style="color:red"> <span id="errorLabelNominaEdit"></span> </span>
                     </label>
 
                     <label for="domicilio">Domicilio <br>
@@ -209,13 +209,13 @@
                         <input class="form-control type="text" id="curpEdit" name="curpEdit" ><br>
                         <span style="color:red"> <span id="errorLabelCurp"></span> </span>
                     </label>
-                    <label for="puesto">Puesto<br>
+                    <label style="margin-bottom: 25px;" for="puesto">Puesto<br>
                         <select class="form-control type="text" id="puestoEdit" name="puestoEdit">
                         <option value="">Seleccionar Una Opcion *</option>
                         <option value="Admin">Admin</option>
                         <option value="Empleado">Empleado</option>
                         </select>
-                        <span style="color:red"> <span id="errorLabelActivo"></span> </span>
+                        <span style="color:red"> <span id="errorLabelPuestoEdit"></span> </span>
                     </label>
                     <label for="salhora">Salario por Hora<br>
                         <input class="form-control type="text" id="salhoraEdit" name="salhoraEdit" ><br>
@@ -251,17 +251,17 @@
                         <option value="Si">Activo</option>
                         <option value="No">Inactivo</option>
                         </select>
-                        <span style="color:red"> <span id="errorLabelActivo"></span> </span>
+                        <span style="color:red"> <span id="errorLabelActivoEdit"></span> </span>
                     </label>
                     <label style="margin-top: 20px;" for="usuarioEdit">Usuario<br>
                         <input class="form-control type="text" id="usuarioEditEmp" name="usuarioEditEmp" placeholder="Usuario"><br>
-                        <span style="color:red"> <span id="errorLabelUsuario"></span> </span>
+                        <span style="color:red"> <span id="errorLabelUsuarioEdit"></span> </span>
                     </label>
                     </div>
                     </div>
                     </div>
                     <div class="modal-footer">
-                     <button type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i><span style="margin-left: 5px;">Guardar</span></button>
+                     <button id="EditEmpleadoBtn" type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i><span style="margin-left: 5px;">Guardar</span></button>
                      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                     </div><!-- /.modal-content -->
