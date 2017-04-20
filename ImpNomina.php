@@ -16,6 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type = "text/javascript" src="js/ImpNomina.js"></script>
 
     <title>Serna Impresos</title>
 
@@ -139,17 +141,20 @@
                                 <form>
                                     <fieldset style="...">
                                         <span> <img src="img/logo.png" alt="logo" height="102" width="182"></span>
-                                        <label for="nombre"><br>
-                                            <select type="text" id="nombre" name="nombre" >
-                                                <option value="">Seleccione un empleado ...</option>
-                                                <option value=""> </option>
-                                                <option value=""> </option>
+                                        <label for="nombres">Nombre<br>
+                                            <select type="text" id="nombres" name="nombres" onchange="jsfunction()">
+                                                <option value="">Seleccione una opcion ...</option>
                                             </select>
                                             <span style="color:red"> <span id="errorNombre"></span> </span>
                                         </label>
-                                        <label for="rfc"> <br>
+
+                                        <label for="rfc"> RFC<br>
                                             <input type="text" id="rfc" name="rfc" placeholder="RFC" ><br>
                                             <span style="color:red"> <span id="errorLabelRfc"></span> </span>
+                                        </label>
+                                        <label for="salario">Salario por Hora <br>
+                                            <input type="text" id="salarioHora" name="salarioHora" placeholder="Salario por Hora" ><br>
+                                            <span style="color:red"> <span id="errorSalarioHora"></span> </span>
                                         </label> <br>
                                     </fieldset>
                                 </form><br>
@@ -157,12 +162,12 @@
                                     <input type="date" id="fecha" name="fecha" ><br>
                                     <span style="color:red"> <span id="errorFecha"></span> </span>
                                 </label>
-                                <label for="fini">Fecha de Inicio<br>
-                                    <input type="date" id="fini" name="fini" ><br>
+                                <label for="finis">Fecha de Inicio<br>
+                                    <input type="date" id="finis" name="finis" ><br>
                                     <span style="color:red"> <span id="errorFechaIni"></span> </span>
                                 </label>
-                                <label for="fechafin">Fecha final<br>
-                                    <input type="date" id="fechafin" name="fechafin" ><br>
+                                <label for="fechafins">Fecha final<br>
+                                    <input type="date" id="fechafins" name="fechafins" ><br>
                                     <span style="color:red"> <span id="errorFechaFin"></span> </span>
                                 </label>
 
@@ -202,6 +207,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div>
+                                <label for="total"> <br>
+                                    <input type="text" id="total" name="total" placeholder="Total" >
+                                    <span style="color:red"> <span id="errorTotal"></span> </span>
+                                </label>
+                            </div>
+                            <p>
+                                <button style="width:300px" id="Calcula" type="button" class="btn btn-md btn-success btn-block"> Generar Nomina</button>
+                            </p>
+
                             <!-- /.panel -->
                         </div>
 
@@ -212,15 +227,15 @@
                                 <form>
                                     <fieldset style="...">
                                         <span> <img src="img/logo.png" alt="logo" height="102" width="182"></span>
-                                        <label for="nombre"><br>
-                                            <select type="text" id="nombre" name="nombre" >
+                                        <label for="nombrenof"><br>
+                                            <select type="text" id="nombrenof" name="nombrenof" >
                                                 <option value="">Seleccione un empleado ...</option>
                                                 <option value=""> </option>
                                                 <option value=""> </option>
                                             </select>
                                             <span style="color:red"> <span id="errorNombre"></span> </span>
                                         </label>
-                                        <label for="rfc"> <br>
+                                        <label for="rfc">RFC <br>
                                             <input type="text" id="rfc" name="rfc" placeholder="RFC" ><br>
                                             <span style="color:red"> <span id="errorLabelRfc"></span> </span>
                                         </label> <br>
@@ -292,6 +307,37 @@
     </div>
     <!-- /#wrapper -->
 
+    <!-- jQuery -->
+    <script>
+        var $nombre = $("#nombres");
+        function jsfunction(){
+            var jsonToSend = {
+                "action" : "EMPLEADO",
+                "Nombre" : $nombre.val()
+            };
+
+            console.log(jsonToSend);
+            $.ajax({
+                url : "data/appLayer.php",
+                type: "POST",
+                data: jsonToSend, //Data to send to the service
+                datatype : "json",
+                contentType : "application/x-www-form-urlencoded", //Forces the content type to json
+
+                success : function(data){
+                    console.log(data);
+                    var nom = data[0].RFC;
+                    var sal = data[0].Salario_Hora;
+                    document.getElementById("rfc").value = nom;
+                    document.getElementById("salarioHora").value = nom;
+                },
+                error : function(errorMessage){
+                    console.log(errorMessage);
+                    window.location.replace("nomina.php");
+                }
+            });
+        }
+    </script>
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
 

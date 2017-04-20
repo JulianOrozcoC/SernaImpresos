@@ -139,6 +139,10 @@
                                         <input type="text" id="asistencia" name="asistencia" placeholder="Si/No" ><br>
                                         <span style="color:red"> <span id="errorAsistencia"></span> </span>
                                     </label><br>
+                                    <label for="retraso">Retraso <br>
+                                        <input type="text" id="retraso" name="retraso" placeholder="Si/No" ><br>
+                                        <span style="color:red"> <span id="errorRetraso"></span> </span>
+                                    </label><br><br>
 
                                 </div>
                                 <div>
@@ -148,18 +152,75 @@
                                     </label><br>
 
                                     <label for="hini">Hora de entrada <br>
-                                        <input type="time" id="hini" name="hini" ><br>
+                                        <select name="timestart" id="hini">
+                                            <option value=""> </option>
+                                            <option value="06:00:00">6:00 am</option>
+                                            <option value="06:30:00">6:30 am</option>
+                                            <option value="07:00:00">7:00 am</option>
+                                            <option value="07:30:00">7:30 am</option>
+                                            <option value="08:00:00">8:00 am</option>
+                                            <option value="08:30:00">8:30 am</option>
+                                            <option value="09:00:00">9:00 am</option>
+                                            <option value="09:30:00">9:30 am</option>
+                                            <option value="10:00:00">10:00 am</option>
+                                            <option value="10:30:00">10:30 am</option>
+                                            <option value="11:00:00">11:00 am</option>
+                                            <option value="11:30:00">11:30 am</option>
+                                            <option value="12:00:00">12:00 pm</option>
+                                            <option value="12:30:00">12:30 pm</option>
+                                            <option value="13:00:00">1:00 pm</option>
+                                            <option value="13:30:00">1:30 pm</option>
+                                            <option value="14:00:00">2:00 pm</option>
+                                            <option value="14:30:00">2:30 pm</option>
+                                            <option value="15:00:00">3:00 pm</option>
+                                            <option value="15:30:00">3:30 pm</option>
+                                            <option value="16:00:00">4:00 pm</option>
+                                            <option value="16:30:00">4:30 pm</option>
+                                            <option value="17:00:00">5:00 pm</option>
+                                        </select>
                                         <span style="color:red"> <span id="errorHoraIni"></span> </span>
                                     </label>
 
                                     <label for="hsal">Hora de salida <br>
-                                        <input type="time" id="hsal" name="hsal" ><br>
+                                        <select name="timestop" id="hsal">
+                                            <option value=""> </option>
+                                            <option value="08:00:00">8:00 am</option>
+                                            <option value="08:30:00">8:30 am</option>
+                                            <option value="09:00:00">9:00 am</option>
+                                            <option value="09:30:00">9:30 am</option>
+                                            <option value="10:00:00">10:00 am</option>
+                                            <option value="10:30:00">10:30 am</option>
+                                            <option value="11:00:00">11:00 am</option>
+                                            <option value="11:30:00">11:30 am</option>
+                                            <option value="12:00:00">12:00 pm</option>
+                                            <option value="12:30:00">12:30 pm</option>
+                                            <option value="13:00:00">1:00 pm</option>
+                                            <option value="13:30:00">1:30 pm</option>
+                                            <option value="14:00:00">2:00 pm</option>
+                                            <option value="14:30:00">2:30 pm</option>
+                                            <option value="15:00:00">3:00 pm</option>
+                                            <option value="15:30:00">3:30 pm</option>
+                                            <option value="16:00:00">4:00 pm</option>
+                                            <option value="16:30:00">4:30 pm</option>
+                                            <option value="17:00:00">5:00 pm</option>
+                                            <option value="17:30:00">5:30 pm</option>
+                                            <option value="18:00:00">6:00 pm</option>
+                                            <option value="18:30:00">6:30 pm</option>
+                                            <option value="19:00:00">7:00 pm</option>
+                                            <option value="19:30:00">7:30 pm</option>
+                                            <option value="20:00:00">8:00 pm</option>
+                                            <option value="20:30:00">8:30 pm</option>
+                                            <option value="21:00:00">9:00 pm</option>
+                                            <option value="21:30:00">9:30 pm</option>
+                                            <option value="22:00:00">10:00 pm</option>
+                                            <option value="22:30:00">10:30 pm</option>
+                                        </select>
                                         <span style="color:red"> <span id="errorHoraSal"></span> </span>
                                     </label><br>
 
-                                    <label for="retraso">Retraso <br>
-                                        <input type="text" id="retraso" name="retraso" placeholder="Si/No" ><br>
-                                        <span style="color:red"> <span id="errorRetraso"></span> </span>
+                                    <label for="htotal">Horas Trabajadas <br>
+                                        <input type="text" id="htotal" name="htotal" placeholder="Horas Trabajadas" ><br>
+                                        <span style="color:red"> <span id="errorHTotal"></span> </span>
                                     </label><br><br>
                                 </div>
                             </div>
@@ -169,7 +230,6 @@
                             <p>
                                 <button style="width:300px" id="AgregaHora" type="button" class="btn btn-lg btn-success btn-block"> Aceptar</button>
                                 <button style="width:300px" id="ImpNomina" type="button" class="btn btn-lg btn-success btn-block"> Imprimir Nomina</button>
-
                                 <br>
                             </p>
 
@@ -189,8 +249,12 @@
 
     <!-- jQuery -->
         <script>
+            var $nombre = $("#nombre");
             function jsfunction(){
-
+                var jsonToSend = {
+                    "action" : "EMPLEADO",
+                    "Nombre" : $nombre.val()
+                };
 
                 console.log(jsonToSend);
                 $.ajax({
@@ -200,9 +264,10 @@
                     datatype : "json",
                     contentType : "application/x-www-form-urlencoded", //Forces the content type to json
 
-                    success : function(jsonResponse){
-                        alert("Se agrego correctamente un nuevo empleado");
-                        console.log(jsonResponse);
+                    success : function(data){
+                        console.log(data);
+                        var nom = data[0].Nomina;
+                        document.getElementById("nomina").value = nom;
                     },
                     error : function(errorMessage){
                         console.log(errorMessage);

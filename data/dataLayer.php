@@ -215,6 +215,28 @@ function TableEmpleado (){
             }
 }
 
+function loadEmpleado ($nombre){
+    $conn = connectionToDataBase();
+
+    if ($conn != null){
+
+        $sql = "SELECT * FROM empleados WHERE Nombre = '$nombre'";
+        $result = $conn->query($sql);
+        $aEmpleados = array();
+        while($row = $result->fetch_assoc()) {
+            $salario = strval($row['Salario_Hora']);
+            $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'Salario' => $salario,'Salario_NOF' => $row['Salario_NOF'],'Puesto' => $row['Puesto'], "RFC" => $row['RFC'], "ISR" => $row['ISR'], "IMSS" => $row['IMSS'], "Subsidio" => $row['Subsidio'], "Infonavit" => $row['Infonavit']);
+            array_push($aEmpleados, $response);
+        }
+        $conn -> close();
+        return array("status" => "SUCCESS", "empleados" => $aEmpleados);
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
 function TableProveedores (){
         $conn = connectionToDataBase();
 
@@ -612,13 +634,13 @@ function attemptGetNombre(){
 
  function attemptGetNombreProv(){
      $conn = connectionToDataBase();
- 
+
      if ($conn != null){
- 
+
          $sql = "SELECT Nombre FROM proveedores";
          $result = $conn->query($sql);
          $commentsBox = array();
- 
+
          while($row = $result->fetch_assoc()) {
              $response = array('Nombre' => $row['Nombre']);
              array_push($commentsBox, $response);
@@ -634,13 +656,13 @@ function attemptGetNombre(){
 
  function attemptGetNominaEmp(){
      $conn = connectionToDataBase();
- 
+
      if ($conn != null){
- 
+
          $sql = "SELECT Nomina FROM empleados";
          $result = $conn->query($sql);
          $commentsBox = array();
- 
+
          while($row = $result->fetch_assoc()) {
              $response = array('Nomina' => $row['Nomina']);
              array_push($commentsBox, $response);
@@ -653,4 +675,54 @@ function attemptGetNombre(){
          return array("status" => "CONNECTION WITH DB WENT WRONG");
      }
  }
+
+function attemptPostHoras($nombre, $nomina, $fecha, $hentrada, $hsalida, $asistencia, $retraso, $total){
+
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "INSERT INTO Trabaja (Nomina, Fecha, Hora_Entrada, Hora_Salida, Asistencia, Retraso, Horas_Trabajadas)
+		              VALUES  ('$nomina', '$fecha', '$hentrada', '$hsalida', '$asistencia', '$retraso', '$total' )";
+
+        if (mysqli_query($conn,$sqlInsert)){
+            $conn->close();
+            return array("status"=>"SUCCESS");
+        }
+        else {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+        }
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
+function attemptGetSalario($fechaIni, $fechaFin){
+    $conn = connectionToDataBase();
+
+    if ($conn != null){
+
+        $sql = "SELECT Horas_Trabajadas, SUM(Horas_Trabajadas)
+                AS Total
+                FROM Trabaja
+                WHERE Fecha >= '$fechaIni'
+                AND Fecha <= '$fechaFin'";
+        $result = $conn->query($sql);
+        $commentsBox = array();
+
+        while($row = $result->fetch_assoc()) {
+            $response = array('Total' => $row['Total']);
+            array_push($commentsBox, $response);
+        }
+        $conn -> close();
+        return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
 ?>
