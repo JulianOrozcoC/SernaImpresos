@@ -18,6 +18,10 @@
     <meta name="author" content="">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type = "text/javascript" src="js/ordenes.js"></script>
+    <script type = "text/javascript" src="js/cargaNomina.js"></script>
+    <script type = "text/javascript" src="js/cargarProv.js"></script>
+    <script type = "text/javascript" src="js/modalData.js"></script>
     <title>Serna Impresos</title>
 
     <!-- Bootstrap Core CSS -->
@@ -112,6 +116,154 @@
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
+
+         <!-- Modal -->
+        <div class="modal fade" id="agregarOrdenCompra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Agregar Orden de Compra</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row form-group">
+                            <div class="col-xs-6">
+                                <label for="nominaOC">Nomina <br>
+                                    <select class="form-control type="text" id="NominaOC" name="NominaOC" >
+                                    <option value="">Selecciona una opcion</option>
+                                    </select><br>
+                                </label>
+
+                                <label for="ProveedorOC">Proveedor <br>
+                                    <select class="form-control type="text" id="ProveedorOC" name="ProveedorOC">
+                                    <option value="">Selecciona una opcion</option>
+                                    </select><br>
+                                </label>
+                                <label for="CantidadOC">Cantidad <br>
+                                    <input class="form-control type="text" id="CantidadOC" name="CantidadOC" ><br>
+                                </label>
+
+                                <label for="Unidad-MedidaOC">Unidad-Medida <br>
+                                    <input class="form-control type="text" id="Unidad-MedidaOC" name="Unidad-MedidaOC"><br>
+                                </label>
+
+                                <label for="FechaOC">Fecha <br>
+                                    <input class="form-control" type="date" id="FechaOC" name="FechaOC"  ><br> 
+                                    </label>
+
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="DescripcionOC">Descripcion <br>
+                                    <input class="form-control type="text" id="DescripcionOC" name="DescripcionOC" ><br>
+                                </label>
+
+                                <label for="PrecioUnitarioOC">Precio Unitario <br>
+                                    <input class="form-control type="text" id="PrecioUnitarioOC" name="PrecioUnitarioOC"><br>
+                                </label>
+
+                                <label for="TotalOC">Total <br>
+                                    <input class="form-control type="text" id="TotalOC" name="TotalOC"  ><br>                                </label>
+                                <label for="AprobadaOC">Aprobada
+                                    <select class="form-control type="text" id="AprobadaOC" name="AprobadaOC" >
+                                    <option value="">Selecciona una opcion</option>
+                                    <option value="Aprobada">Aprobada</option>
+                                    <option value="No Aprobada">No Aprobada</option>
+                                    </select><br>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="agregarOrdenComprabtn" type="button" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i><span style="margin-left: 5px;">Guardar</span></button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="EliminarOrdenCompra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Eliminar Orden de Compra</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row form-group">
+                            <div class="col-xs-12">
+                                <label for="IdOrdenCompra">Id Orden de Compra <br>
+                                    <input class="form-control type="text" id="IdOrdenCompra" name="IdOrdenCompra" disabled><br>
+                                </label>
+
+                                 <label for="DescripcionOrdenCompra">Descripcion <br>
+                                    <input class="form-control type="text" id="DescripcionOrdenCompra" name="DescripcionOrdenCompra" disabled><br>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="eliminarOrdenComprabtn" type="button" class="btn btn-danger"><span style="margin-left: 5px;">Eliminar</span></button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="AprobarOrdenCompra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Aprobar Orden de Compra</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row form-group">
+                            <div class="col-xs-12">
+                                <label for="IdOrdenCompraAP">Id Orden de Compra <br>
+                                    <input class="form-control type="text" id="IdOrdenCompraAP" name="IdOrdenCompraAP" disabled><br>
+                                </label>
+
+                                 <label for="DescripcionOrdenCompraAP">Descripcion <br>
+                                    <input class="form-control type="text" id="DescripcionOrdenCompraAP" name="DescripcionOrdenCompraAP" disabled><br>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="AprobarOrdenComprabtn" type="button" class="btn btn-danger"><span style="margin-left: 5px;">Eliminar</span></button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="DesAprobarOrdenCompra" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">DesAprobar Orden de Compra</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row form-group">
+                            <div class="col-xs-12">
+                                <label for="IdOrdenCompraDP">Id Orden de Compra <br>
+                                    <input class="form-control type="text" id="IdOrdenCompraDP" name="IdOrdenCompraDP" disabled><br>
+                                </label>
+
+                                 <label for="DescripcionOrdenCompraDP">Descripcion <br>
+                                    <input class="form-control type="text" id="DescripcionOrdenCompraDP" name="DescripcionOrdenCompraDP" disabled><br>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="DesAprobarOrdenComprabtn" type="button" class="btn btn-danger"><span style="margin-left: 5px;">Eliminar</span></button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
             <div class="row">
                 <div class="container" style="width: 100%;">
 
@@ -126,22 +278,23 @@
 
                     <div class="tab-content ">
                         <div class="tab-pane active" id="Compra">
+                        <button data-target ="#agregarOrdenCompra" data-toggle='modal' type="button" class="btn btn-md btn-success pull-right" style="margin-bottom: 10px;"><i class="fa fa-plus" aria-hidden="true"></i> Agregar Orden de Compra</button>
                             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Empleados
+                            Ordenes de  Compra
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body table-responsive">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="OrdenesCompra">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="OrdenesComp">
                                 <thead>
                                 <tr>
-                                    <th>Nombre</th>
+                                    <th>ID</th>
                                     <th>Nomina</th>
-                                    <th>Salario Diario</th>
-                                    <th>Salario NOF</th>
-                                    <th>Puesto</th>
+                                    <th>Proveedor</th>
+                                    <th>Fecha</th>
+                                    <th>Aprobada</th>
                                     <th>Acciones</th>
                                 </tr>
                                
@@ -171,14 +324,18 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script type = "text/javascript" src="js/scriptLoadTableOrdenes.js"></script>
 <script src="vendor/jquery/jquery.min.js"></script>
-
+<script type = "text/javascript" charset="utf8" src="js/scriptLoadTableOrdenes.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
 <script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+ <!-- DataTables JavaScript -->
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="vendor/datatables-responsive/dataTables.responsive.js"></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="dist/js/sb-admin-2.js"></script>

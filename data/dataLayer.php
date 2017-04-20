@@ -17,50 +17,7 @@ function connectionToDataBase(){
 }
 # Funcion login que recibe como parametro el usuario y contraseña ingresados por el usuario,
 # desencripta la contraseña extraida de la base de datos y la compara com la que ingresó el usuario
-<<<<<<< HEAD
- function attemptLogin($usuario, $remember, $userPassword){
- 
-     $conn = connectionToDataBase();
- 
-     if ($conn != null){
-         $sql = "SELECT Usuario, Contrasena, Nombre, Puesto FROM empleados WHERE Usuario='$usuario' ";
-  
-          $result = $conn->query($sql);
-  
-  
-          if ($result->num_rows > 0) {
-              $row = $result->fetch_assoc();
-  
-              //echo strlen($row['Contrasena']);
-  
-              $savedPassword = decryptPassword($row['Contrasena']);
-  
-              # Compare the decrypted password with the one provided by the user
-              if($savedPassword == $userPassword){
-                  session_start();
-                  $_SESSION["Usuario"] = $row["Usuario"];
-                  $_SESSION["Nombre"] = $row["Nombre"];
-                 $_SESSION["Puesto"]  = $row["Puesto"];
-  
-                  $_SESSION["Activity"] = time();
-                  return array("status" => "SUCCESS", "Usuario" => $row['Usuario'], "Nombre" => $row['Nombre'], "Contrasena" => $row['Contrasena']);
-  
-              }
-              else {
-                  $conn -> close();
-                    print("$userPassword");
-                    print("$savedPassword");
-                  return array("status" => "Password Verify Invalid");
-              }
-          }
-          else {
-             $conn -> close();
-             return array("status" => "USERNAME NOT FOUND");
-         }
-     }else {
-         $conn -> close();
-          return array("status" => "CONNECTION WITH DB WENT WRONG");
-=======
+
 function attemptLogin($usuario, $remember, $userPassword){
 
     $conn = connectionToDataBase();
@@ -103,7 +60,6 @@ function attemptLogin($usuario, $remember, $userPassword){
     }else {
         $conn -> close();
         return array("status" => "CONNECTION WITH DB WENT WRONG");
->>>>>>> 66ae92fa07ee9e379d3fd8eeda65458987660313
     }
 }
   
@@ -146,6 +102,28 @@ function attemptRegistrationProveedor($nombre, $RFC, $domicilio, $Telefono, $Ven
             if (mysqli_query($conn, $sqlInsert)){
                 $conn->close();
                 return array("status"=>"SUCCESS PROVEEDOR REG");
+            }
+            else {
+                $conn->close();
+                return array("status"=>"Something went wrong on the server.");
+            }
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
+function attemptRegistrationOrdenCompra($Nomina, $Proovedor, $Fecha, $Cantidad, $Unidad_Medida, $Descripcion, $Precio_Unitario, $Total, $Aprobada){
+
+
+    $conn = connectionToDataBase();
+    if($conn != null){
+        $sqlInsert = "INSERT INTO `orden_compra`(`Nomina`, `Proveedor`, `Fecha`, `Cantidad`, `Unidad_Medida`, `Descripcion`, `Precio_Unitario`, `Total`, `Aprobada`) VALUES ('$Nomina','$Proovedor','$Fecha','$Cantidad','$Unidad_Medida','$Descripcion','$Precio_Unitario','$Total','$Aprobada')";
+
+            if (mysqli_query($conn, $sqlInsert)){
+                $conn->close();
+                return array("status"=>"SUCCESS ORDEN COMPRA REG");
             }
             else {
                 $conn->close();
@@ -267,7 +245,12 @@ function TableOrdenesCompraData (){
             $result = $conn->query($sql);
             $tableOC = array();
             while($row = $result->fetch_assoc()) {
-                $response = array('Nombre' => $row['Nombre'], 'Nomina' => $row['Nomina'], 'salario' => $salario,'salarioNof' => $row['Salario_NOF'],'Puesto' => $row['Puesto'], 'Acciones' => "<button class='btn btn-xs btn-primary btn-block' data-toggle='modal'  id='editEmp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "/" . $row['Domicilio'] . "/" . $row['Colonia'] . "/" . $row['Ciudad'] . "/" . $row['Telefono'] . "/" . $row['Celular'] . "/" . $row['Email'] . "/" . $row['No_IMSS'] . "/" . $row['RFC'] . "/" . $row['CURP'] . "/" . $row['Puesto'] . "/" . $row['Salario_Hora'] . "/" . $row['Salario_NOF'] . "/" . $row['ISR'] . "/" . $row['IMSS'] . "/" . $row['Subsidio'] . "/" . $row['Infonavit'] . "/" . $row['Activo'] . "/" . $row['Usuario'] . "' style = 'margin-bottom: 5px;' >Editar</button><button class='btn btn-xs btn-danger btn-block' data-toggle='modal'  id='delete_emp' data-id='" . $row['Nombre'] . "/" . $row['Nomina'] . "'>Borrar</button>");
+                $status = $row['Aprobada'];
+                if ($status == 'Aprobada') {
+                    $response = array('ID' => $row['id_OCompra'], 'Nomina' => $row['Nomina'], 'Proveedor' => $row['Proveedor'],'Fecha' => $row['Fecha'],'Aprobada' => $row['Aprobada'], 'Acciones' => "<button class='btn btn-xs btn-primary btn-block' data-toggle='modal'  id='DesaprobarOrdenComp' data-id='" . $row['id_OCompra'] . "/" . $row['Descripcion'] . "' style = 'margin-bottom: 5px;' >DesAprobar</button><button class='btn btn-xs btn-danger btn-block' data-toggle='modal'  id='delete_ordenComp' data-id='" . $row['id_OCompra'] . "/" . $row['Descripcion'] . "'>Borrar</button>");
+                } else if($status == 'No Aprobada') {
+                    $response = array('ID' => $row['id_OCompra'], 'Nomina' => $row['Nomina'], 'Proveedor' => $row['Proveedor'],'Fecha' => $row['Fecha'],'Aprobada' => $row['Aprobada'], 'Acciones' => "<button class='btn btn-xs btn-primary btn-block' data-toggle='modal'  id='aprobarOrdenComp' data-id='" . $row['id_OCompra'] . "/" . $row['Descripcion'] . "' style = 'margin-bottom: 5px;' >Aprobar</button><button class='btn btn-xs btn-danger btn-block' data-toggle='modal'  id='delete_ordenComp' data-id='" . $row['id_OCompra'] . "/" . $row['Descripcion'] . "'>Borrar</button>");
+                }
                 array_push($tableOC, $response);
             }
             $conn -> close();
@@ -383,6 +366,82 @@ function attemptDeleteProv($Id, $Nombre){
     }
 
 }
+
+function attemptDeleteOrdenCompra($Id, $Descripcion){
+
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "DELETE FROM `orden_compra` WHERE `id_OCompra` = '$Id'";
+
+        if (mysqli_query($conn,$sqlInsert)){
+
+            $conn->close();
+            return array("status"=>"SUCCESS DELETE");
+        }
+        else {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+        }
+
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
+
+function attemptAprobarOrdenCompra($Id, $Descripcion){
+
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "UPDATE `orden_compra` SET `Aprobada`= 'Aprobada'  WHERE `id_OCompra` = '$Id'";
+
+        if (mysqli_query($conn,$sqlInsert)){
+
+            $conn->close();
+            return array("status"=>"SUCCESS DELETE");
+        }
+        else {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+        }
+
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
+
+function attemptDesAprobarOrdenCompra($Id, $Descripcion){
+
+    $conn = connectionToDataBase();
+
+    if($conn != null){
+        $sqlInsert = "UPDATE `orden_compra` SET `Aprobada`= 'No Aprobada'  WHERE `id_OCompra` = '$Id'";
+
+        if (mysqli_query($conn,$sqlInsert)){
+
+            $conn->close();
+            return array("status"=>"SUCCESS DELETE");
+        }
+        else {
+            $conn->close();
+            return array("status"=>"Something went wrong on the server.");
+        }
+
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+
+}
+
 
 function attemptDelete($nomina, $nombre){
 
@@ -540,6 +599,50 @@ function attemptGetNombre(){
  
          while($row = $result->fetch_assoc()) {
              $response = array('Nombre' => $row['Nombre']);
+             array_push($commentsBox, $response);
+         }
+         $conn -> close();
+         return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+     }
+     else{
+         $conn -> close();
+         return array("status" => "CONNECTION WITH DB WENT WRONG");
+     }
+ }
+
+ function attemptGetNombreProv(){
+     $conn = connectionToDataBase();
+ 
+     if ($conn != null){
+ 
+         $sql = "SELECT Nombre FROM proveedores";
+         $result = $conn->query($sql);
+         $commentsBox = array();
+ 
+         while($row = $result->fetch_assoc()) {
+             $response = array('Nombre' => $row['Nombre']);
+             array_push($commentsBox, $response);
+         }
+         $conn -> close();
+         return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+     }
+     else{
+         $conn -> close();
+         return array("status" => "CONNECTION WITH DB WENT WRONG");
+     }
+ }
+
+ function attemptGetNominaEmp(){
+     $conn = connectionToDataBase();
+ 
+     if ($conn != null){
+ 
+         $sql = "SELECT Nomina FROM empleados";
+         $result = $conn->query($sql);
+         $commentsBox = array();
+ 
+         while($row = $result->fetch_assoc()) {
+             $response = array('Nomina' => $row['Nomina']);
              array_push($commentsBox, $response);
          }
          $conn -> close();

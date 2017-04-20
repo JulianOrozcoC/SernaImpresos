@@ -12,6 +12,8 @@ switch($action) {
         break;
     case "REGISTERPROVEEDOR" : RegistrationProveedor();
         break;
+    case "REGISTERPORDENCOMPRA" : RegistrationOrdenCompra();
+        break;
     case "LOADEMPLEADOS" : LoadTableEmpleado();
         break;
     case "LOADORDENESCOMPRA" : LoadTableOrdenesCompras();
@@ -38,11 +40,19 @@ switch($action) {
         break;
     case "DELETEPROVEEDOR" : EliminarProveedor();
         break;
+    case "DELETEORDENCOMPRA" : EliminarOrdenCompra();
+        break;
+    case "APROBARORDENCOMPRA" : AprobarOrdenCompra();
+        break;
+    case "DESAPROBARORDENCOMPRA" : DesAprobarOrdenCompra();
+        break;
     case "SOPORTE" : Soporte();
         break;
     case "NOMBRE" : GetNombre();
         break;
-    case "ENDSESSION" : endSessionFunction();
+    case "PROVEEDORNOMBRE" : GetNombreProv();
+        break;
+    case "NOMINAEMPLEADO" : GetNominaEmp();
         break;
 }
 
@@ -62,22 +72,50 @@ function login(){
      }
  }
 
-function endSessionFunction(){
+ function DesAprobarOrdenCompra(){
+    $Id = $_POST['Id'];
+    $Descripcion = $_POST['Descripcion'];
+    
+    $result = attemptDesAprobarOrdenCompra($Id, $Descripcion);
 
-    session_start();
+    if ($result["status"] == "SUCCESS")
+        echo json_encode(array("message" => "Delete Successful"));
 
-    if(isset($_SESSION['PHPSESSID']) && time() - $_SESSION['loginTime'] < 1800){
-        session_unset();
-        session_destroy();
-        echo json_encode(array("message" => "End Session"));
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
     }
-    else {
-        header('HTTP/1.1 410 Something went wrong');
-        die("Something went wrong");
-    }
-
 }
 
+ function AprobarOrdenCompra(){
+    $Id = $_POST['Id'];
+    $Descripcion = $_POST['Descripcion'];
+    
+    $result = attemptAprobarOrdenCompra($Id, $Descripcion);
+
+    if ($result["status"] == "SUCCESS")
+        echo json_encode(array("message" => "Delete Successful"));
+
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function EliminarOrdenCompra(){
+    $Id = $_POST['Id'];
+    $Descripcion = $_POST['Descripcion'];
+    
+    $result = attemptDeleteOrdenCompra($Id, $Descripcion);
+
+    if ($result["status"] == "SUCCESS")
+        echo json_encode(array("message" => "Delete Successful"));
+
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
 function RegistrationProveedor(){
     $nombre = $_POST['Nombre'];
     $RFC = $_POST['RFC'];
@@ -87,6 +125,28 @@ function RegistrationProveedor(){
     $Fax = $_POST['Fax'];
 
     $result = attemptRegistrationProveedor($nombre, $RFC, $domicilio, $Telefono, $Vendedor, $Fax);
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode(array("message" => "Registration de proveedor Successful"));
+    }
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function RegistrationOrdenCompra(){
+    $Nomina = $_POST['Nomina'];
+    $Proovedor = $_POST['Proovedor'];
+    $Fecha = $_POST['Fecha'];
+    $Cantidad = $_POST['Cantidad'];
+    $Unidad_Medida = $_POST['Unidad_Medida'];
+    $Descripcion = $_POST['Descripcion'];
+    $Precio_Unitario = $_POST['Precio_Unitario'];
+    $Total = $_POST['Total'];
+    $Aprobada = $_POST['Aprobada'];
+
+    $result = attemptRegistrationOrdenCompra($Nomina, $Proovedor, $Fecha, $Cantidad, $Unidad_Medida, $Descripcion, $Precio_Unitario, $Total, $Aprobada);
 
     if ($result["status"] == "SUCCESS"){
         echo json_encode(array("message" => "Registration de proveedor Successful"));
@@ -383,6 +443,33 @@ function Soporte(){
 function GetNombre(){
 
     $result = attemptGetNombre();
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+
+}
+function GetNombreProv(){
+
+    $result = attemptGetNombreProv();
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+
+}
+
+function GetNominaEmp(){
+
+    $result = attemptGetNominaEmp();
 
     if ($result["status"] == "SUCCESS"){
         echo json_encode($result["arrayCommentsBox"]);

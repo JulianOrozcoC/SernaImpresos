@@ -77,4 +77,46 @@ $('body').on('click', '#delete_prov', function(e) {
 
 });
 
+//------------------------------------------------------------------------
+//    Funcion Delete Orden Compra 
+//------------------------------------------------------------------------
+
+$('body').on('click', '#delete_ordenComp', function(e) {
+   
+   name=$(this).attr("data-id");
+   arr2=name.split('/');
+   $('#IdOrdenCompra').val(arr2[0]);
+   $('#DescripcionOrdenCompra').val(arr2[1]);
+   $('#EliminarOrdenCompra').modal();
+
+});
+
+//------------------------------------------------------------------------
+//    Funcion Activar Orden Compra 
+//------------------------------------------------------------------------
+
+$('body').on('click', '#aprobarOrdenComp', function(e) {
+   
+   name=$(this).attr("data-id");
+   arr2=name.split('/');
+   $('#IdOrdenCompraAP').val(arr2[0]);
+   $('#DescripcionOrdenCompraAP').val(arr2[1]);
+   $('#AprobarOrdenCompra').modal();
+
+});
+
+//------------------------------------------------------------------------
+//    Funcion DesActivar Orden Compra 
+//------------------------------------------------------------------------
+
+$('body').on('click', '#DesaprobarOrdenComp', function(e) {
+   
+   name=$(this).attr("data-id");
+   arr2=name.split('/');
+   $('#IdOrdenCompraDP').val(arr2[0]);
+   $('#DescripcionOrdenCompraDP').val(arr2[1]);
+   $('#DesAprobarOrdenCompra').modal();
+
+});
+
 });
