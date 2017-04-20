@@ -14,9 +14,9 @@
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['Usuario']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="login.php"><i id="signOutButton" class="fa fa-sign-out fa-fw"></i> Logout</a> </li>
+                        <li><a href="logout.php"><i id="signOutButton" class="fa fa-sign-out fa-fw"></i> Logout</a> </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
