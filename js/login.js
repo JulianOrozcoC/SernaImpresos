@@ -2,38 +2,54 @@
  * Created by edgarserna on 4/7/17.
  */
 $(document).ready(function(){
-
+    //activeSession(); 
     console.log("entro");
-    $("#LoginBtn").on("click",function(){
+    $("#loginButtonbtn").on("click", function(){
         var $userName = $("#Username");
-        var $userPass = $("#Password");
-        console.log("Antesde json to Send");
-        var jsonToSend ={
-            "action" : "LOGIN",
-            "Usuario" : $userName.val(),
-            "Contrasena" : $userPass.val(),
-            "remember" : $("#remember").is(":checked")
+        var $password = $("#Password");
+        if ($userName.val() == "" || $password.val() == ""){
+            alert("Please insert username and password");
+        }
+        else {
+            var jsonToSend = {
+                "action" : "LOGIN",
+                "username" : $userName.val(),
+                "userPassword" : $password.val(),
+                "remember" : $("#remember").is(":checked")
+
+            };
+            $.ajax({
+                url : "data/appLayer.php",
+                type : "POST",
+                data : jsonToSend,
+                dataType : "json",
+                contentType : "application/x-www-form-urlencoded",
+                success : function(jsonResponse){
+                    window.location.replace("dashboard.php");
+                },
+                error : function(errorMessage){
+                    alert("No entro");
+                    alert(errorMessage.responseText);
+                }
+            });
+        }
+    });
+    /*function activeSession(){
+        var jsonToSend = {
+            "action" : "ACTIVESESSION"
         };
-        console.log(jsonToSend);
         $.ajax({
             url : "data/appLayer.php",
-            type: "POST",
-            data: jsonToSend,
+            type : "POST",
+            data : jsonToSend,
             dataType : "json",
             contentType : "application/x-www-form-urlencoded",
-
             success : function(jsonResponse){
-                console.log(jsonResponse);
-                window.location.replace("dashboard.php");
+                window.location.replace("home.html");
             },
             error : function(errorMessage){
-                alert(errorMessage.responseText);
-                alert("No entro en success");
-                window.location.replace("login.php");
-                console.log($userName.val());
-                console.log($userPass.val());
-                console.log(jsonToSend);
+                //
             }
         });
-    });
+    }*/
 });

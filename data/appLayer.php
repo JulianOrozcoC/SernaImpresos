@@ -6,7 +6,11 @@ require_once __DIR__ . '/dataLayer.php';
 $action = $_POST["action"];
 
 switch($action) {
-    case "LOGIN" : login();
+    case "LOGIN" : loginFunction();
+        break;
+    case "ACTIVESESSION" : activeSessionFunction();
+        break;
+    case "ENDSESSION" : endSessionFunction();
         break;
     case "REGISTER" : Registration();
         break;
@@ -66,21 +70,77 @@ switch($action) {
         break;
 }
 
-function login(){
-     $usuario = $_POST['Usuario'];
-     $contrasena = $_POST["Contrasena"];
-     $remember = $_POST["remember"];
-     
-     $result = attemptLogin($usuario, $remember, $contrasena);
- 
-     if ($result["status"] == "SUCCESS")
-         echo json_encode(array("message" => "Login Successful"));
- 
-     else{
-         header('HTTP/1.1 500' . $result["status"]);
-         die($result["status"]);
-     }
- }
+function loginFunction(){
+    $userName = $_POST['username'];
+    $userPassword = $_POST['userPassword'];
+    $result = attemptLogin($userName, $userPassword);
+    if ($result["status"] == "SUCCESS"){
+        $remember = $_POST["remember"];
+        if($remember == "true"){
+            setcookie("user", "$userName", time() + (86400 * 30), "/", "", 0);
+        }
+        session_start();
+        $_SESSION['user'] = $userName;
+        $_SESSION['loginTime'] = time();
+        echo json_encode(array("message" => "Login Successful"));
+    }   
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }    
+}
+/*function activeSessionFunction(){
+    session_start();
+    if(isset($_SESSION['user']) && time() - $_SESSION['loginTime'] < 1800){ 
+        echo json_encode(array("message" => "Session is active"));
+    }
+    else {
+        header('HTTP/1.1 410 Session has expired');
+        die("Session has expired");
+    }
+}
+function endSessionFunction(){
+    session_start();
+    if(isset($_SESSION['user']) && time() - $_SESSION['loginTime'] < 1800){ 
+        session_unset();
+        session_destroy();
+        echo json_encode(array("message" => "End Session"));
+    }
+    else {
+        header('HTTP/1.1 410 Something went wrong');
+        die("Something went wrong");
+    }
+
+}*/
+#Action to decrypt the password of the user
+    function decryptPassword($password)
+    {
+        $key = pack('H*', "bcb04b7e103a05afe34763051cef08bc55abe029fdebae5e1d417e2ffb2a00a3");
+        
+        $iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+        
+        $ciphertext_dec = base64_decode($password);
+        $iv_dec = substr($ciphertext_dec, 0, $iv_size);
+        $ciphertext_dec = substr($ciphertext_dec, $iv_size);
+
+        $password = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $ciphertext_dec, MCRYPT_MODE_CBC, $iv_dec);
+        
+        
+        $count = 0;
+        $length = strlen($password);
+
+        for ($i = $length - 1; $i >= 0; $i --)
+        {
+            if (ord($password{$i}) === 0)
+            {
+                $count ++;
+            }
+        }
+
+        $password = substr($password, 0,  $length - $count); 
+
+        return $password;
+    }
 
  function DesAprobarOrdenCompra(){
     $Id = $_POST['Id'];
