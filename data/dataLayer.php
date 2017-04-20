@@ -747,4 +747,57 @@ function attemptGetPremioP($nomina){
     }
 }
 
+
+function attemptGetCountOrdenes(){
+    $conn = connectionToDataBase();
+
+    if ($conn != null){
+
+        $sql = "SELECT Aprobada, COUNT(Aprobada)
+                AS Ap
+                FROM Orden_Compra
+                WHERE Aprobada = \"Aprobada\"";
+
+        $result = $conn->query($sql);
+        $commentsBox = array();
+
+        while($row = $result->fetch_assoc()) {
+            $response = array('Ap' => $row['Ap']);
+            array_push($commentsBox, $response);
+        }
+        $conn -> close();
+        return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
+function attemptGetCountOrdenesP(){
+    $conn = connectionToDataBase();
+
+    if ($conn != null){
+
+        $sql = "SELECT Aprobada, COUNT(Aprobada)
+                AS Ap
+                FROM Orden_Compra
+                WHERE Aprobada != \"Aprobada\"";
+
+        $result = $conn->query($sql);
+        $commentsBox = array();
+
+        while($row = $result->fetch_assoc()) {
+            $response = array('Ap' => $row['Ap']);
+            array_push($commentsBox, $response);
+        }
+        $conn -> close();
+        return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
 ?>

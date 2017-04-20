@@ -68,6 +68,10 @@ switch($action) {
         break;
     case "PREMIOP" : getPremioP();
         break;
+    case "COUNTORDENES" : countOrdenes();
+        break;
+    case "COUNTORDENESP" : countOrdenesP();
+        break;
 }
 
 function loginFunction(){
@@ -622,6 +626,29 @@ function getPremioP(){
 
     $nomina = $_POST['Nomina'];
     $result = attemptGetPremioP($nomina);
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function countOrdenes(){
+    $result = attemptGetCountOrdenes();
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+function countOrdenesP(){
+    $result = attemptGetCountOrdenesP();
 
     if ($result["status"] == "SUCCESS"){
         echo json_encode($result["arrayCommentsBox"]);

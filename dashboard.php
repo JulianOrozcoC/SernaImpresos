@@ -14,6 +14,7 @@
     <script type = "text/javascript" src="js/comments.js"></script>
     <script type = "text/javascript" src="js/showComments.js"></script>
     <script type = "text/javascript" src="js/endSession.js"></script>
+    <script type = "text/javascript" src="js/dashboard.js"></script>
 
 
     <title>Serna Impresos</title>
@@ -65,8 +66,6 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a> </li>
-                        <li class="divider"></li>
                         <li><a href="login.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a> </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -136,7 +135,7 @@
                                         <i class="fa fa-fw fa-edit fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">26</div>
+                                        <div id="ocg" class="huge"></div>
                                         <div> O. de Compra Generados </div>
                                     </div>
                                 </div>
@@ -151,7 +150,7 @@
                                         <i class="fa fa-thumbs-o-up fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
+                                        <div id="oca" class="huge"></div>
                                         <div>O. de Compra Aceptados</div>
                                     </div>
                                 </div>
@@ -166,7 +165,7 @@
                                         <i class="fa fa-fw fa-edit fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
+                                        <div class="huge">0</div>
                                         <div>O. de Trabajo Generados</div>
                                     </div>
                                 </div>
@@ -182,7 +181,7 @@
                                         <i class="fa fa-thumbs-o-up fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
+                                        <div class="huge">0</div>
                                         <div>O. de Trabajo Aceptados</div>
                                     </div>
                                 </div>
