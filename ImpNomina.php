@@ -130,8 +130,8 @@
                     <li class="active">
                         <a  href="#1" data-toggle="tab">Salario</a>
                     </li>
-                    <li><a href="#2" data-toggle="tab">Salario NOF</a>
-                    </li>
+                    <!--<li><a href="#2" data-toggle="tab">Salario NOF</a>
+                    </li> -->
                 </ul>
 
                 <div class="tab-content ">
@@ -149,7 +149,7 @@
                                         </label>
 
                                         <label for="rfc"> RFC<br>
-                                            <input type="text" id="rfc" name="rfc" placeholder="RFC" ><br>
+                                            <input type="text" id="rfc" name="rfc" placeholder="Nomina" ><br>
                                             <span style="color:red"> <span id="errorLabelRfc"></span> </span>
                                         </label>
                                         <label for="salario">Salario por Hora <br>
@@ -210,7 +210,6 @@
                             <div>
                                 <label for="total"> <br>
                                     <input type="text" id="total" name="total" placeholder="Total" >
-                                    <span style="color:red"> <span id="errorTotal"></span> </span>
                                 </label>
                             </div>
                             <p>
@@ -236,7 +235,7 @@
                                             <span style="color:red"> <span id="errorNombre"></span> </span>
                                         </label>
                                         <label for="rfc">RFC <br>
-                                            <input type="text" id="rfc" name="rfc" placeholder="RFC" ><br>
+                                            <input type="text" id="rfc" name="rfc" placeholder="Nomina" ><br>
                                             <span style="color:red"> <span id="errorLabelRfc"></span> </span>
                                         </label> <br>
                                     </fieldset>
@@ -326,10 +325,11 @@
 
                 success : function(data){
                     console.log(data);
-                    var nom = data[0].RFC;
-                    var sal = data[0].Salario_Hora;
+                    var nom = data[0].Nomina;
+                    var sal = data[0].Salario;
+                    console.log(data[0].Salario);
                     document.getElementById("rfc").value = nom;
-                    document.getElementById("salarioHora").value = nom;
+                    document.getElementById("salarioHora").value = sal;
                 },
                 error : function(errorMessage){
                     console.log(errorMessage);

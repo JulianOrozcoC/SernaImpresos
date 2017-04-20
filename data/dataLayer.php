@@ -699,7 +699,7 @@ function attemptPostHoras($nombre, $nomina, $fecha, $hentrada, $hsalida, $asiste
     }
 
 }
-function attemptGetSalario($fechaIni, $fechaFin){
+function attemptGetSalario($fechaIni, $fechaFin, $nomina){
     $conn = connectionToDataBase();
 
     if ($conn != null){
@@ -708,7 +708,9 @@ function attemptGetSalario($fechaIni, $fechaFin){
                 AS Total
                 FROM Trabaja
                 WHERE Fecha >= '$fechaIni'
-                AND Fecha <= '$fechaFin'";
+                AND Fecha <= '$fechaFin'
+                AND Nomina = '$nomina'";
+
         $result = $conn->query($sql);
         $commentsBox = array();
 
@@ -723,6 +725,62 @@ function attemptGetSalario($fechaIni, $fechaFin){
         $conn -> close();
         return array("status" => "CONNECTION WITH DB WENT WRONG");
     }
-
 }
+
+function attemptGetPremio($nomina){
+    $conn = connectionToDataBase();
+
+
+    if ($conn != null){
+
+        $sql = "SELECT Asistencia, COUNT(Asistencia)
+                AS Asist
+                FROM Trabaja
+                WHERE Asistencia = 'no'
+                AND Nomina = '$nomina'";
+
+        $result = $conn->query($sql);
+        $commentsBox = array();
+
+        while($row = $result->fetch_assoc()) {
+            $response = array('Asist' => $row['Asist']);
+            array_push($commentsBox, $response);
+        }
+        $conn -> close();
+        return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
+function attemptGetPremioP($nomina){
+    $conn = connectionToDataBase();
+
+
+    if ($conn != null){
+
+        $sql = "SELECT Retraso, COUNT(Retraso)
+                AS Ret
+                FROM Trabaja
+                WHERE Retraso = 'si'
+                AND Nomina = '$nomina'";
+
+        $result = $conn->query($sql);
+        $commentsBox = array();
+
+        while($row = $result->fetch_assoc()) {
+            $response = array('Ret' => $row['Ret']);
+            array_push($commentsBox, $response);
+        }
+        $conn -> close();
+        return array("status" => "SUCCESS", "arrayCommentsBox" => $commentsBox);
+    }
+    else{
+        $conn -> close();
+        return array("status" => "CONNECTION WITH DB WENT WRONG");
+    }
+}
+
 ?>

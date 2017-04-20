@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 20, 2017 at 01:31 AM
+-- Generation Time: Apr 20, 2017 at 10:58 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -80,7 +80,8 @@ INSERT INTO `Empleados` (`Nomina`, `Nombre`, `Domicilio`, `Colonia`, `Ciudad`, `
 ('A0101', 'Ana', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'ana', 'vQNtoQ9KcEZ1Mu/ahW4buUEordiI3qYCarI2K8Gw9yQ='),
 ('A1111', 'Edgar', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'ega', 'hYarNpNOsfBeGNH3ftT3zmt3k418rhLZE9ssIQx3aZ0='),
 ('S001', 'Edgar Jorge Serna Cavazos', 'James Cook 2937, Cumbres', 'Cumbres', 'Monterrey', '14255092', '8119104923', 'eserna_sisa@prodigy.net.mx', 0, 0, '', 'Admin', '1956-08-01', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'eserna', 'fDoL6goWA+VkUklv/ioJ'),
-('S1010', 'Alfredo', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'alfredo', '$2y$12$iMmj0W4F.tWcAPNscb6u8u99Yg9szHdFo78knJGZsWkDqWCQSg1zC');
+('S1010', 'Alfredo', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'alfredo', '$2y$12$iMmj0W4F.tWcAPNscb6u8u99Yg9szHdFo78knJGZsWkDqWCQSg1zC'),
+('S10299', 'July', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 100, 0, 0, 0, 0, 0, 'Si', 'julyy', '5vG1UyTOq3xXnuh1Uj8G2YBNfSyeahAt1ncSfligJrA=');
 
 -- --------------------------------------------------------
 
@@ -120,7 +121,8 @@ CREATE TABLE `Mantenimiento` (
 INSERT INTO `Mantenimiento` (`id_Mantenimiento`, `Maquina`, `Fecha`) VALUES
 (1, 'Maquina test 123', '2017-04-18'),
 (2, 'July es gay', '2017-05-20'),
-(3, 'gkhjgjkgh', '2017-04-13');
+(3, 'gkhjgjkgh', '2017-04-13'),
+(4, 'asdfg', '2017-04-20');
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,7 @@ INSERT INTO `Mantenimiento` (`id_Mantenimiento`, `Maquina`, `Fecha`) VALUES
 CREATE TABLE `Orden_Compra` (
   `id_OCompra` bigint(20) NOT NULL,
   `Nomina` varchar(20) NOT NULL,
-  `id_Proveedor` bigint(20) NOT NULL,
+  `Proveedor` text NOT NULL,
   `Fecha` date DEFAULT NULL,
   `Cantidad` bigint(20) DEFAULT NULL,
   `Unidad_Medida` text,
@@ -193,8 +195,17 @@ CREATE TABLE `Trabaja` (
   `Hora_Salida` time NOT NULL,
   `Asistencia` varchar(10) NOT NULL,
   `Retraso` varchar(10) NOT NULL,
-  `Horas_Trabajadas` time DEFAULT NULL
+  `Horas_Trabajadas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Trabaja`
+--
+
+INSERT INTO `Trabaja` (`id_Trabaja`, `Nomina`, `Fecha`, `Hora_Entrada`, `Hora_Salida`, `Asistencia`, `Retraso`, `Horas_Trabajadas`) VALUES
+(6, 'A0101', '2017-04-19', '08:00:00', '16:00:00', 'Si', 'No', 8),
+(7, 'A0101', '2017-04-20', '09:00:00', '15:00:00', 'Si', 'No', 6),
+(8, 'A0101', '2017-04-16', '08:30:00', '16:30:00', 'Si', 'No', 8);
 
 --
 -- Indexes for dumped tables
@@ -232,7 +243,6 @@ ALTER TABLE `Mantenimiento`
 ALTER TABLE `Orden_Compra`
   ADD PRIMARY KEY (`id_OCompra`),
   ADD UNIQUE KEY `id_OCompra` (`id_OCompra`),
-  ADD KEY `id_Proveedor` (`id_Proveedor`),
   ADD KEY `Nomina` (`Nomina`);
 
 --
@@ -275,12 +285,12 @@ ALTER TABLE `Facturas`
 -- AUTO_INCREMENT for table `Mantenimiento`
 --
 ALTER TABLE `Mantenimiento`
-  MODIFY `id_Mantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_Mantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `Orden_Compra`
 --
 ALTER TABLE `Orden_Compra`
-  MODIFY `id_OCompra` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_OCompra` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `Orden_Trabajo`
 --
@@ -295,7 +305,7 @@ ALTER TABLE `Proveedores`
 -- AUTO_INCREMENT for table `Trabaja`
 --
 ALTER TABLE `Trabaja`
-  MODIFY `id_Trabaja` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_Trabaja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --
@@ -304,7 +314,6 @@ ALTER TABLE `Trabaja`
 -- Constraints for table `Orden_Compra`
 --
 ALTER TABLE `Orden_Compra`
-  ADD CONSTRAINT `orden_compra_ibfk_2` FOREIGN KEY (`id_Proveedor`) REFERENCES `Proveedores` (`id_Proveedor`),
   ADD CONSTRAINT `orden_compra_ibfk_3` FOREIGN KEY (`Nomina`) REFERENCES `Empleados` (`Nomina`);
 
 --
