@@ -5,6 +5,11 @@ $(document).ready(function() {
 
     $("#Calcula").on("click", function () {
 
+        var sue = 0;
+        var pp = 0;
+        var pa = 0;
+
+        var $nomina = $("#rfc");
         var $fechaIni = $("#finis");
         var $fechaFin = $("#fechafins");
 
@@ -12,7 +17,8 @@ $(document).ready(function() {
         var jsonToSend = {
             "action" : "SHOWCALCULO",
             "FechaIni" : $fechaIni.val(),
-            "FechaFin" : $fechaFin.val()
+            "FechaFin" : $fechaFin.val(),
+            "Nomina" : $nomina.val()
         };
         console.log(jsonToSend);
 
@@ -25,50 +31,172 @@ $(document).ready(function() {
             success: function(jsonResponse){
                 console.log(jsonResponse);
                 var total = jsonResponse[0].Total;
-                total = parseInt(total);
                 var $sueldo = $("#salarioHora");
-                $sueldo = parseInt($sueldo);
+                $sueldo = $sueldo.val();
                 total *= $sueldo;
+                sue = Number(total);
 
+                /*
                 var newHtml = "";
-                newHtml += "<tr>";
-                newHtml += '<td>' + total + '</td>';
-                newHtml += "</tr>";
+                newHtml += "<tr id='add'>"
+                newHtml += '<td>' + total + '</td>'
+                newHtml += "</tr>"
                 $("#ingresos").append(newHtml);
+                */
+                asis();
 
             },
             error: function(errorMessage){
                 alert(errorMessage.responseText);
             }
         });
+
 // premio de puntualidad y asitencia
 
-        var jsonToSend = {
-            "action" : "PREMIO"
-        };
-        console.log(jsonToSend);
+        function asis() {
+            var $nomina = $("#rfc");
 
-        $.ajax({
-            url : "data/appLayer.php",
-            type : "POST",
-            data : jsonToSend,
-            dataType : "json",
-            contentType : "application/x-www-form-urlencoded",
-            success: function(jsonResponse){
-                console.log(jsonResponse);
-                var total = jsonResponse[0].Total;
+            var jsonToSend = {
+                "action" : "PREMIO",
+                "Nomina" : $nomina.val()
+            };
+            console.log(jsonToSend);
 
-                var newHtml = "";
-                newHtml += " ";
-                newHtml += '<td>' +  + '</td><td>' + + '</td>';
-                newHtml += "</tr>";
-                $("#ingresos").append(newHtml);
+            $.ajax({
+                url : "data/appLayer.php",
+                type : "POST",
+                data : jsonToSend,
+                dataType : "json",
+                contentType : "application/x-www-form-urlencoded",
+                success: function(jsonResponse){
+                    console.log(jsonResponse);
+                    var total = jsonResponse[0].Asist;
+                    console.log(total);
+                    var asistencia = 100;
+                    if(total > 0){
+                        asistencia = 0;
+                    }
 
-            },
-            error: function(errorMessage){
-                alert(errorMessage.responseText);
-            }
-        });
+                    pa = Number(asistencia);
+                    /*
+                     var newHtml = "";
+                     newHtml += " "
+                     newHtml += '<td>' + asistencia + '</td>';
+                     $("#add").append(newHtml);
+                     */
+                    punt();
+
+                },
+                error: function(errorMessage){
+                    alert(errorMessage.responseText);
+                }
+            });
+
+        }
+
+
+        // premio puntualidad
+
+        function punt() {
+
+            var $nomina = $("#rfc");
+
+            var jsonToSend = {
+                "action" : "PREMIOP",
+                "Nomina" : $nomina.val()
+            };
+            console.log(jsonToSend);
+
+            $.ajax({
+                url : "data/appLayer.php",
+                type : "POST",
+                data : jsonToSend,
+                dataType : "json",
+                contentType : "application/x-www-form-urlencoded",
+                success: function(jsonResponse){
+                    console.log(jsonResponse);
+                    var total = jsonResponse[0].Ret;
+                    var retraso = 100;
+                    if(total > 0){
+                        retraso = 0;
+                    }
+
+                    pp = Number(retraso);
+                    suma();
+                    /*
+                     var newHtml = "";
+                     newHtml += " "
+                     newHtml += '<td>' + retraso + '</td>';
+                     $("#add").append(newHtml);
+                     */
+
+                },
+                error: function(errorMessage){
+                    alert(errorMessage.responseText);
+                }
+            });
+
+        }
+
+
+        function suma() {
+            console.log(sue + " " + pa + " " + pp);
+            var newHtml = "";
+            newHtml += "<tr>"
+            newHtml += '<td>' + sue + '</td>'
+            newHtml += '<td>' + pp + '</td>'
+            newHtml += '<td>' + pa + '</td>'
+            newHtml += '<td>' + (sue + pa+ pp) + '</td>'
+
+            newHtml += "</tr>"
+            $("#ingresos").append(newHtml);
+
+            // deducciones
+            var $nombre = $("#nombres");
+
+            var jsonToSend = {
+                "action" : "EMPLEADO",
+                "Nombre" : $nombre.val()
+            };
+            console.log(jsonToSend);
+
+            $.ajax({
+                url : "data/appLayer.php",
+                type : "POST",
+                data : jsonToSend,
+                dataType : "json",
+                contentType : "application/x-www-form-urlencoded",
+                success: function(data){
+                    console.log(data);
+
+                    var isr = Number(data[0].ISR);
+                    var imss = Number(data[0].IMSS);
+                    var infonavit = Number(data[0].Infonavit);
+                    var subsidio = Number(data[0].Subsidio);
+
+
+                    var newHtml = "";
+                    newHtml += "<tr>"
+                    newHtml += '<td>' + isr + '</td>'
+                    newHtml += '<td>' + imss + '</td>'
+                    newHtml += '<td>' + infonavit + '</td>'
+                    newHtml += '<td>' + subsidio + '</td>'
+                    newHtml += '<td>' + (isr + imss + infonavit + subsidio) + '</td>'
+                    newHtml += "</tr>"
+                    $("#deducciones").append(newHtml);
+
+                    var sTotal = (isr + imss + infonavit + subsidio) + (sue + pa+ pp);
+                    console.log(sTotal);
+                    document.getElementById("total").value = sTotal;
+
+
+                },
+                error: function(errorMessage){
+                    alert(errorMessage.responseText);
+                }
+            });
+
+        }
 
 
 

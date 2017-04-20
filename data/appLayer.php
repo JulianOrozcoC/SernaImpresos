@@ -66,6 +66,8 @@ switch($action) {
         break;
     case "PREMIO" : getPremio();
         break;
+    case "PREMIOP" : getPremioP();
+        break;
 }
 
 function loginFunction(){
@@ -589,8 +591,9 @@ function CalculoNomina(){
 
     $fechaIni = $_POST['FechaIni'];
     $fechaFin = $_POST['FechaFin'];
+    $nomina = $_POST['Nomina'];
 
-    $result = attemptGetSalario($fechaIni, $fechaFin);
+    $result = attemptGetSalario($fechaIni, $fechaFin, $nomina);
 
     if ($result["status"] == "SUCCESS"){
         echo json_encode($result["arrayCommentsBox"]);
@@ -603,7 +606,8 @@ function CalculoNomina(){
 
 function getPremio(){
 
-    $result = attemptGetPremio();
+    $nomina = $_POST['Nomina'];
+    $result = attemptGetPremio($nomina);
 
     if ($result["status"] == "SUCCESS"){
         echo json_encode($result["arrayCommentsBox"]);
@@ -613,5 +617,20 @@ function getPremio(){
         die($result["status"]);
     }
 }
+
+function getPremioP(){
+
+    $nomina = $_POST['Nomina'];
+    $result = attemptGetPremioP($nomina);
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
 
 ?>
