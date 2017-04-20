@@ -230,7 +230,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="AprobarOrdenComprabtn" type="button" class="btn btn-danger"><span style="margin-left: 5px;">Eliminar</span></button>
+                        <button id="AprobarOrdenComprabtn" type="button" class="btn btn-success"><span style="margin-left: 5px;">Aprobar</span></button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div><!-- /.modal-content -->
@@ -258,7 +258,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="DesAprobarOrdenComprabtn" type="button" class="btn btn-danger"><span style="margin-left: 5px;">Eliminar</span></button>
+                        <button id="DesAprobarOrdenComprabtn" type="button" class="btn btn-primary"><span style="margin-left: 5px;">DesAprobar</span></button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div><!-- /.modal-content -->
