@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
     $("#LogInForm").submit(function(event) {
          event.preventDefault();
 
@@ -17,4 +17,4 @@ $(document).ready(function(){
             $( "#LogInForm" )[0].submit();
         };
     });
-});
+});*/

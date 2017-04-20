@@ -1,4 +1,12 @@
 
+<?php
+
+    $cookie_name = "user";
+    $cookie_value = "";
+    if(!isset($_COOKIE[$cookie_name])) {
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +68,7 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <button id="LoginBtn" type="submit" class="btn btn-lg btn-success btn-block"> Log In</button>
+                                <button id="loginButtonbtn" type="submit" class="btn btn-lg btn-success btn-block"> Log In</button>
                             </fieldset>
                         </form>
                     </div>
@@ -72,9 +80,6 @@
     <!-- jQuery -->
     <script type = "text/javascript" src="js/login.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="js/functions.js"></script>
-    <script src="js/notify.js"></script>
-    <script src="js/notify.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>

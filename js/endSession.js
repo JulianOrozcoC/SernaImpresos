@@ -8,7 +8,7 @@ $(document).ready(function(){
             "action" : "ENDSESSION"
         };
         $.ajax({
-            url : "data/applicationLayer.php",
+            url : "data/appLayer.php",
             type : "POST",
             data : jsonToSend,
             dataType : "json",
