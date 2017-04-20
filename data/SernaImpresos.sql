@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 20, 2017 at 10:58 AM
+-- Generation Time: Apr 20, 2017 at 11:56 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -77,11 +77,7 @@ CREATE TABLE `Empleados` (
 --
 
 INSERT INTO `Empleados` (`Nomina`, `Nombre`, `Domicilio`, `Colonia`, `Ciudad`, `Telefono`, `Celular`, `Email`, `No_IMSS`, `RFC`, `CURP`, `Puesto`, `Fecha_Nacimiento`, `Fecha_Inicio`, `Salario_Hora`, `Salario_NOF`, `ISR`, `IMSS`, `Subsidio`, `Infonavit`, `Activo`, `Usuario`, `Contrasena`) VALUES
-('A0101', 'Ana', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'ana', 'vQNtoQ9KcEZ1Mu/ahW4buUEordiI3qYCarI2K8Gw9yQ='),
-('A1111', 'Edgar', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'ega', 'hYarNpNOsfBeGNH3ftT3zmt3k418rhLZE9ssIQx3aZ0='),
-('S001', 'Edgar Jorge Serna Cavazos', 'James Cook 2937, Cumbres', 'Cumbres', 'Monterrey', '14255092', '8119104923', 'eserna_sisa@prodigy.net.mx', 0, 0, '', 'Admin', '1956-08-01', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'eserna', 'fDoL6goWA+VkUklv/ioJ'),
-('S1010', 'Alfredo', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'alfredo', '$2y$12$iMmj0W4F.tWcAPNscb6u8u99Yg9szHdFo78knJGZsWkDqWCQSg1zC'),
-('S10299', 'July', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 100, 0, 0, 0, 0, 0, 'Si', 'julyy', '5vG1UyTOq3xXnuh1Uj8G2YBNfSyeahAt1ncSfligJrA=');
+('M1000', 'Martin', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'martin', 'iptaZ+EsignCM3omQ6LKwxlJIzfAj6EivCPIyESRrsI=');
 
 -- --------------------------------------------------------
 
@@ -113,16 +109,6 @@ CREATE TABLE `Mantenimiento` (
   `Maquina` text NOT NULL,
   `Fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `Mantenimiento`
---
-
-INSERT INTO `Mantenimiento` (`id_Mantenimiento`, `Maquina`, `Fecha`) VALUES
-(1, 'Maquina test 123', '2017-04-18'),
-(2, 'July es gay', '2017-05-20'),
-(3, 'gkhjgjkgh', '2017-04-13'),
-(4, 'asdfg', '2017-04-20');
 
 -- --------------------------------------------------------
 
@@ -174,13 +160,6 @@ CREATE TABLE `Proveedores` (
   `Fax` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `Proveedores`
---
-
-INSERT INTO `Proveedores` (`id_Proveedor`, `Nombre`, `RFC`, `Domicilio`, `Telefono`, `Vendedor`, `Fax`) VALUES
-(1, 'Julian Orozco', 'JOC1993', 'Cumbres', 83006858, 'Tablon', '81737212');
-
 -- --------------------------------------------------------
 
 --
@@ -197,15 +176,6 @@ CREATE TABLE `Trabaja` (
   `Retraso` varchar(10) NOT NULL,
   `Horas_Trabajadas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `Trabaja`
---
-
-INSERT INTO `Trabaja` (`id_Trabaja`, `Nomina`, `Fecha`, `Hora_Entrada`, `Hora_Salida`, `Asistencia`, `Retraso`, `Horas_Trabajadas`) VALUES
-(6, 'A0101', '2017-04-19', '08:00:00', '16:00:00', 'Si', 'No', 8),
-(7, 'A0101', '2017-04-20', '09:00:00', '15:00:00', 'Si', 'No', 6),
-(8, 'A0101', '2017-04-16', '08:30:00', '16:30:00', 'Si', 'No', 8);
 
 --
 -- Indexes for dumped tables
@@ -290,7 +260,7 @@ ALTER TABLE `Mantenimiento`
 -- AUTO_INCREMENT for table `Orden_Compra`
 --
 ALTER TABLE `Orden_Compra`
-  MODIFY `id_OCompra` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_OCompra` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `Orden_Trabajo`
 --
