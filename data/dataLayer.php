@@ -19,7 +19,7 @@ function connectionToDataBase(){
 function attemptLogin($userName, $userPassword){
     $conn = connectionToDataBase();
     if ($conn != null){
-        $sql = "SELECT `Usuario`, `Contrasena` FROM `empleados` WHERE `Usuario` = '$userName' AND `Contrasena` = '$userPassword'";
+        $sql = "SELECT Usuario, Contrasena FROM empleados WHERE Usuario = '$userName' AND Contrasena = '$userPassword'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0)
         {
@@ -121,12 +121,6 @@ function attemptRegistration($nomina, $nombre, $domicilio, $colonia, $ciudad, $t
          else{
              if (mysqli_query($conn, $sqlInsert)){
                  $conn->close();
-                 session_start();
-                 $_SESSION["Nomina"] = $nomina;
-                 $_SESSION["Nombre"] = $nombre;
-                 $_SESSION["Puesto"]  = $puesto;
-                 $_SESSION["Activity"] = time();
- 
                  return array("status"=>"SUCCESS");
              }
              else {
