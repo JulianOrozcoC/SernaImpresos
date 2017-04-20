@@ -28,7 +28,6 @@ $(document).ready(function(){
                     window.location.replace("dashboard.php");
                 },
                 error : function(errorMessage){
-                    alert("No entro");
                     alert(errorMessage.responseText);
                 }
             });

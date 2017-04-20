@@ -84,6 +84,11 @@
                         <a href="dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
+                    <?php  
+                                /*if ($_SESSION['Puesto'] == 'Admin') {
+                                    echo "<a href='empleados.php'><i class='fa fa-fw fa-users'></i> Empleados</a>";
+                                }*/
+                        ?>
                         <a href="empleados.php"><i class="fa fa-fw fa-users"></i> Empleados</a>
                     </li>
                     <li>
