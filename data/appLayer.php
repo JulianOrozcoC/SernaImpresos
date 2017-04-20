@@ -44,6 +44,14 @@ switch($action) {
         break;
     case "ENDSESSION" : endSessionFunction();
         break;
+    case "EMPLEADO" : getEmpleado();
+        break;
+    case "POSTHORAS" : PostHoras();
+        break;
+    case "SHOWCALCULO" : CalculoNomina();
+        break;
+    case "PREMIO" : getPremio();
+        break;
 }
 
 function login(){
@@ -205,7 +213,6 @@ function LoadTableEmpleado(){
         header('HTTP/1.1 500' . $result["status"]);
         die($result["status"]);
     }
-
 }
 
 function PostComment(){
@@ -392,6 +399,72 @@ function GetNombre(){
         die($result["status"]);
     }
 
+}
+
+function getEmpleado(){
+
+    $nombre = $_POST['Nombre'];
+
+    $result = loadEmpleado($nombre);
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["empleados"]);
+        //echo json_encode(array($comentario));
+    }
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+function PostHoras(){
+
+    $nombre = $_POST['Nombre'];
+    $nomina = $_POST['Nomina'];
+    $fecha = $_POST['Fecha'];
+    $hentrada = $_POST['Entrada'];
+    $hsalida = $_POST['Salida'];
+    $asistencia = $_POST['Asistencia'];
+    $retraso = $_POST['Retraso'];
+    $total = $_POST['Total'];
+
+    $result = attemptPostHoras($nombre, $nomina, $fecha, $hentrada, $hsalida, $asistencia, $retraso, $total);
+
+    if( $result["status"] == "SUCCESS"){
+        echo json_encode($result);
+    }
+    else{
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function CalculoNomina(){
+
+    $fechaIni = $_POST['FechaIni'];
+    $fechaFin = $_POST['FechaFin'];
+
+    $result = attemptGetSalario($fechaIni, $fechaFin);
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
+}
+
+function getPremio(){
+
+    $result = attemptGetPremio();
+
+    if ($result["status"] == "SUCCESS"){
+        echo json_encode($result["arrayCommentsBox"]);
+    }
+    else {
+        header('HTTP/1.1 500' . $result["status"]);
+        die($result["status"]);
+    }
 }
 
 ?>
