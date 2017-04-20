@@ -1,4 +1,13 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 
+if (($_SESSION['Usuario'] == NULL)) {
+    header("Location: logout.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

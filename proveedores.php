@@ -1,10 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: edgarserna
- * Date: 4/19/17
- * Time: 10:44 AM
- */
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+if (($_SESSION['Usuario'] == NULL)) {
+    header("Location: logout.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

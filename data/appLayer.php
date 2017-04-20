@@ -103,7 +103,7 @@ function login(){
 */
 function endSessionFunction(){
     session_start();
-    if(isset($_SESSION['user']) && time() - $_SESSION['loginTime'] < 1800){ 
+    if(isset($_SESSION['Usuario']) && time() - $_SESSION['loginTime'] < 1800){ 
         session_unset();
         session_destroy();
         echo json_encode(array("message" => "End Session"));
