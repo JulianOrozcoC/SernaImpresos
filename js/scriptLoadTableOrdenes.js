@@ -13,20 +13,20 @@ $(document).ready(function(){
             dataType : "json",
             contentType : "application/x-www-form-urlencoded",
             success: function(data){
-                $('#OrdenesCompra').dataTable( {
+                $('#OrdenesComp').dataTable( {
                 "data": data,
                 "columns": [
-                    { "data": "Nombre" },
+                    { "data": "ID" },
                     { "data": "Nomina" },
-                    { "data": "salario" },
-                    { "data": "salarioNof" },
-                    { "data": "Puesto" },
+                    { "data": "Proveedor" },
+                    { "data": "Fecha" },
+                    { "data": "Aprobada" },
                     { "data": "Acciones" }
                 ]
             });
             },
             error: function(errorMsg){
-                alert("ERROR IN TABLE EMPLEADOS");
+                alert("ERROR IN TABLE OrdenesCompras");
                 console.log(errorMsg);
             }
     });
