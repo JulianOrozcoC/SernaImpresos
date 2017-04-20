@@ -185,7 +185,7 @@ $(document).ready(function() {
                     newHtml += "</tr>"
                     $("#deducciones").append(newHtml);
 
-                    var sTotal = (isr + imss + infonavit + subsidio) + (sue + pa+ pp);
+                    var sTotal = (sue + pa+ pp) - (isr + imss + infonavit + subsidio);
                     console.log(sTotal);
                     document.getElementById("total").value = sTotal;
 
