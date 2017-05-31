@@ -52,7 +52,6 @@ if (($_SESSION['Usuario'] == NULL)) {
 <body>
 
 <div id="wrapper">
-
     <!-- Navigation -->
    <?php include 'sideBar.php'; ?>
     <!-- Page Content -->
@@ -104,7 +103,7 @@ if (($_SESSION['Usuario'] == NULL)) {
                                 </label>
 
                                 <label for="TotalOC">Total <br>
-                                    <input class="form-control type="text" id="TotalOC" name="TotalOC"  ><br>                                </label>
+                                    <input class="form-control type="text" id="TotalOC" name="TotalOC"  ><br>          </label>
                                 <label for="AprobadaOC">Aprobada
                                     <select class="form-control type="text" id="AprobadaOC" name="AprobadaOC" >
                                     <option value="">Selecciona una opcion</option>
@@ -222,13 +221,13 @@ if (($_SESSION['Usuario'] == NULL)) {
                         <div class="tab-pane active" id="Compra">
                         <button data-target ="#agregarOrdenCompra" data-toggle='modal' type="button" class="btn btn-md btn-success pull-right" style="margin-bottom: 10px;"><i class="fa fa-plus" aria-hidden="true"></i> Agregar Orden de Compra</button>
                             <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Ordenes de  Compra
-                        </div>
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Ordenes de  Compra
+                                    </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body table-responsive">
+                            <div class="panel-body table-responsive">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="OrdenesComp">
                                 <thead>
                                 <tr>
@@ -240,14 +239,14 @@ if (($_SESSION['Usuario'] == NULL)) {
                                     <th>Acciones</th>
                                 </tr>
                                
-                            </table>
-                        </div>
+                                    </table>
+                                </div>
                         <!-- /.panel-body -->
-                    </div>
+                            </div>
                     <!-- /.panel -->
-                </div>
+                        </div>
                 <!-- /.col-lg-12 -->
-            </div>
+                        </div>
                         </div>
                         <div class="tab-pane" id="Trabajo">
                             <h3>Notice the gap between the content and tab after applying a background color</h3>
@@ -261,8 +260,8 @@ if (($_SESSION['Usuario'] == NULL)) {
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
-
 </div>
+
 <!-- /#wrapper -->
 
 <!-- jQuery -->

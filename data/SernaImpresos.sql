@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 20, 2017 at 11:56 AM
+-- Generation Time: May 31, 2017 at 08:32 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -38,7 +38,9 @@ CREATE TABLE `Comentarios` (
 
 INSERT INTO `Comentarios` (`id_Comentario`, `Nomina`, `Comentario`) VALUES
 (7, 'Admin', 'test'),
-(8, 'Admin', 'Test test');
+(8, 'Admin', 'Test test'),
+(9, 'Admin', 'Test 123'),
+(10, 'Admin', 'ana ');
 
 -- --------------------------------------------------------
 
@@ -77,7 +79,10 @@ CREATE TABLE `Empleados` (
 --
 
 INSERT INTO `Empleados` (`Nomina`, `Nombre`, `Domicilio`, `Colonia`, `Ciudad`, `Telefono`, `Celular`, `Email`, `No_IMSS`, `RFC`, `CURP`, `Puesto`, `Fecha_Nacimiento`, `Fecha_Inicio`, `Salario_Hora`, `Salario_NOF`, `ISR`, `IMSS`, `Subsidio`, `Infonavit`, `Activo`, `Usuario`, `Contrasena`) VALUES
-('M1000', 'Martin', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'martin', 'iptaZ+EsignCM3omQ6LKwxlJIzfAj6EivCPIyESRrsI=');
+('M1000', 'Martin', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 0, 0, 0, 0, 0, 0, 'Si', 'martin', 'iptaZ+EsignCM3omQ6LKwxlJIzfAj6EivCPIyESRrsI='),
+('S001', 'Edgar Jorge Serna Cavazos', 'James Cook #2937', 'Cumbres', 'Monterrey', '14255092', '8110194923', 'eserna_sisa@prodigy.net.mx', 0, 0, '', 'Admin', '1956-08-01', '2000-01-01', 0, 0, 0, 0, 0, 0, 'Si', 'eserna', 'cqGvH65NEX9ZBtvcQlu6McWzo21h53jNN5UdbUeEbeU='),
+('S002', 'Julian Orozco', '', '', '', '', '', '', 0, 0, '', 'Empleado', '0000-00-00', '0000-00-00', 450, 0, 50, 80, 90, 10, 'Si', 'july', 'bL7PwH7AEFeiz/yCc/oJQ/Hkirz/bhs6Q0Axp+tJFm8='),
+('S0101010', 'Ana ', '', '', '', '', '', '', 0, 0, '', 'Admin', '0000-00-00', '0000-00-00', 500, 400, 40, 80, 30, 5, 'Si', 'anas', 'OELPGy3zZOpiWOZLf5rsC8yUILc+oppwU6govT0aLE8=');
 
 -- --------------------------------------------------------
 
@@ -96,7 +101,8 @@ CREATE TABLE `Facturas` (
 --
 
 INSERT INTO `Facturas` (`id_Facturas`, `Factura`, `Fecha`) VALUES
-(1, 'Factura 123', '2017-04-19');
+(1, 'Factura 123', '2017-04-19'),
+(2, 'Jesus', '2017-04-27');
 
 -- --------------------------------------------------------
 
@@ -109,6 +115,13 @@ CREATE TABLE `Mantenimiento` (
   `Maquina` text NOT NULL,
   `Fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Mantenimiento`
+--
+
+INSERT INTO `Mantenimiento` (`id_Mantenimiento`, `Maquina`, `Fecha`) VALUES
+(1, 'MAquina 123', '2017-04-29');
 
 -- --------------------------------------------------------
 
@@ -128,6 +141,14 @@ CREATE TABLE `Orden_Compra` (
   `Total` double DEFAULT NULL,
   `Aprobada` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Orden_Compra`
+--
+
+INSERT INTO `Orden_Compra` (`id_OCompra`, `Nomina`, `Proveedor`, `Fecha`, `Cantidad`, `Unidad_Medida`, `Descripcion`, `Precio_Unitario`, `Total`, `Aprobada`) VALUES
+(1, 'S001', 'ToÃ±o Esquinca', '2017-04-21', 50, '5', 'TEST', 1200, 666, 'Aprobada'),
+(2, 'M1000', 'ToÃ±o Esquinca', '2017-04-25', 1, '1', 'asda', 100, 1, 'Aprobada');
 
 -- --------------------------------------------------------
 
@@ -160,6 +181,13 @@ CREATE TABLE `Proveedores` (
   `Fax` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `Proveedores`
+--
+
+INSERT INTO `Proveedores` (`id_Proveedor`, `Nombre`, `RFC`, `Domicilio`, `Telefono`, `Vendedor`, `Fax`) VALUES
+(2, 'ToÃ±o Esquinca', 'aem1045', 'muchedumbre', 83000001, 'Joaquin Lopez', '5423');
+
 -- --------------------------------------------------------
 
 --
@@ -176,6 +204,18 @@ CREATE TABLE `Trabaja` (
   `Retraso` varchar(10) NOT NULL,
   `Horas_Trabajadas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Trabaja`
+--
+
+INSERT INTO `Trabaja` (`id_Trabaja`, `Nomina`, `Fecha`, `Hora_Entrada`, `Hora_Salida`, `Asistencia`, `Retraso`, `Horas_Trabajadas`) VALUES
+(9, 'S002', '2017-04-20', '08:00:00', '16:00:00', 'Si', 'No', 8),
+(10, 'S002', '2017-04-21', '10:00:00', '17:00:00', 'Si', 'No', 7),
+(11, 'S002', '2017-04-22', '09:00:00', '18:00:00', 'Si', 'No', 9),
+(12, 'S002', '2017-04-24', '08:30:00', '16:30:00', 'Si', 'Si', 8),
+(13, 'S002', '2017-05-18', '08:00:00', '15:30:00', 'Si', 'No', 7),
+(14, 'S0101010', '2017-05-30', '08:30:00', '17:00:00', 'si', 'no', 9);
 
 --
 -- Indexes for dumped tables
@@ -245,22 +285,22 @@ ALTER TABLE `Trabaja`
 -- AUTO_INCREMENT for table `Comentarios`
 --
 ALTER TABLE `Comentarios`
-  MODIFY `id_Comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_Comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `Facturas`
 --
 ALTER TABLE `Facturas`
-  MODIFY `id_Facturas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Facturas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `Mantenimiento`
 --
 ALTER TABLE `Mantenimiento`
-  MODIFY `id_Mantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_Mantenimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `Orden_Compra`
 --
 ALTER TABLE `Orden_Compra`
-  MODIFY `id_OCompra` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_OCompra` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `Orden_Trabajo`
 --
@@ -270,12 +310,12 @@ ALTER TABLE `Orden_Trabajo`
 -- AUTO_INCREMENT for table `Proveedores`
 --
 ALTER TABLE `Proveedores`
-  MODIFY `id_Proveedor` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_Proveedor` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `Trabaja`
 --
 ALTER TABLE `Trabaja`
-  MODIFY `id_Trabaja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_Trabaja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --
